@@ -1,0 +1,192 @@
+[gd_scene load_steps=3 format=3 uid="uid://51iy4hq7c77v"]
+
+[ext_resource type="StyleBox" uid="uid://pi5hr1hi6vvl" path="res://Menus/sci-fi_button.tres" id="1_d8v2r"]
+[ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Revamped.otf" id="1_oc0x0"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.231373, 0.231373, 0.231373, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Topbar" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Topbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Topbar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+
+[node name="Back" type="Button" parent="VBoxContainer/Topbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_oc0x0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("1_d8v2r")
+text = "BACK"
+
+[node name="Create" type="Button" parent="VBoxContainer/Topbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_oc0x0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("1_d8v2r")
+text = "CREATE
+"
+
+[node name="Play" type="Button" parent="VBoxContainer/Topbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_oc0x0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("1_d8v2r")
+text = "PLAY
+"
+
+[node name="Edit" type="Button" parent="VBoxContainer/Topbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_oc0x0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("1_d8v2r")
+text = "EDIT
+"
+
+[node name="Rename" type="Button" parent="VBoxContainer/Topbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_oc0x0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("1_d8v2r")
+text = "RENAME"
+
+[node name="Delete" type="Button" parent="VBoxContainer/Topbar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_oc0x0")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("1_d8v2r")
+text = "DELETE"
+
+[node name="PageView" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftMargin" type="Control" parent="VBoxContainer/PageView"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="PreviousPage" type="Button" parent="VBoxContainer/PageView"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "<"
+
+[node name="LevelView" type="GridContainer" parent="VBoxContainer/PageView"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/PageView/LevelView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Level 1"
+
+[node name="Button2" type="Button" parent="VBoxContainer/PageView/LevelView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Level 2"
+
+[node name="Button3" type="Button" parent="VBoxContainer/PageView/LevelView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Level 3"
+
+[node name="Button4" type="Button" parent="VBoxContainer/PageView/LevelView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Level 4"
+
+[node name="Button5" type="Button" parent="VBoxContainer/PageView/LevelView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Level 5"
+
+[node name="Button6" type="Button" parent="VBoxContainer/PageView/LevelView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Level 6"
+
+[node name="Button7" type="Button" parent="VBoxContainer/PageView/LevelView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Level 7"
+
+[node name="Button8" type="Button" parent="VBoxContainer/PageView/LevelView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Level 8"
+
+[node name="Button9" type="Button" parent="VBoxContainer/PageView/LevelView"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Level 9"
+
+[node name="NextPage" type="Button" parent="VBoxContainer/PageView"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = ">"
+
+[node name="RightMargin" type="Control" parent="VBoxContainer/PageView"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
