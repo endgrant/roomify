@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://caabqsencc737"]
+
+[ext_resource type="PackedScene" uid="uid://c7spyc2kb254x" path="res://Blocks/block.tscn" id="1_1gfeb"]
+
+[node name="Block" instance=ExtResource("1_1gfeb")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
