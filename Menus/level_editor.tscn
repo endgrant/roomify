@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn62t62js5dbe"]
+[gd_scene load_steps=12 format=3 uid="uid://dn62t62js5dbe"]
 
 [ext_resource type="Texture2D" uid="uid://blnuhrwoytqkc" path="res://Spike.png" id="1_210ks"]
 [ext_resource type="Texture2D" uid="uid://bdtivc5yb61lu" path="res://BasicBlock.png" id="1_r5nph"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bp1lmjddgd7pj" path="res://BlueBlock.png" id="3_loe3m"]
 [ext_resource type="Texture2D" uid="uid://bslrb0jc8oik2" path="res://RedToggle.png" id="6_g6af0"]
 [ext_resource type="Texture2D" uid="uid://baegaxiasut0e" path="res://Jump Booster.png" id="7_bx8e6"]
+[ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Room.png" id="8_0tir3"]
+[ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Spawn.png" id="9_whbja"]
+[ext_resource type="Texture2D" uid="uid://cuc3kq1auwos8" path="res://Goal.png" id="10_irtw8"]
+[ext_resource type="Texture2D" uid="uid://1jabkroct6q3" path="res://Teleporter.png" id="11_mkl4e"]
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3
@@ -95,6 +99,25 @@ popup/item_0/id = 0
 popup/item_1/text = ""
 popup/item_1/icon = ExtResource("7_bx8e6")
 popup/item_1/id = 1
+
+[node name="Objective" type="OptionButton" parent="HBoxContainer/VBoxContainer/BlockSelection"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+item_count = 4
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = ""
+popup/item_0/icon = ExtResource("8_0tir3")
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/icon = ExtResource("9_whbja")
+popup/item_1/id = 1
+popup/item_2/text = ""
+popup/item_2/icon = ExtResource("10_irtw8")
+popup/item_2/id = 2
+popup/item_3/text = ""
+popup/item_3/icon = ExtResource("11_mkl4e")
+popup/item_3/id = 3
 
 [node name="LevelViewport" type="SubViewportContainer" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
