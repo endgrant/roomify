@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b48bc0ebqne3l"
-path="res://.godot/imported/Revamped.otf-0792981cc49e0fe367f6576c64335c0e.fontdata"
+path="res://.godot/imported/Revamped.otf-34d4c8e153866724fb98027e9f162f6e.fontdata"
 
 [deps]
 
-source_file="res://Revamped.otf"
-dest_files=["res://.godot/imported/Revamped.otf-0792981cc49e0fe367f6576c64335c0e.fontdata"]
+source_file="res://Menus/Revamped.otf"
+dest_files=["res://.godot/imported/Revamped.otf-34d4c8e153866724fb98027e9f162f6e.fontdata"]
 
 [params]
 

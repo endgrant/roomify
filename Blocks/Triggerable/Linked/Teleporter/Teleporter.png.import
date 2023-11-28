@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://basnnphglf5hg"
-path="res://.godot/imported/Spawn.png-a4940df41a0217a0e6c97c1cfbbfe573.ctex"
+uid="uid://1jabkroct6q3"
+path="res://.godot/imported/Teleporter.png-8984efd93b1def0b3e98fb0c5422324e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Spawn.png"
-dest_files=["res://.godot/imported/Spawn.png-a4940df41a0217a0e6c97c1cfbbfe573.ctex"]
+source_file="res://Blocks/Triggerable/Linked/Teleporter/Teleporter.png"
+dest_files=["res://.godot/imported/Teleporter.png-8984efd93b1def0b3e98fb0c5422324e.ctex"]
 
 [params]
 

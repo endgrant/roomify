@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq2vux817131c"
-path="res://.godot/imported/PeriodicSpikeThumbnail.png-87842b4b69768c935dba93302c22dfdc.ctex"
+uid="uid://baegaxiasut0e"
+path="res://.godot/imported/JumpCharger.png-5e0b69ddb63a59969f1aee6f66a1a610.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PeriodicSpikeThumbnail.png"
-dest_files=["res://.godot/imported/PeriodicSpikeThumbnail.png-87842b4b69768c935dba93302c22dfdc.ctex"]
+source_file="res://Blocks/Triggerable/Interactable/JumpCharger/JumpCharger.png"
+dest_files=["res://.godot/imported/JumpCharger.png-5e0b69ddb63a59969f1aee6f66a1a610.ctex"]
 
 [params]
 

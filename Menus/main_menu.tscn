@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://yu5gcfm6ihs0"]
 
-[ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Revamped.otf" id="1_oxnxe"]
+[ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Menus/Revamped.otf" id="1_oxnxe"]
 [ext_resource type="StyleBox" uid="uid://pi5hr1hi6vvl" path="res://Menus/sci-fi_button.tres" id="2_sf5a7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_trhf2"]
@@ -66,7 +66,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_oxnxe")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("2_sf5a7")
-text = "PLAY"
+text = "LEVELS"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2

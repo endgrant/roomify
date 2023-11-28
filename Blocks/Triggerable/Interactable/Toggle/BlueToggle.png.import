@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baegaxiasut0e"
-path="res://.godot/imported/Jump Booster.png-c28840516f9f6897c3f0236b63e88eb3.ctex"
+uid="uid://bwbu5hih47eqr"
+path="res://.godot/imported/BlueToggle.png-f8759bf27fd2b7c3d38353b512ec5abf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Jump Booster.png"
-dest_files=["res://.godot/imported/Jump Booster.png-c28840516f9f6897c3f0236b63e88eb3.ctex"]
+source_file="res://Blocks/Triggerable/Interactable/Toggle/BlueToggle.png"
+dest_files=["res://.godot/imported/BlueToggle.png-f8759bf27fd2b7c3d38353b512ec5abf.ctex"]
 
 [params]
 

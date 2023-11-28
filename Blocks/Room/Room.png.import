@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp1lmjddgd7pj"
-path="res://.godot/imported/BlueBlock.png-eb5b970b4cd65d7ab5f01fe415e88be0.ctex"
+uid="uid://b1vcenm48xc1t"
+path="res://.godot/imported/Room.png-562cf688bc16855183fe1b916193b343.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BlueBlock.png"
-dest_files=["res://.godot/imported/BlueBlock.png-eb5b970b4cd65d7ab5f01fe415e88be0.ctex"]
+source_file="res://Blocks/Room/Room.png"
+dest_files=["res://.godot/imported/Room.png-562cf688bc16855183fe1b916193b343.ctex"]
 
 [params]
 

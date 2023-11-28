@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bslrb0jc8oik2"
-path="res://.godot/imported/RedToggle.png-7df319cf06a87898fd799285bcf3a2ee.ctex"
+uid="uid://cuc3kq1auwos8"
+path="res://.godot/imported/Goal.png-ecce7201e8a1771eecea2b39b27a2ef7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RedToggle.png"
-dest_files=["res://.godot/imported/RedToggle.png-7df319cf06a87898fd799285bcf3a2ee.ctex"]
+source_file="res://Blocks/Triggerable/Interactable/Goal/Goal.png"
+dest_files=["res://.godot/imported/Goal.png-ecce7201e8a1771eecea2b39b27a2ef7.ctex"]
 
 [params]
 

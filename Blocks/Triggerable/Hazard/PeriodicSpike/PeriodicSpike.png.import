@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuc3kq1auwos8"
-path="res://.godot/imported/Goal.png-f9f7db7d23acd2ee2b5af3ec428005a7.ctex"
+uid="uid://mcbw28it60an"
+path="res://.godot/imported/PeriodicSpike.png-840b4cf805cdf177b700d6f5b34acd9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Goal.png"
-dest_files=["res://.godot/imported/Goal.png-f9f7db7d23acd2ee2b5af3ec428005a7.ctex"]
+source_file="res://Blocks/Triggerable/Hazard/PeriodicSpike/PeriodicSpike.png"
+dest_files=["res://.godot/imported/PeriodicSpike.png-840b4cf805cdf177b700d6f5b34acd9d.ctex"]
 
 [params]
 

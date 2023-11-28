@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1vcenm48xc1t"
-path="res://.godot/imported/Room.png-f9e9e4d839f4386f80a11e219f689526.ctex"
+uid="uid://blnuhrwoytqkc"
+path="res://.godot/imported/Spike.png-55f176fd1cdb3927a22c3a456f43fb7f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Room.png"
-dest_files=["res://.godot/imported/Room.png-f9e9e4d839f4386f80a11e219f689526.ctex"]
+source_file="res://Blocks/Triggerable/Hazard/Spike/Spike.png"
+dest_files=["res://.godot/imported/Spike.png-55f176fd1cdb3927a22c3a456f43fb7f.ctex"]
 
 [params]
 

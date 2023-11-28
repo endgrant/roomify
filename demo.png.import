@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mcbw28it60an"
-path="res://.godot/imported/PeriodicSpike.png-dd9bae58979f651e143127ba8a45d6c0.ctex"
+uid="uid://jlaxikfk6hi8"
+path="res://.godot/imported/demo.png-ae37efe57a64cd93633a33db4bb53f9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://PeriodicSpike.png"
-dest_files=["res://.godot/imported/PeriodicSpike.png-dd9bae58979f651e143127ba8a45d6c0.ctex"]
+source_file="res://demo.png"
+dest_files=["res://.godot/imported/demo.png-ae37efe57a64cd93633a33db4bb53f9e.ctex"]
 
 [params]
 

@@ -1,0 +1,175 @@
+[gd_scene load_steps=13 format=3 uid="uid://by67ptjtbqlp2"]
+
+[ext_resource type="Texture2D" uid="uid://bdtivc5yb61lu" path="res://Menus/LevelViewer/BasicBlock.png" id="1_s54ka"]
+[ext_resource type="Texture2D" uid="uid://dk70jef1yc2vc" path="res://Menus/LevelViewer/RedBlock.png" id="2_euxns"]
+[ext_resource type="Texture2D" uid="uid://bp1lmjddgd7pj" path="res://Menus/LevelViewer/BlueBlock.png" id="3_8bov1"]
+[ext_resource type="Texture2D" uid="uid://blnuhrwoytqkc" path="res://Blocks/Triggerable/Hazard/Spike/Spike.png" id="4_ilewd"]
+[ext_resource type="Texture2D" uid="uid://cq2vux817131c" path="res://Menus/LevelViewer/PeriodicSpikeThumbnail.png" id="5_fqs06"]
+[ext_resource type="Texture2D" uid="uid://bslrb0jc8oik2" path="res://Blocks/Triggerable/Interactable/Toggle/RedToggle.png" id="6_b5x1v"]
+[ext_resource type="Texture2D" uid="uid://baegaxiasut0e" path="res://Blocks/Triggerable/Interactable/JumpCharger/JumpCharger.png" id="7_f4c28"]
+[ext_resource type="Texture2D" uid="uid://1jabkroct6q3" path="res://Blocks/Triggerable/Linked/Teleporter/Teleporter.png" id="8_nesuw"]
+[ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Blocks/Room/Room.png" id="9_1ymhd"]
+[ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Blocks/Triggerable/Interactable/Spawn/Spawn.png" id="10_bwwnq"]
+[ext_resource type="Texture2D" uid="uid://cuc3kq1auwos8" path="res://Blocks/Triggerable/Interactable/Goal/Goal.png" id="11_3k8bc"]
+[ext_resource type="Texture2D" uid="uid://jlaxikfk6hi8" path="res://demo.png" id="12_o3ty1"]
+
+[node name="LevelEditor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_right = 1152.0
+offset_bottom = 776.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Topbar" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="BlockSelector" type="HBoxContainer" parent="VBoxContainer/Topbar"]
+layout_mode = 2
+offset_right = 333.0
+offset_bottom = 72.0
+
+[node name="Block" type="VBoxContainer" parent="VBoxContainer/Topbar/BlockSelector"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Topbar/BlockSelector/Block"]
+layout_mode = 2
+text = "Block"
+horizontal_alignment = 1
+
+[node name="Option" type="OptionButton" parent="VBoxContainer/Topbar/BlockSelector/Block"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+item_count = 3
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = ""
+popup/item_0/icon = ExtResource("1_s54ka")
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/icon = ExtResource("2_euxns")
+popup/item_1/id = 1
+popup/item_2/text = ""
+popup/item_2/icon = ExtResource("3_8bov1")
+popup/item_2/id = 2
+
+[node name="Hazard" type="VBoxContainer" parent="VBoxContainer/Topbar/BlockSelector"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Topbar/BlockSelector/Hazard"]
+layout_mode = 2
+text = "Hazard"
+horizontal_alignment = 1
+
+[node name="Option" type="OptionButton" parent="VBoxContainer/Topbar/BlockSelector/Hazard"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+item_count = 2
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = ""
+popup/item_0/icon = ExtResource("4_ilewd")
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/icon = ExtResource("5_fqs06")
+popup/item_1/id = 1
+
+[node name="Interactable" type="VBoxContainer" parent="VBoxContainer/Topbar/BlockSelector"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Topbar/BlockSelector/Interactable"]
+layout_mode = 2
+text = "Interactable"
+horizontal_alignment = 1
+
+[node name="Option" type="OptionButton" parent="VBoxContainer/Topbar/BlockSelector/Interactable"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+item_count = 4
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = ""
+popup/item_0/icon = ExtResource("6_b5x1v")
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/icon = ExtResource("7_f4c28")
+popup/item_1/id = 1
+popup/item_2/text = ""
+popup/item_2/icon = ExtResource("8_nesuw")
+popup/item_2/id = 2
+popup/item_3/text = ""
+popup/item_3/icon = ExtResource("9_1ymhd")
+popup/item_3/id = 3
+
+[node name="Objective" type="VBoxContainer" parent="VBoxContainer/Topbar/BlockSelector"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Topbar/BlockSelector/Objective"]
+layout_mode = 2
+text = "Objective"
+horizontal_alignment = 1
+
+[node name="Option" type="OptionButton" parent="VBoxContainer/Topbar/BlockSelector/Objective"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+item_count = 2
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = ""
+popup/item_0/icon = ExtResource("10_bwwnq")
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/icon = ExtResource("11_3k8bc")
+popup/item_1/id = 1
+
+[node name="Toolbar" type="HBoxContainer" parent="VBoxContainer/Topbar"]
+layout_mode = 2
+offset_left = 952.0
+offset_right = 1152.0
+offset_bottom = 72.0
+
+[node name="Play" type="Button" parent="VBoxContainer/Topbar/Toolbar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "PLAY
+"
+
+[node name="Save" type="Button" parent="VBoxContainer/Topbar/Toolbar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "SAVE
+"
+
+[node name="Quit" type="Button" parent="VBoxContainer/Topbar/Toolbar"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+text = "QUIT
+"
+
+[node name="LevelViewport" type="SubViewportContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/LevelViewport"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 644)
+render_target_update_mode = 4
+
+[node name="Demo" type="Sprite2D" parent="."]
+position = Vector2(574, 402)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_o3ty1")
