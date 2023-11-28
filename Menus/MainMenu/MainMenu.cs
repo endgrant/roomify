@@ -1,15 +1,19 @@
 using Godot;
 using System;
 
-public partial class MainMenu : MenuIF
+public partial class MainMenu : AbstractMenu
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+        private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+
+        // Levels button pressed
+	public void Levels() {
+                GetTree().ChangeSceneToPacked(levelSelectMenu);
+        }
+
+
+        // Quit button pressed
+        public void Quit() {
+                GetTree().Quit();
+        }
 }

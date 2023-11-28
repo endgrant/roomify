@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://51iy4hq7c77v"]
+[gd_scene load_steps=4 format=3 uid="uid://51iy4hq7c77v"]
 
+[ext_resource type="Script" path="res://Menus/LevelSelect/LevelSelect.cs" id="1_8yc8y"]
 [ext_resource type="StyleBox" uid="uid://pi5hr1hi6vvl" path="res://Menus/sci-fi_button.tres" id="1_d8v2r"]
-[ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Revamped.otf" id="1_oc0x0"]
+[ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Menus/Revamped.otf" id="1_oc0x0"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_8yc8y")
 
 [node name="Backdrop" type="ColorRect" parent="."]
 layout_mode = 1
@@ -190,3 +192,5 @@ text = ">"
 [node name="RightMargin" type="Control" parent="VBoxContainer/PageView"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Back" to="." method="Back"]

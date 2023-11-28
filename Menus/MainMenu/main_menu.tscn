@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://yu5gcfm6ihs0"]
+[gd_scene load_steps=5 format=3 uid="uid://yu5gcfm6ihs0"]
 
 [ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Menus/Revamped.otf" id="1_oxnxe"]
+[ext_resource type="Script" path="res://Menus/MainMenu/MainMenu.cs" id="1_qelxs"]
 [ext_resource type="StyleBox" uid="uid://pi5hr1hi6vvl" path="res://Menus/sci-fi_button.tres" id="2_sf5a7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_trhf2"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qelxs")
 
 [node name="TempBackdrop" type="ColorRect" parent="."]
 layout_mode = 1
@@ -27,6 +29,7 @@ color = Color(0, 0, 0, 1)
 position = Vector2(0, 324)
 amount = 100
 lifetime = 30.0
+preprocess = 30.0
 emission_shape = 3
 emission_rect_extents = Vector2(1, 324)
 spread = 5.0
@@ -61,7 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="Levels" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_oxnxe")
 theme_override_font_sizes/font_size = 24
@@ -74,3 +77,6 @@ theme_override_fonts/font = ExtResource("1_oxnxe")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("2_sf5a7")
 text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer/Levels" to="." method="Levels"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="Quit"]
