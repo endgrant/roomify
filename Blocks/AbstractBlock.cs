@@ -1,15 +1,17 @@
 using Godot;
 using System;
 
-public partial class AbstractBlock : StaticBody2D
+public abstract partial class AbstractBlock : Node2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+	protected static Room currentRoom;
+
+	public void Place(int x, int y) {
+		// TODO: program place so that it places in the selected room at the specified location
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+	public abstract void Edit();
+
+	public static void SetRoom(Room newRoom) {
+		currentRoom = newRoom;
 	}
 }
