@@ -3,37 +3,50 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
+	[ExportCategory("Attributes")]
+	[Export(PropertyHint.Range, "0,10")] int extraJumps = 10;
+	[Export(PropertyHint.Range, "0, 2000")] float maxSpeed = 750;
+	[Export(PropertyHint.Range, "0, 100")] float acceleration = 50;
+	[Export(PropertyHint.Range, "0, 4000")] float jumpForce = 2000;
+	[Export(PropertyHint.Range, "0, 100")] float gravityAccel = 50;
+	[Export(PropertyHint.Range, "0, 2000")] float gravityMax = 1000;
 
-	// Get the gravity from the project settings to be synced with RigidBody nodes.
-	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
-
-	public override void _PhysicsProcess(double delta)
-	{
-		Vector2 velocity = Velocity;
-
-		// Add the gravity.
-		if (!IsOnFloor())
-			velocity.Y += gravity * (float)delta;
-
-		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-			velocity.Y = JumpVelocity;
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed;
+	public void _physics_process(float delta) {
+		float xVel;
+		float yVel;
+		// gets the inputted movement direction from the player as a combination of inputs
+		// Format: Input.GetAxis(negativeInput, positiveInput)
+		float direction = Input.GetAxis("Move_Left", "Move_Right");
+		
+		// changes velocity of the character based on:
+		// if the character is on the floor/ground 
+		if(IsOnFloor()) {
+			// finds the new speed in the x direction based on inputted direction and max speed
+			xVel = Math.Clamp(Velocity.X + (acceleration * direction), -maxSpeed, maxSpeed);
+			yVel = 0;
 		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+		// if the character is in the air
+		else {
+			xVel = Math.Clamp(Velocity.X + (acceleration * direction * 0.1f), -maxSpeed, maxSpeed);
+			yVel = Math.Clamp(Velocity.Y + gravityAccel, -gravityMax, gravityMax);
 		}
 
-		Velocity = velocity;
+		// changes velocity based on jumping
+		if(Input.IsActionJustPressed("Jump")) {
+			// if the player is on the floor/ground
+			if(IsOnFloor())
+				yVel = -jumpForce;
+			// if the player is in the air and has extra jumps
+			else if(extraJumps > 0) {
+				yVel = -jumpForce * 0.75f;
+				extraJumps--;
+			}
+		}
+
+		// updates the character's velocity
+		Velocity = new Vector2(xVel, yVel);
+		GD.Print(Velocity.Y);
 		MoveAndSlide();
 	}
+
 }
