@@ -56,6 +56,7 @@ public partial class Player : CharacterBody2D
 
 	// sets the extra jumps for the player
 	public void SetExtraJumps(int jumps) {
-		extraJumps = jumps;
+		if(extraJumps < jumps)
+			extraJumps = jumps;
 	}
 }
