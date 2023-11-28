@@ -4,12 +4,12 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	[ExportCategory("Attributes")]
-	[Export(PropertyHint.Range, "0,10")] int extraJumps = 10;
-	[Export(PropertyHint.Range, "0, 2000")] float maxSpeed = 750;
-	[Export(PropertyHint.Range, "0, 100")] float acceleration = 35;
-	[Export(PropertyHint.Range, "0, 4000")] float jumpForce = 2000;
-	[Export(PropertyHint.Range, "0, 100")] float gravityAccel = 50;
-	[Export(PropertyHint.Range, "0, 2000")] float gravityMax = 1000;
+	[Export(PropertyHint.Range, "0,10")] private int extraJumps = 10;
+	[Export(PropertyHint.Range, "0, 2000")] private float maxSpeed = 750;
+	[Export(PropertyHint.Range, "0, 100")] private float acceleration = 35;
+	[Export(PropertyHint.Range, "0, 4000")] private float jumpForce = 2000;
+	[Export(PropertyHint.Range, "0, 100")] private float gravityAccel = 50;
+	[Export(PropertyHint.Range, "0, 4000")] private float gravityMax = 2000;
 
 	public void _physics_process(float delta) {
 		float xVel;
@@ -48,4 +48,14 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
+	public void Die() {
+		// TODO: Add death sound/animation and queue free once 
+		// 		 the death sound/animation has finished playing
+		QueueFree();
+	}
+
+	// sets the extra jumps for the player
+	public void SetExtraJumps(int jumps) {
+		extraJumps = jumps;
+	}
 }
