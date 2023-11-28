@@ -45,7 +45,6 @@ public partial class Player : CharacterBody2D
 
 		// updates the character's velocity
 		Velocity = new Vector2(xVel, yVel);
-		GD.Print(Velocity.Y);
 		MoveAndSlide();
 	}
 
