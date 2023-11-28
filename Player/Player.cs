@@ -6,7 +6,7 @@ public partial class Player : CharacterBody2D
 	[ExportCategory("Attributes")]
 	[Export(PropertyHint.Range, "0,10")] int extraJumps = 10;
 	[Export(PropertyHint.Range, "0, 2000")] float maxSpeed = 750;
-	[Export(PropertyHint.Range, "0, 100")] float acceleration = 50;
+	[Export(PropertyHint.Range, "0, 100")] float acceleration = 35;
 	[Export(PropertyHint.Range, "0, 4000")] float jumpForce = 2000;
 	[Export(PropertyHint.Range, "0, 100")] float gravityAccel = 50;
 	[Export(PropertyHint.Range, "0, 2000")] float gravityMax = 1000;
@@ -27,7 +27,7 @@ public partial class Player : CharacterBody2D
 		}
 		// if the character is in the air
 		else {
-			xVel = Math.Clamp(Velocity.X + (acceleration * direction * 0.1f), -maxSpeed, maxSpeed);
+			xVel = Math.Clamp(Velocity.X + (acceleration * direction * 0.25f), -maxSpeed, maxSpeed);
 			yVel = Math.Clamp(Velocity.Y + gravityAccel, -gravityMax, gravityMax);
 		}
 
