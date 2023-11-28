@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdtivc5yb61lu"
-path="res://.godot/imported/BasicBlock.png-b329feb5bef41c7ba0b01e60a1e1e958.ctex"
+uid="uid://cq2vux817131c"
+path="res://.godot/imported/PeriodicSpikeThumbnail.png-18d76ad48a047f5a7ade4e050dda4386.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menus/LevelViewer/BasicBlock.png"
-dest_files=["res://.godot/imported/BasicBlock.png-b329feb5bef41c7ba0b01e60a1e1e958.ctex"]
+source_file="res://Menus/LevelViewer/LevelEditor/PeriodicSpikeThumbnail.png"
+dest_files=["res://.godot/imported/PeriodicSpikeThumbnail.png-18d76ad48a047f5a7ade4e050dda4386.ctex"]
 
 [params]
 

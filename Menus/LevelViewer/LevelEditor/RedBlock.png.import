@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cq2vux817131c"
-path="res://.godot/imported/PeriodicSpikeThumbnail.png-d6c0aea79f91c4ea381f75ee0263019d.ctex"
+uid="uid://dk70jef1yc2vc"
+path="res://.godot/imported/RedBlock.png-c9e2abda5b6029ff53fe4e8311a99b9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menus/LevelViewer/PeriodicSpikeThumbnail.png"
-dest_files=["res://.godot/imported/PeriodicSpikeThumbnail.png-d6c0aea79f91c4ea381f75ee0263019d.ctex"]
+source_file="res://Menus/LevelViewer/LevelEditor/RedBlock.png"
+dest_files=["res://.godot/imported/RedBlock.png-c9e2abda5b6029ff53fe4e8311a99b9b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bslrb0jc8oik2"
-path="res://.godot/imported/RedToggle.png-2e9fa8cc048472dfd0564aea7bd0271a.ctex"
+uid="uid://bwbu5hih47eqr"
+path="res://.godot/imported/BlueToggle.png-1075047b523c7bb49a3c96ca1f0fa81e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Blocks/Triggerable/Interactable/Toggle/RedToggle.png"
-dest_files=["res://.godot/imported/RedToggle.png-2e9fa8cc048472dfd0564aea7bd0271a.ctex"]
+source_file="res://Blocks/Triggerable/Toggle/BlueToggle.png"
+dest_files=["res://.godot/imported/BlueToggle.png-1075047b523c7bb49a3c96ca1f0fa81e.ctex"]
 
 [params]
 

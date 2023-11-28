@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp1lmjddgd7pj"
-path="res://.godot/imported/BlueBlock.png-411717fda348298c375624502e8aad65.ctex"
+uid="uid://cuc3kq1auwos8"
+path="res://.godot/imported/Goal.png-329ee28e8eefd1813d8ec8c2ee13ba22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menus/LevelViewer/BlueBlock.png"
-dest_files=["res://.godot/imported/BlueBlock.png-411717fda348298c375624502e8aad65.ctex"]
+source_file="res://Blocks/Triggerable/Goal/Goal.png"
+dest_files=["res://.godot/imported/Goal.png-329ee28e8eefd1813d8ec8c2ee13ba22.ctex"]
 
 [params]
 

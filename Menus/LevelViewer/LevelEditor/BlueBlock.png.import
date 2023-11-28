@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk70jef1yc2vc"
-path="res://.godot/imported/RedBlock.png-7b9eb2c5db0a89f949fe9709852b888b.ctex"
+uid="uid://bp1lmjddgd7pj"
+path="res://.godot/imported/BlueBlock.png-d4df987ed722a702ce4962a8b0621867.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menus/LevelViewer/RedBlock.png"
-dest_files=["res://.godot/imported/RedBlock.png-7b9eb2c5db0a89f949fe9709852b888b.ctex"]
+source_file="res://Menus/LevelViewer/LevelEditor/BlueBlock.png"
+dest_files=["res://.godot/imported/BlueBlock.png-d4df987ed722a702ce4962a8b0621867.ctex"]
 
 [params]
 

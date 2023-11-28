@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://basnnphglf5hg"
-path="res://.godot/imported/Spawn.png-4935804d492fb9106eaa89ba83220e7c.ctex"
+uid="uid://baegaxiasut0e"
+path="res://.godot/imported/JumpCharger.png-ca4a30b78cff820d6e730ac068138d3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Blocks/Triggerable/Interactable/Spawn/Spawn.png"
-dest_files=["res://.godot/imported/Spawn.png-4935804d492fb9106eaa89ba83220e7c.ctex"]
+source_file="res://Blocks/Triggerable/JumpCharger/JumpCharger.png"
+dest_files=["res://.godot/imported/JumpCharger.png-ca4a30b78cff820d6e730ac068138d3d.ctex"]
 
 [params]
 
