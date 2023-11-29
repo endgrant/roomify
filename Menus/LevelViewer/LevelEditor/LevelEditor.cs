@@ -39,6 +39,13 @@ public partial class LevelEditor : LevelViewer
                                 (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
                 Vector2 scale = windowSize / viewportSize;
                 Vector2I cursorGridPos = tilemap.LocalToMap(GetLocalMousePosition() * scale - new Vector2(0, topbar.Size.Y * scale.Y));
+
+                Vector2I upperBound = new Vector2I(
+                        (int)(viewport.Size2DOverride.X / tilemap.TileSet.TileSize.X - 1),
+                        (int)(viewport.Size2DOverride.Y / tilemap.TileSet.TileSize.Y - 1));
+                if (cursorGridPos.X < 0 || cursorGridPos.Y < 0 || cursorGridPos.X > upperBound.X || cursorGridPos.Y > upperBound.Y) {
+                        return;
+                }
                 DeleteBlock(prevCursorGridPos, 1);
                 PlaceBlock(cursorGridPos, 1);
                 prevCursorGridPos = cursorGridPos;
@@ -47,6 +54,7 @@ public partial class LevelEditor : LevelViewer
                 if (Input.IsActionPressed("Accept") && !Input.IsActionPressed("Delete")) {
                         PlaceBlock(cursorGridPos, 0);
                 }
+                // Delete block on ctrl left click
                 if (Input.IsActionPressed("Delete")) {
                         DeleteBlock(cursorGridPos, 0);
                 }
@@ -55,18 +63,28 @@ public partial class LevelEditor : LevelViewer
 
         // Place block
         private void PlaceBlock(Vector2I pos, int layer) {
-                tilemap.SetCell(layer, pos, layer, Vector2I.Right * (sourceId - 1) * layer, sourceId * Math.Abs(layer - 1));
+                if (tilemap.GetCellAlternativeTile(layer, pos) == -1) {
+                        if (layer == 0) {
+                              GD.Print("Place ", pos, " ", layer);  
+                        }
+                        tilemap.SetCell(layer, pos, layer, Vector2I.Right * (sourceId - 1) * layer, sourceId * Math.Abs(layer - 1));
+                }
+                
         }
 
 
         // Delete block
         private void DeleteBlock(Vector2I pos, int layer) {
-                tilemap.EraseCell(layer, pos);
-                if(layer == 1)
-                        return;
+                if(layer == 1) {
+                       tilemap.EraseCell(layer, pos);
+                        return; 
+                }
                         
                 foreach(AbstractBlock element in tilemap.GetChildren()) {
-                        element.QueueFree();
+                        Vector2 realPos = ((pos + Vector2I.One) * tilemap.TileSet.TileSize) - (tilemap.TileSet.TileSize / 2);
+                        if (element.Position.Equals(realPos)) {
+                                element.QueueFree();
+                        }
                 }
         }
 
