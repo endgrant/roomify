@@ -75,17 +75,13 @@ public partial class LevelEditor : LevelViewer
 
         // Delete block
         private void DeleteBlock(Vector2I pos, int layer) {
-                if(layer == 1) {
-                       tilemap.EraseCell(layer, pos);
-                        return; 
-                }
-                        
-                foreach(AbstractBlock element in tilemap.GetChildren()) {
-                        Vector2 realPos = ((pos + Vector2I.One) * tilemap.TileSet.TileSize) - (tilemap.TileSet.TileSize / 2);
-                        if (element.Position.Equals(realPos)) {
-                                element.QueueFree();
+                if (tilemap.GetCellAlternativeTile(layer, pos) != -1) {
+                        if (layer == 0) {
+                              GD.Print("Delete ", pos, " ", layer);  
                         }
+                        tilemap.SetCell(layer, pos, -1, new Vector2I(-1, -1), -1);
                 }
+                
         }
 
 
