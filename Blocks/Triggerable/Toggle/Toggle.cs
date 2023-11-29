@@ -12,4 +12,10 @@ public partial class Toggle : AbstractTriggerable
 	public override void _Process(double delta)
 	{
 	}
+
+    public override void Entered(Node2D activator)
+    {
+        throw new NotImplementedException();
+    }
+
 }

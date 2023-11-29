@@ -1,8 +1,8 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody2D
-{
+public partial class Player : CharacterBody2D {
+	
 	[ExportCategory("Attributes")]
 	[Export(PropertyHint.Range, "0,10")] private int extraJumps = 10;
 	[Export(PropertyHint.Range, "0, 2000")] private float maxSpeed = 750;

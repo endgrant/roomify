@@ -1,15 +1,23 @@
 using Godot;
 using System;
 
-public partial class JumpCharger : AbstractTriggerable
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+public partial class JumpCharger : AbstractTriggerable {
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    [ExportCategory("Attributes")]
+    [Export(PropertyHint.Range, "0, 10")] private int extraJumps = 3;
+
+    private void GiveMoreJumps(Node2D activator) {
+        if(activator is Player)
+            ((Player)activator).SetExtraJumps(extraJumps);
+    }
+
+    /*
+    public override void Edit() {
+        throw new NotImplementedException();
+    }
+    */
+
+    public override void Entered(Node2D activator) {
+        GiveMoreJumps(activator);
+    }
 }

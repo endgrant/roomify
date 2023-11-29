@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6ffr8kjnhl0b"]
+
+[ext_resource type="PackedScene" uid="uid://vf4wqf07hxsv" path="res://Player/Player.tscn" id="1_cpdff"]
+[ext_resource type="PackedScene" uid="uid://dvatk501t42wt" path="res://Player/jump_charger.tscn" id="2_8bg73"]
+[ext_resource type="Texture2D" uid="uid://cuv1646vk3bd0" path="res://Blocks/Basic/Blocks.png" id="3_xsq2d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcen4"]
+size = Vector2(1023.5, 321)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_cpdff")]
+position = Vector2(401, 556)
+
+[node name="JumpCharger" parent="." instance=ExtResource("2_8bg73")]
+position = Vector2(721, 505)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(684, 769)
+texture = ExtResource("3_xsq2d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(684.25, 769.5)
+shape = SubResource("RectangleShape2D_gcen4")

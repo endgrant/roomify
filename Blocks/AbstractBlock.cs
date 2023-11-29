@@ -7,17 +7,17 @@ public abstract partial class AbstractBlock : Node2D
 	protected static Room currentRoom;
 
 
-        // Enter scene tree
-        public override void _Ready() {
-                base._Ready();
-                sprite = GetNode<Sprite2D>("Sprite2D");
-        }
+	// Enter scene tree
+	public override void _Ready() {
+		base._Ready();
+		sprite = GetNode<Sprite2D>("Sprite2D");
+	}
 
 
 	// Returns the texture of the sprite
 	public Texture2D GetTexture() {
-                return sprite.Texture;
-        }
+		return sprite.Texture;
+	}
 
 
 	public void Place(int x, int y) {
@@ -25,7 +25,7 @@ public abstract partial class AbstractBlock : Node2D
 	}
 
 
-	public abstract void Edit();
+	// public abstract void Edit();
 
 
 	public static void SetRoom(Room newRoom) {
