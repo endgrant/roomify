@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnlx28q17hpnk"]
+
+[ext_resource type="Script" path="res://Blocks/Triggerable/Hazard/NormalSpike/NormalSpike.cs" id="1_d2inb"]
+[ext_resource type="Texture2D" uid="uid://blnuhrwoytqkc" path="res://Blocks/Triggerable/Hazard/NormalSpike/Spike.png" id="2_75gra"]
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_d2inb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_75gra")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-28, 24, 0, -32, 28, 24)
+
+[connection signal="body_entered" from="." to="." method="Entered"]

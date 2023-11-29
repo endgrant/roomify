@@ -63,6 +63,5 @@ public partial class Player : CharacterBody2D {
 	public void SetExtraJumps(int jumps) {
 		if(extraJumps < jumps)
 			extraJumps = jumps;
-		GD.Print(extraJumps);
 	}
 }

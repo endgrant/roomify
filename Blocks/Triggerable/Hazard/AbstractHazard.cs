@@ -1,21 +1,15 @@
 using Godot;
 using System;
 
-public partial class AbstractHazard : AbstractTriggerable
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+public partial class AbstractHazard : AbstractTriggerable {
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void Entered(Node2D activator) {
+        if(activator is Player)
+			Kill((Player)activator);
+    }
 
-    public override void Entered(Node2D activator)
-    {
-        throw new NotImplementedException();
+    private void Kill(Player player) {
+        player.Die();
     }
 
 }

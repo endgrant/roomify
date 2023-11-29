@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract partial class AbstractTriggerable : AbstractBlock
-{
+public abstract partial class AbstractTriggerable : AbstractBlock {
+	// Method used by all Triggerable blocks interact with an object through signals
 	public abstract void Entered(Node2D activator);
 }
