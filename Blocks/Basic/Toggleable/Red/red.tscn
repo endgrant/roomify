@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://654xnck7ycan"]
+
+[ext_resource type="PackedScene" uid="uid://dqbe8pnbfro3f" path="res://Blocks/Basic/Toggleable/toggle_block.tscn" id="1_173l5"]
+[ext_resource type="Script" path="res://Blocks/Basic/Toggleable/Red/Red.cs" id="2_6p7yy"]
+[ext_resource type="Texture2D" uid="uid://dk70jef1yc2vc" path="res://Menus/LevelViewer/LevelEditor/RedBlock.png" id="2_d31pp"]
+
+[node name="Red" instance=ExtResource("1_173l5")]
+script = ExtResource("2_6p7yy")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_d31pp")

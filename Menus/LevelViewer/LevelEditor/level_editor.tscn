@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://by67ptjtbqlp2"]
+[gd_scene load_steps=19 format=3 uid="uid://by67ptjtbqlp2"]
 
 [ext_resource type="Script" path="res://Menus/LevelViewer/LevelEditor/LevelEditor.cs" id="1_jm58u"]
 [ext_resource type="Texture2D" uid="uid://bdtivc5yb61lu" path="res://Menus/LevelViewer/LevelEditor/BasicBlock.png" id="1_s54ka"]
 [ext_resource type="Texture2D" uid="uid://dk70jef1yc2vc" path="res://Menus/LevelViewer/LevelEditor/RedBlock.png" id="2_euxns"]
+[ext_resource type="PackedScene" uid="uid://y1i1qd7a3ftn" path="res://Menus/LevelViewer/LevelEditor/BlockButton/block_button.tscn" id="2_o3uho"]
 [ext_resource type="Texture2D" uid="uid://bp1lmjddgd7pj" path="res://Menus/LevelViewer/LevelEditor/BlueBlock.png" id="3_8bov1"]
 [ext_resource type="Texture2D" uid="uid://blnuhrwoytqkc" path="res://Blocks/Triggerable/Hazard/NormalSpike/Spike.png" id="4_ilewd"]
 [ext_resource type="Texture2D" uid="uid://cq2vux817131c" path="res://Menus/LevelViewer/LevelEditor/PeriodicSpikeThumbnail.png" id="5_fqs06"]
@@ -68,24 +69,12 @@ layout_mode = 2
 offset_right = 333.0
 offset_bottom = 72.0
 
-[node name="Block" type="VBoxContainer" parent="VBoxContainer/Topbar/BlockSelector"]
-custom_minimum_size = Vector2(64, 64)
+[node name="Block" parent="VBoxContainer/Topbar/BlockSelector" instance=ExtResource("2_o3uho")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Topbar/BlockSelector/Block"]
-layout_mode = 2
-text = "Block"
-horizontal_alignment = 1
-
-[node name="Option" type="OptionButton" parent="VBoxContainer/Topbar/BlockSelector/Block"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+[node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Block" index="1"]
 item_count = 3
-selected = 0
-fit_to_longest_item = false
-popup/item_0/text = ""
 popup/item_0/icon = ExtResource("1_s54ka")
-popup/item_0/id = 0
 popup/item_1/text = ""
 popup/item_1/icon = ExtResource("2_euxns")
 popup/item_1/id = 1
@@ -93,77 +82,53 @@ popup/item_2/text = ""
 popup/item_2/icon = ExtResource("3_8bov1")
 popup/item_2/id = 2
 
-[node name="Hazard" type="VBoxContainer" parent="VBoxContainer/Topbar/BlockSelector"]
-custom_minimum_size = Vector2(64, 64)
+[node name="Hazard" parent="VBoxContainer/Topbar/BlockSelector" instance=ExtResource("2_o3uho")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Topbar/BlockSelector/Hazard"]
-layout_mode = 2
+[node name="Label" parent="VBoxContainer/Topbar/BlockSelector/Hazard" index="0"]
 text = "Hazard"
-horizontal_alignment = 1
 
-[node name="Option" type="OptionButton" parent="VBoxContainer/Topbar/BlockSelector/Hazard"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+[node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Hazard" index="1"]
 item_count = 2
-selected = 0
-fit_to_longest_item = false
-popup/item_0/text = ""
 popup/item_0/icon = ExtResource("4_ilewd")
-popup/item_0/id = 0
+popup/item_0/id = 3
 popup/item_1/text = ""
 popup/item_1/icon = ExtResource("5_fqs06")
-popup/item_1/id = 1
+popup/item_1/id = 4
 
-[node name="Interactable" type="VBoxContainer" parent="VBoxContainer/Topbar/BlockSelector"]
-custom_minimum_size = Vector2(64, 64)
+[node name="Interactable" parent="VBoxContainer/Topbar/BlockSelector" instance=ExtResource("2_o3uho")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Topbar/BlockSelector/Interactable"]
-layout_mode = 2
+[node name="Label" parent="VBoxContainer/Topbar/BlockSelector/Interactable" index="0"]
 text = "Interactable"
-horizontal_alignment = 1
 
-[node name="Option" type="OptionButton" parent="VBoxContainer/Topbar/BlockSelector/Interactable"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+[node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Interactable" index="1"]
 item_count = 4
-selected = 0
-fit_to_longest_item = false
-popup/item_0/text = ""
 popup/item_0/icon = ExtResource("6_b5x1v")
-popup/item_0/id = 0
+popup/item_0/id = 5
 popup/item_1/text = ""
 popup/item_1/icon = ExtResource("7_f4c28")
-popup/item_1/id = 1
+popup/item_1/id = 6
 popup/item_2/text = ""
 popup/item_2/icon = ExtResource("8_nesuw")
-popup/item_2/id = 2
+popup/item_2/id = 7
 popup/item_3/text = ""
 popup/item_3/icon = ExtResource("9_1ymhd")
-popup/item_3/id = 3
+popup/item_3/id = 8
 
-[node name="Objective" type="VBoxContainer" parent="VBoxContainer/Topbar/BlockSelector"]
-custom_minimum_size = Vector2(64, 64)
+[node name="Objective" parent="VBoxContainer/Topbar/BlockSelector" instance=ExtResource("2_o3uho")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Topbar/BlockSelector/Objective"]
-layout_mode = 2
+[node name="Label" parent="VBoxContainer/Topbar/BlockSelector/Objective" index="0"]
 text = "Objective"
-horizontal_alignment = 1
 
-[node name="Option" type="OptionButton" parent="VBoxContainer/Topbar/BlockSelector/Objective"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
+[node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Objective" index="1"]
 item_count = 2
-selected = 0
-fit_to_longest_item = false
-popup/item_0/text = ""
 popup/item_0/icon = ExtResource("10_bwwnq")
-popup/item_0/id = 0
+popup/item_0/id = 9
 popup/item_1/text = ""
 popup/item_1/icon = ExtResource("11_3k8bc")
-popup/item_1/id = 1
+popup/item_1/id = 10
 
 [node name="CurrentBlock" type="VBoxContainer" parent="VBoxContainer/Topbar"]
 custom_minimum_size = Vector2(64, 64)
@@ -239,3 +204,8 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
 [connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Quit" to="." method="Quit"]
+
+[editable path="VBoxContainer/Topbar/BlockSelector/Block"]
+[editable path="VBoxContainer/Topbar/BlockSelector/Hazard"]
+[editable path="VBoxContainer/Topbar/BlockSelector/Interactable"]
+[editable path="VBoxContainer/Topbar/BlockSelector/Objective"]

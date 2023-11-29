@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://y1i1qd7a3ftn"]
+
+[ext_resource type="Script" path="res://Menus/LevelViewer/LevelEditor/BlockButton/BlockButton.cs" id="1_hx83v"]
+
+[node name="Block" type="VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+script = ExtResource("1_hx83v")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Block"
+horizontal_alignment = 1
+
+[node name="Option" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+item_count = 1
+selected = 0
+fit_to_longest_item = false
+popup/item_0/text = ""
+popup/item_0/id = 0
+
+[connection signal="item_selected" from="Option" to="." method="ItemSelected"]

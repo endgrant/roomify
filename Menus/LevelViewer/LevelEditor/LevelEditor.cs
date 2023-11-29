@@ -14,8 +14,6 @@ public partial class LevelEditor : LevelViewer
         private AbstractBlock currentBlock;
         private Vector2I prevCursorGridPos = Vector2I.Zero;
 
-        private PackedScene basicBlock = GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn");
-
 
         // Entered scene
         public override void _Ready() {
@@ -25,7 +23,7 @@ public partial class LevelEditor : LevelViewer
                 tilemap = viewport.GetNode<TileMap>("TileMap");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
 
-                SetCurrentBlock((AbstractBlock)basicBlock.Instantiate<Node2D>());
+                SetCurrentBlock( GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"));
         }
 
 
@@ -54,10 +52,16 @@ public partial class LevelEditor : LevelViewer
         }
 
 
+        // Place block
+        private void PlaceBlock(Vector2I pos) {
+                
+        }
+
+
         // Change currently selected block
-        private void SetCurrentBlock(AbstractBlock block) {
-                currentBlock = block;
-                //currentBlockTextureRect.Texture = currentBlock.GetTexture();
+        public void SetCurrentBlock(PackedScene blockScene) {
+                currentBlock = blockScene.Instantiate<AbstractBlock>();
+                currentBlockTextureRect.Texture = currentBlock.GetTexture();
         }
 
 
