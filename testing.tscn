@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6ffr8kjnhl0b"]
 
 [ext_resource type="PackedScene" uid="uid://vf4wqf07hxsv" path="res://Player/Player.tscn" id="1_cpdff"]
-[ext_resource type="PackedScene" uid="uid://dvatk501t42wt" path="res://Player/jump_charger.tscn" id="2_8bg73"]
 [ext_resource type="Texture2D" uid="uid://cuv1646vk3bd0" path="res://Blocks/Basic/Blocks.png" id="3_xsq2d"]
-[ext_resource type="PackedScene" uid="uid://cnlx28q17hpnk" path="res://Blocks/Triggerable/Hazard/NormalSpike/NormalSpike.tscn" id="4_2ffd7"]
+[ext_resource type="PackedScene" uid="uid://bjhi4cevgxjm3" path="res://Blocks/Triggerable/JumpCharger/jump_charger.tscn" id="4_25kaq"]
+[ext_resource type="PackedScene" uid="uid://cfnb6j85juf4e" path="res://Blocks/Triggerable/Hazard/NormalSpike/normal_spike.tscn" id="4_477nh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fx8mo"]
 rough = true
@@ -17,11 +17,6 @@ size = Vector2(1023.5, 321)
 [node name="Player" parent="." instance=ExtResource("1_cpdff")]
 position = Vector2(401, 556)
 maxSpeed = 750.0
-jumpForce = 1500.0
-
-[node name="JumpCharger" parent="." instance=ExtResource("2_8bg73")]
-position = Vector2(721, 505)
-extraJumps = 5
 
 [node name="Ground" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -36,5 +31,8 @@ texture = ExtResource("3_xsq2d")
 position = Vector2(684.25, 769.5)
 shape = SubResource("RectangleShape2D_gcen4")
 
-[node name="Node2D" parent="." instance=ExtResource("4_2ffd7")]
-position = Vector2(1164, 577)
+[node name="JumpCharger" parent="." instance=ExtResource("4_25kaq")]
+position = Vector2(725, 497)
+
+[node name="NormalSpike" parent="." instance=ExtResource("4_477nh")]
+position = Vector2(1164, 576)

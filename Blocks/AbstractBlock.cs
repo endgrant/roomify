@@ -3,7 +3,7 @@ using System;
 
 public abstract partial class AbstractBlock : Node2D
 {
-        private Sprite2D sprite;
+	private Sprite2D sprite;
 	protected static Room currentRoom;
 
 
@@ -20,14 +20,14 @@ public abstract partial class AbstractBlock : Node2D
 	}
 
 
-        // Sets whether this block is ghosted or not
-        public void SetGhosted(bool ghost) {
-                if (ghost) {
-                        sprite.Modulate = new Color("#FFFFFF", 0.4F);
-                } else {
-                        sprite.Modulate = new Color("#FFFFFF", 1.0F);
-                }
-        }
+	// Sets whether this block is ghosted or not
+	public void SetGhosted(bool ghost) {
+		if (ghost) {
+			sprite.Modulate = new Color("#FFFFFF", 0.4F);
+		} else {
+			sprite.Modulate = new Color("#FFFFFF", 1.0F);
+		}
+	}
 
 
 	public void Place(int x, int y) {

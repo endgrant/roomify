@@ -1,15 +1,11 @@
 using Godot;
 using System;
 
-public partial class PeriodicSpike : AbstractHazard
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+public partial class PeriodicSpike : AbstractHazard {
+	protected Sprite2D sprite;
+	protected Area2D hitbox;
+	[ExportCategory("Attributes")]
+	[Export(PropertyHint.Range, "0, 10")] protected float period;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+	
 }

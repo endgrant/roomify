@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjhi4cevgxjm3"]
+
+[ext_resource type="PackedScene" uid="uid://dm56x0pgx8oiw" path="res://Blocks/Triggerable/triggable_block.tscn" id="1_612mg"]
+[ext_resource type="Script" path="res://Blocks/Triggerable/JumpCharger/JumpCharger.cs" id="2_qyv37"]
+[ext_resource type="Texture2D" uid="uid://baegaxiasut0e" path="res://Blocks/Triggerable/JumpCharger/JumpCharger.png" id="3_wanbf"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u63jr"]
+radius = 21.0
+height = 76.0
+
+[node name="JumpCharger" instance=ExtResource("1_612mg")]
+script = ExtResource("2_qyv37")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_wanbf")
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_u63jr")
+
+[connection signal="body_entered" from="." to="." method="Entered"]
