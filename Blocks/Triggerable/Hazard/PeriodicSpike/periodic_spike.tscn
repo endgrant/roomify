@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://brfrtsioxmxn1"]
+
+[ext_resource type="PackedScene" uid="uid://dm56x0pgx8oiw" path="res://Blocks/Triggerable/triggable_block.tscn" id="1_128f1"]
+[ext_resource type="Script" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/PeriodicSpike.cs" id="2_a2lfv"]
+[ext_resource type="Texture2D" uid="uid://mcbw28it60an" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/PeriodicSpike.png" id="3_og24n"]
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_b2srs"]
+points = PackedVector2Array(20, 24, -20, 24, 0, 8)
+
+[sub_resource type="Animation" id="Animation_jil45"]
+resource_name = "Close"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:shape")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [SubResource("ConvexPolygonShape2D_b2srs"), SubResource("ConvexPolygonShape2D_b2srs"), SubResource("ConvexPolygonShape2D_b2srs")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p2sla"]
+_data = {
+"Close": SubResource("Animation_jil45")
+}
+
+[node name="PeriodicSpike" instance=ExtResource("1_128f1")]
+script = ExtResource("2_a2lfv")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_og24n")
+hframes = 4
+frame = 2
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("ConvexPolygonShape2D_b2srs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_p2sla")
+}
+
+[node name="Timer" type="Timer" parent="." index="3"]
+
+[connection signal="body_entered" from="." to="." method="Entered"]
+[connection signal="mouse_entered" from="." to="." method="test"]
+[connection signal="timeout" from="Timer" to="." method="Cycle"]

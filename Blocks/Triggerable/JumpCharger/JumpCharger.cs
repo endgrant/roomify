@@ -4,7 +4,7 @@ using System;
 public partial class JumpCharger : AbstractTriggerable {
 
     [ExportCategory("Attributes")]
-    [Export(PropertyHint.Range, "0, 10")] private int extraJumps = 3;
+    [Export(PropertyHint.Range, "0, 10")] protected int extraJumps = 3;
 
     private void GiveMoreJumps(Player player) {
         player.SetExtraJumps(extraJumps);

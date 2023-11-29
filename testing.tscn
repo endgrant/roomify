@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6ffr8kjnhl0b"]
+[gd_scene load_steps=8 format=3 uid="uid://b6ffr8kjnhl0b"]
 
 [ext_resource type="PackedScene" uid="uid://vf4wqf07hxsv" path="res://Player/Player.tscn" id="1_cpdff"]
 [ext_resource type="Texture2D" uid="uid://cuv1646vk3bd0" path="res://Blocks/Basic/Blocks.png" id="3_xsq2d"]
 [ext_resource type="PackedScene" uid="uid://bjhi4cevgxjm3" path="res://Blocks/Triggerable/JumpCharger/jump_charger.tscn" id="4_25kaq"]
 [ext_resource type="PackedScene" uid="uid://cfnb6j85juf4e" path="res://Blocks/Triggerable/Hazard/NormalSpike/normal_spike.tscn" id="4_477nh"]
+[ext_resource type="PackedScene" uid="uid://brfrtsioxmxn1" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/periodic_spike.tscn" id="5_ffjhm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fx8mo"]
 rough = true
@@ -36,3 +37,6 @@ position = Vector2(725, 497)
 
 [node name="NormalSpike" parent="." instance=ExtResource("4_477nh")]
 position = Vector2(1164, 576)
+
+[node name="PeriodicSpike" parent="." instance=ExtResource("5_ffjhm")]
+position = Vector2(1100, 576)
