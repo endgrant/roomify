@@ -12,6 +12,7 @@ public partial class LevelEditor : LevelViewer
         private TextureRect currentBlockTextureRect;
         
         private AbstractBlock currentBlock;
+        private int sourceId;
         private Vector2I prevCursorGridPos = Vector2I.Zero;
 
 
@@ -23,7 +24,7 @@ public partial class LevelEditor : LevelViewer
                 tilemap = viewport.GetNode<TileMap>("TileMap");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
 
-                SetCurrentBlock( GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"));
+                SetCurrentBlock(GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1);
         }
 
 
@@ -38,28 +39,35 @@ public partial class LevelEditor : LevelViewer
                                 (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
                 Vector2 scale = windowSize / viewportSize;
                 Vector2I cursorGridPos = tilemap.LocalToMap(GetLocalMousePosition() * scale - new Vector2(0, topbar.Size.Y * scale.Y));
-                tilemap.SetCell(1, prevCursorGridPos, -1, new Vector2I(-1, -1), -1);
-                tilemap.SetCell(1, cursorGridPos, 1, Vector2I.Zero, 0);
+                DeleteBlock(prevCursorGridPos, 1);
+                PlaceBlock(cursorGridPos, 1);
                 prevCursorGridPos = cursorGridPos;
 
                 // Place block on left click
-                if (Input.IsActionPressed("Accept")) {
-                        tilemap.SetCell(0, cursorGridPos, 1, Vector2I.Zero, 0);
+                if (Input.IsActionPressed("Accept") && !Input.IsActionPressed("Delete")) {
+                        PlaceBlock(cursorGridPos, 0);
                 }
                 if (Input.IsActionPressed("Delete")) {
-                        tilemap.SetCell(0, cursorGridPos, -1, new Vector2I(-1, -1), -1);
+                        DeleteBlock(cursorGridPos, 0);
                 }
         }
 
 
         // Place block
-        private void PlaceBlock(Vector2I pos) {
-                
+        private void PlaceBlock(Vector2I pos, int layer) {
+                tilemap.SetCell(layer, pos, layer, Vector2I.Right * (sourceId - 1) * layer, sourceId * Math.Abs(layer - 1));
+        }
+
+
+        // Delete block
+        private void DeleteBlock(Vector2I pos, int layer) {
+                tilemap.EraseCell(layer, pos);
         }
 
 
         // Change currently selected block
-        public void SetCurrentBlock(PackedScene blockScene) {
+        public void SetCurrentBlock(PackedScene blockScene, int sourceId) {
+                this.sourceId = sourceId;
                 currentBlock = blockScene.Instantiate<AbstractBlock>();
                 currentBlockTextureRect.Texture = currentBlock.GetTexture();
         }
@@ -68,7 +76,6 @@ public partial class LevelEditor : LevelViewer
 	// Quit button pressed
         public void Quit() {
                 GetTree().ChangeSceneToPacked(levelSelectMenu);
-                
         }
 
 }
