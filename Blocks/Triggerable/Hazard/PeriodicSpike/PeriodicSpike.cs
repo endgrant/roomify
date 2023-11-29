@@ -7,7 +7,7 @@ public partial class PeriodicSpike : AbstractHazard {
 	protected Timer timer;
 	protected AnimationPlayer animator;
 	[ExportCategory("Attributes")]
-	[Export(PropertyHint.Range, "0, 10")] protected float period = 2;
+	[Export(PropertyHint.Range, "0.2, 10")] protected float period = 2;
 	[Export] protected bool active = true;
 
 	public override void _Ready() {
@@ -22,6 +22,11 @@ public partial class PeriodicSpike : AbstractHazard {
 	}
 
 	public void Cycle() {
-		
+		timer.Start();
+		if(active)
+			animator.Play("Close");
+		else
+			animator.Play("Open");
+		active = !active;
 	}
 }

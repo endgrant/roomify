@@ -64,6 +64,7 @@ public partial class LevelEditor : LevelViewer
                 tilemap.EraseCell(layer, pos);
                 if(layer == 1)
                         return;
+                        
                 foreach(AbstractBlock element in tilemap.GetChildren()) {
                         element.QueueFree();
                 }
