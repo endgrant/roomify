@@ -17,6 +17,7 @@ size = Vector2(1023.5, 321)
 [node name="Player" parent="." instance=ExtResource("1_cpdff")]
 position = Vector2(401, 556)
 maxSpeed = 750.0
+jumpForce = 1500.0
 
 [node name="JumpCharger" parent="." instance=ExtResource("2_8bg73")]
 position = Vector2(721, 505)

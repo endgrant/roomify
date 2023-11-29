@@ -8,7 +8,7 @@ public partial class Player : CharacterBody2D {
 	[Export(PropertyHint.Range, "0, 2000")] private float maxSpeed = 750;
 	[Export(PropertyHint.Range, "0, 100")] private float acceleration = 50;
 	[Export(PropertyHint.Range, "0, 1")] private float friction = 0.8f;
-	[Export(PropertyHint.Range, "0, 4000")] private float jumpForce = 1700;
+	[Export(PropertyHint.Range, "0, 4000")] private float jumpForce = 1500;
 	[Export(PropertyHint.Range, "0, 100")] private float gravityAccel = 75;
 	[Export(PropertyHint.Range, "0, 4000")] private float gravityMax = 2000;
 
