@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 
 public partial class LevelEditor : LevelViewer
 {
@@ -9,8 +10,9 @@ public partial class LevelEditor : LevelViewer
         private SubViewport viewport;
         private TileMap tilemap;
         private TextureRect currentBlockTextureRect;
-
+        
         private AbstractBlock currentBlock;
+        private Vector2I prevCursorGridPos = Vector2I.Zero;
 
         private PackedScene basicBlock = GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn");
 
@@ -38,14 +40,24 @@ public partial class LevelEditor : LevelViewer
                                 (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
                 Vector2 scale = windowSize / viewportSize;
                 Vector2I cursorGridPos = tilemap.LocalToMap(GetLocalMousePosition() * scale - new Vector2(0, topbar.Size.Y * scale.Y));
-                tilemap.SetCell(0, cursorGridPos, 0, Vector2I.Zero, 1);
+                tilemap.SetCell(1, prevCursorGridPos, -1, new Vector2I(-1, -1), -1);
+                tilemap.SetCell(1, cursorGridPos, 1, Vector2I.Zero, 0);
+                prevCursorGridPos = cursorGridPos;
+
+                // Place block on left click
+                if (Input.IsActionPressed("Accept")) {
+                        tilemap.SetCell(0, cursorGridPos, 1, Vector2I.Zero, 0);
+                }
+                if (Input.IsActionPressed("Delete")) {
+                        tilemap.SetCell(0, cursorGridPos, -1, new Vector2I(-1, -1), -1);
+                }
         }
 
 
         // Change currently selected block
         private void SetCurrentBlock(AbstractBlock block) {
                 currentBlock = block;
-                currentBlockTextureRect.Texture = currentBlock.GetTexture();
+                //currentBlockTextureRect.Texture = currentBlock.GetTexture();
         }
 
 
