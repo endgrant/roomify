@@ -62,6 +62,11 @@ public partial class LevelEditor : LevelViewer
         // Delete block
         private void DeleteBlock(Vector2I pos, int layer) {
                 tilemap.EraseCell(layer, pos);
+                if(layer == 1)
+                        return;
+                foreach(AbstractBlock element in tilemap.GetChildren()) {
+                        element.QueueFree();
+                }
         }
 
 
