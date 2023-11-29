@@ -194,3 +194,4 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Back" to="." method="Back"]
+[connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Create" to="." method="Create"]
