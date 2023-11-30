@@ -28,7 +28,7 @@ public partial class PeriodicSpike : AbstractHazard {
         }
 
 
-        public void PeriodChanged(float value) {
+        private void PeriodChanged(float value) {
                 period = value;
                 timer.WaitTime = period;
         }

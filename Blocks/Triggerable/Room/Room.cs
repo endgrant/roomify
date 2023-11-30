@@ -15,19 +15,6 @@ public partial class Room : AbstractTriggerable
         public Room() {}
 
 
-        // Root constructor
-        public Room(Node2D tiles) {
-                this.tiles = tiles;
-        }
-
-
-        // Branch constructor
-        public Room(Node2D tiles, Room parent) {
-                this.tiles = tiles;
-                parentRoom = parent;
-        }
-
-
         // Entered
         public override void Entered(Node2D activator) {
                 
@@ -36,6 +23,33 @@ public partial class Room : AbstractTriggerable
 
         public override void Edit() {
                 base.Edit();
+                Button button = root.CreateButton("Enter Room");
+                Callable callable = new Callable(this, "ChangeRoom");
+                button.Connect("pressed", callable);
+        }
+
+
+        // Changes the current room to this one
+        public void ChangeRoom() {
+                root.ChangeCurrentRoom(this);
+        }
+
+
+        // Returns a list of all the blocks in this Room
+        public AbstractBlock[,] GetCells() {
+                return cells;
+        }
+
+
+        // Assigns the tiles
+        public void SetTiles(Node2D tiles) {
+                this.tiles = tiles;
+        }
+
+
+        // Assigns the parenting room
+        public void SetParentRoom(Room room) {
+                this.parentRoom = room;
         }
 
 
@@ -81,6 +95,13 @@ public partial class Room : AbstractTriggerable
                 AbstractBlock instance = scene.Instantiate<AbstractBlock>();
                 cells[pos.X, pos.Y] = instance;
                 instance.Position = ((pos + Vector2I.One) * tileSize) - (tileSize / 2);
+
+                if (instance is Room) {
+                        Room roomInstance = (Room)instance;
+                        roomInstance.SetTiles(tiles);
+                        roomInstance.SetParentRoom(this);
+                }
+
                 tiles.AddChild(instance);
         }
 

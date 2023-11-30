@@ -14,10 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Blocks/Triggerable/Spawn/Spawn.png" id="10_bwwnq"]
 [ext_resource type="Texture2D" uid="uid://cuc3kq1auwos8" path="res://Blocks/Triggerable/Goal/Goal.png" id="11_3k8bc"]
 [ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Blocks/Triggerable/Room/Room.png" id="12_ojo2e"]
-[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas0.png" id="15_yjcdr"]
-[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas1.png" id="16_725wi"]
-[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas2.png" id="17_cthcf"]
-[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas3.png" id="18_epu5q"]
+[ext_resource type="Texture2D" uid="uid://bl11w8mnh26ik" path="res://Menus/LevelViewer/LevelEditor/atlas0.png" id="15_yjcdr"]
+[ext_resource type="Texture2D" uid="uid://cejjn8iah4g2v" path="res://Menus/LevelViewer/LevelEditor/atlas1.png" id="16_725wi"]
+[ext_resource type="Texture2D" uid="uid://bcb4l2marmwda" path="res://Menus/LevelViewer/LevelEditor/atlas2.png" id="17_cthcf"]
+[ext_resource type="Texture2D" uid="uid://btewks8ge1ys1" path="res://Menus/LevelViewer/LevelEditor/atlas3.png" id="18_epu5q"]
 
 [sub_resource type="Resource" id="Resource_fi6hf"]
 script = ExtResource("3_cbhye")
@@ -88,6 +88,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_jm58u")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -99,6 +100,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Topbar" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 128)
@@ -188,6 +190,16 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("1_s54ka")
 
+[node name="Button" type="Button" parent="VBoxContainer/Topbar"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 0
+offset_left = 864.0
+offset_top = 32.0
+offset_right = 992.0
+offset_bottom = 96.0
+text = "Previous
+Room"
+
 [node name="Toolbar" type="HBoxContainer" parent="VBoxContainer/Topbar"]
 layout_mode = 1
 anchors_preset = 1
@@ -220,6 +232,7 @@ custom_minimum_size = Vector2(768, 448)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="VBoxContainer/LevelViewport"]
@@ -244,6 +257,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="VBoxContainer/LevelViewport/SubViewport/Level"]
@@ -280,7 +294,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DeleteBlock" type="Button" parent="VBoxContainer/Editbar"]
-custom_minimum_size = Vector2(96, 96)
+custom_minimum_size = Vector2(192, 96)
 layout_mode = 2
 text = "Delete Block"
 
@@ -288,6 +302,7 @@ text = "Delete Block"
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 
+[connection signal="pressed" from="VBoxContainer/Topbar/Button" to="." method="NavPreviousRoom"]
 [connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Quit" to="." method="Quit"]
 
 [editable path="VBoxContainer/Topbar/BlockSelector/Block"]

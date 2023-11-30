@@ -20,12 +20,13 @@ public partial class LevelEditor : LevelViewer
         private Node2D tiles;
         private TextureRect currentBlockTextureRect;
         
-        private List<Room> rooms = new List<Room>();
         private Room currentRoom;
 
         private PackedScene currentBlock;
+        private AbstractBlock currentEdit;
         private int atlasId;
         private int sourceId;
+        private Vector2I currentCursorGridPos = Vector2I.Zero;
         private Vector2I prevCursorGridPos = Vector2I.Zero;
 
 
@@ -43,8 +44,8 @@ public partial class LevelEditor : LevelViewer
                 tiles = level.GetNode<Node2D>("Tiles");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
 
-                currentRoom = new Room(tiles);
-                rooms.Add(currentRoom);
+                currentRoom = new Room();
+                currentRoom.SetTiles(tiles);
 
                 SetCurrentBlock(0, GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1);
         }
@@ -71,17 +72,56 @@ public partial class LevelEditor : LevelViewer
                 ghostmap.SetCell(0, cursorGridPos, atlasId, Vector2I.Right * (sourceId - 1), 0);
                 prevCursorGridPos = cursorGridPos;
 
-                // Place block on left click
-                if (Input.IsActionPressed("Accept") && !Input.IsActionPressed("Delete")) {
-                        currentRoom.PlaceBlock(cursorGridPos, currentBlock);
-                }
-                // Delete block on ctrl left click
-                if (Input.IsActionPressed("Delete")) {
-                        currentRoom.DeleteBlock(cursorGridPos);
+                currentCursorGridPos = cursorGridPos;
+
+                
+        }
+
+
+        // Handles unhandled input
+        public override void _UnhandledInput(InputEvent input) {
+                if (input.IsActionPressed("Accept")) {
+                        if (input.IsActionPressed("Delete")) {
+                                // Delete block on ctrl left click
+                                currentRoom.DeleteBlock(currentCursorGridPos);
+                        } else {
+                                // Place block on left click
+                               currentRoom.PlaceBlock(currentCursorGridPos, currentBlock); 
+                        }
                 }
                 // Edit block on right click
                 if (Input.IsActionJustPressed("Edit")) {
-                        currentRoom.EditBlock(cursorGridPos);
+                        currentRoom.EditBlock(currentCursorGridPos);
+                }
+        }
+
+
+        // Changes the current room
+        public void ChangeCurrentRoom(Room newRoom) {
+                foreach (AbstractBlock block in tiles.GetChildren()) {
+                        if (IsInstanceValid(block)) {
+                              tiles.RemoveChild(block);  
+                        }
+                        
+                }
+
+                SetEditedBlock(null);
+                currentRoom = newRoom;
+
+                foreach (AbstractBlock block in currentRoom.GetCells()) {
+                        if (IsInstanceValid(block)) {
+                              tiles.AddChild(block);  
+                        }  
+                }
+        }
+
+
+        // Navigates up one room in the room tree
+        public void NavPreviousRoom() {
+                Room parentRoom = currentRoom.GetParentRoom();
+
+                if (IsInstanceValid(parentRoom)) {
+                        ChangeCurrentRoom(parentRoom);
                 }
         }
 
@@ -99,9 +139,13 @@ public partial class LevelEditor : LevelViewer
 
         // Change currently edited block
         public void SetEditedBlock(AbstractBlock block) {
+                ClearEditBar();
                 string append = "None";
                 if (IsInstanceValid(block)) {
                         append = block.Name;
+                        currentEdit = block;
+                } else {
+                        currentEdit = null;
                 }
                 editBlockLabel.Text = "Currently Editing: " + append;
         }
@@ -140,6 +184,19 @@ public partial class LevelEditor : LevelViewer
                 editbar.AddChild(container);
 
                 return slider;
+        }
+
+
+        // Helper to create simple button
+        public Button CreateButton(string buttonName) {
+                Button button = new Button();
+
+                button.CustomMinimumSize = new Vector2(192,96);
+                button.Text = buttonName;                
+
+                editbar.AddChild(button);
+
+                return button;
         }
 
 
