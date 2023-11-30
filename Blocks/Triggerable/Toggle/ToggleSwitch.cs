@@ -15,7 +15,7 @@ public partial class ToggleSwitch : AbstractTriggerable {
 			WaitTime = 0.2,
 			OneShot = true
 		};
-	protected static ToggleSwitch mainToggle;
+	protected static ToggleSwitch mainToggle = null;
 
 	public override void _Ready() {
 		if(!IsInstanceValid(timer.GetParent<Node2D>())) {
@@ -32,9 +32,31 @@ public partial class ToggleSwitch : AbstractTriggerable {
         EmitSignal(SignalName.Toggle, isRed);
     }
 
+	public bool GetIsRed() {
+		return isRed;
+	}
+
     public void SetIsRed(bool value) {
 		isRed = value;
 		ChangeState(isRed);
+	}
+
+	public static ToggleSwitch GetMainToggle() {
+		return mainToggle;
+	}
+
+	public static void SetMainToggle(ToggleSwitch toggle) {
+		mainToggle = toggle;
+	}
+
+	public void Disable() {
+		Visible = false;
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = true;
+	}
+
+	public void Enable() {
+		Visible = true;
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
 	}
 
 	// changes the state of the toggle from red or blue

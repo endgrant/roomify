@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6ffr8kjnhl0b"]
+[gd_scene load_steps=11 format=3 uid="uid://b6ffr8kjnhl0b"]
 
 [ext_resource type="PackedScene" uid="uid://vf4wqf07hxsv" path="res://Player/Player.tscn" id="1_cpdff"]
 [ext_resource type="Texture2D" uid="uid://cuv1646vk3bd0" path="res://Blocks/Basic/Blocks.png" id="3_xsq2d"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bmav3k2skuqet" path="res://Blocks/Triggerable/Hazard/NormalSpike/normal_spike.tscn" id="4_477nh"]
 [ext_resource type="PackedScene" uid="uid://ctwa356sjpo2d" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/periodic_spike.tscn" id="5_ffjhm"]
 [ext_resource type="PackedScene" uid="uid://bfciivolqy5hl" path="res://Blocks/Triggerable/Toggle/toggle_switch.tscn" id="6_vw8pn"]
+[ext_resource type="PackedScene" uid="uid://bplv3onhvmk8p" path="res://Blocks/Basic/Toggleable/Red/red_block.tscn" id="7_w7yeg"]
+[ext_resource type="PackedScene" uid="uid://bts0fy4pgy5ht" path="res://Blocks/Basic/Toggleable/Blue/blue_block.tscn" id="8_evnod"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fx8mo"]
 rough = true
@@ -17,7 +19,7 @@ size = Vector2(1023.5, 321)
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_cpdff")]
-position = Vector2(401, 556)
+position = Vector2(700, 562)
 maxSpeed = 750.0
 
 [node name="Ground" type="StaticBody2D" parent="."]
@@ -53,3 +55,9 @@ position = Vector2(979, 417)
 
 [node name="ToggleSwitch2" parent="." instance=ExtResource("6_vw8pn")]
 position = Vector2(406, 364)
+
+[node name="RedBlock" parent="." instance=ExtResource("7_w7yeg")]
+position = Vector2(908, 576)
+
+[node name="BasicBlock" parent="." instance=ExtResource("8_evnod")]
+position = Vector2(461, 576)

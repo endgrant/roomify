@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bplv3onhvmk8p"]
+
+[ext_resource type="PackedScene" uid="uid://bf4oqchko4eg7" path="res://Blocks/Basic/BasicBlock/basic_block.tscn" id="1_gd6vc"]
+[ext_resource type="Script" path="res://Blocks/Basic/Toggleable/Red/Red.cs" id="2_74dhd"]
+
+[node name="RedBlock" instance=ExtResource("1_gd6vc")]
+script = ExtResource("2_74dhd")
+
+[node name="Sprite2D" parent="." index="0"]
+frame = 16

@@ -1,15 +1,15 @@
 using Godot;
 using System;
 
-public partial class Blue : ToggleBlock
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+public partial class Blue : ToggleBlock {
+    protected override void ChangeState(bool isRed) {
+        if(!isRed) {
+			sprite.FrameCoords = new Vector2I(0, 2);
+			GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
+		}
+		else {
+			sprite.FrameCoords = new Vector2I(0, 4);
+			GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
+		}
+    }
 }
