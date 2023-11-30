@@ -9,7 +9,12 @@ public abstract partial class AbstractBlock : Node2D
 	// Enter scene tree
 	public override void _Ready() {
 		base._Ready();
-                root = (LevelEditor)GetTree().Root.GetChild<Control>(0);
+		try{
+			root = (LevelEditor)GetTree().Root.GetChild<Control>(0);
+		}
+        catch(Exception ex) {
+			root = null;
+		}
 	}
 
 

@@ -47,7 +47,6 @@ position = Vector2(406, 422)
 
 [node name="PeriodicSpike" parent="." instance=ExtResource("5_ffjhm")]
 position = Vector2(1100, 577)
-period = 5.0
 
 [node name="ToggleSwitch" parent="." instance=ExtResource("6_vw8pn")]
 position = Vector2(979, 417)
