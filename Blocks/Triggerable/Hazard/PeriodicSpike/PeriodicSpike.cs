@@ -3,7 +3,7 @@ using System;
 
 public partial class PeriodicSpike : AbstractHazard {
 	[ExportCategory("Attributes")]
-	[Export(PropertyHint.Range, "0.2, 10")] protected float period = 2;
+	[Export(PropertyHint.Range, "0.4, 6")] protected float period = 2.0F;
 	[Export] protected bool active = true;
 	protected Timer timer;
 	protected AnimationPlayer animator;
@@ -23,6 +23,15 @@ public partial class PeriodicSpike : AbstractHazard {
         public override void Edit()
         {
                 base.Edit();
+                HSlider slider = root.CreateSlider(period, "Period", 0.4F, 6.0F, 0.4F);
+                Callable callable = new Callable(this, "PeriodChanged");
+                slider.Connect("value_changed", callable);
+        }
+
+
+        public void PeriodChanged(float value) {
+                period = value;
+                timer.WaitTime = period;
         }
 
 

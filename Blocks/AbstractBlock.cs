@@ -3,12 +3,13 @@ using System;
 
 public abstract partial class AbstractBlock : Node2D
 {
-        private LevelEditor root;
+        protected LevelEditor root;
 
 
 	// Enter scene tree
 	public override void _Ready() {
 		base._Ready();
+                root = (LevelEditor)GetTree().Root.GetChild<Control>(0);
 	}
 
 
@@ -21,7 +22,6 @@ public abstract partial class AbstractBlock : Node2D
 
         // Edit block
 	public virtual void Edit() {
-                root = (LevelEditor)GetTree().Root.GetChild<Control>(0);
                 root.SetEditedBlock(this);
         }
 }
