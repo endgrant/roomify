@@ -12,6 +12,8 @@ public partial class LevelEditor : LevelViewer
         private Control topbar;
         private HBoxContainer editbar;
         private Label editBlockLabel;
+        private Button deleteBlockButton;
+        private Control spacer;
         private SubViewport viewport;
         private Node2D level;
         private TileMap ghostmap;
@@ -33,6 +35,8 @@ public partial class LevelEditor : LevelViewer
                 topbar = GetNode<Control>("VBoxContainer/Topbar");
                 editbar = GetNode<HBoxContainer>("VBoxContainer/Editbar");
                 editBlockLabel = editbar.GetNode<Label>("CurrentBlock");
+                deleteBlockButton = editbar.GetNode<Button>("DeleteBlock");
+                spacer = editbar.GetNode<Control>("Spacer");
                 viewport = GetNode<SubViewport>("VBoxContainer/LevelViewport/SubViewport");
                 level = viewport.GetNode<Node2D>("Level");
                 ghostmap = level.GetNode<TileMap>("GhostMap");
@@ -100,6 +104,42 @@ public partial class LevelEditor : LevelViewer
                         append = block.Name;
                 }
                 editBlockLabel.Text = "Currently Editing: " + append;
+        }
+
+
+        // Clear edit bar
+        public void ClearEditBar() {
+                foreach (Control element in editbar.GetChildren()) {
+                        if (element != editBlockLabel && element != deleteBlockButton && element != spacer) {
+                                element.QueueFree();
+                        }
+                }
+        }
+
+
+        // Helper to create slider on edit bar
+        public HSlider CreateSlider(float value, string optionName, float min, float max, float step) {
+                VBoxContainer container = new VBoxContainer();
+                Label label = new Label();
+                HSlider slider = new HSlider();
+
+                container.CustomMinimumSize = new Vector2(192, 96);
+
+                label.Text = optionName;
+                label.HorizontalAlignment = HorizontalAlignment.Center;
+
+                slider.TicksOnBorders = true;
+                slider.TickCount = 5;
+                slider.MinValue = min;
+                slider.MaxValue = max;
+                slider.Step = step;
+                slider.Value = value;
+
+                container.AddChild(label);
+                container.AddChild(slider);
+                editbar.AddChild(container);
+
+                return slider;
         }
 
 
