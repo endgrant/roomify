@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cwamhhykdfqp0"]
+
+[ext_resource type="Script" path="res://Menus/LevelViewer/LevelEditor/BlockButton/BlockList.cs" id="1_wr5kr"]
+
+[resource]
+script = ExtResource("1_wr5kr")
+blocks = Array[String]([])
