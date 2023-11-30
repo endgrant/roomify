@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cou5n2xkjxbmo"
-path="res://.godot/imported/sheet.png-df35da7eb5d183a6d8202a456325da09.ctex"
+uid="uid://cejjn8iah4g2v"
+path="res://.godot/imported/atlas1.png-44923a08863b87a09c64674e2ac18400.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Menus/LevelViewer/LevelEditor/sheet.png"
-dest_files=["res://.godot/imported/sheet.png-df35da7eb5d183a6d8202a456325da09.ctex"]
+source_file="res://Menus/LevelViewer/LevelEditor/atlas1.png"
+dest_files=["res://.godot/imported/atlas1.png-44923a08863b87a09c64674e2ac18400.ctex"]
 
 [params]
 

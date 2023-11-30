@@ -12,6 +12,9 @@ public partial class Room : AbstractTriggerable
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
 
 
+        public Room() {}
+
+
         // Root constructor
         public Room(Node2D tiles) {
                 this.tiles = tiles;
@@ -25,9 +28,14 @@ public partial class Room : AbstractTriggerable
         }
 
 
-        public override void Entered(Node2D activator)
-        {
-                throw new NotImplementedException();
+        // Entered
+        public override void Entered(Node2D activator) {
+                
+        }
+
+
+        public override void Edit() {
+                base.Edit();
         }
 
 

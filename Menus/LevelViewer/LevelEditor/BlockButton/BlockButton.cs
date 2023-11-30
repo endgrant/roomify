@@ -18,6 +18,6 @@ public partial class BlockButton : VBoxContainer
 
         // New option selected
         public void ItemSelected(int itemId) {
-                root.SetCurrentBlock(blockList.GetBlockById(itemId), itemId+1);
+                root.SetCurrentBlock(blockList.GetAtlasId(), blockList.GetBlockById(itemId), itemId+1);
         }
 }

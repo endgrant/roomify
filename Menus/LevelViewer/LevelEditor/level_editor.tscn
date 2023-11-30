@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://by67ptjtbqlp2"]
+[gd_scene load_steps=28 format=3 uid="uid://by67ptjtbqlp2"]
 
 [ext_resource type="Script" path="res://Menus/LevelViewer/LevelEditor/LevelEditor.cs" id="1_jm58u"]
 [ext_resource type="Texture2D" uid="uid://bdtivc5yb61lu" path="res://Menus/LevelViewer/LevelEditor/BasicBlock.png" id="1_s54ka"]
@@ -11,46 +11,71 @@
 [ext_resource type="Texture2D" uid="uid://bslrb0jc8oik2" path="res://Blocks/Triggerable/Toggle/RedToggle.png" id="6_b5x1v"]
 [ext_resource type="Texture2D" uid="uid://baegaxiasut0e" path="res://Blocks/Triggerable/JumpCharger/JumpCharger.png" id="7_f4c28"]
 [ext_resource type="Texture2D" uid="uid://1jabkroct6q3" path="res://Blocks/Triggerable/Linked/Teleporter/Teleporter.png" id="8_nesuw"]
-[ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Blocks/Room/Room.png" id="9_1ymhd"]
 [ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Blocks/Triggerable/Spawn/Spawn.png" id="10_bwwnq"]
 [ext_resource type="Texture2D" uid="uid://cuc3kq1auwos8" path="res://Blocks/Triggerable/Goal/Goal.png" id="11_3k8bc"]
-[ext_resource type="Texture2D" uid="uid://cou5n2xkjxbmo" path="res://Menus/LevelViewer/LevelEditor/sheet.png" id="14_f74co"]
+[ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Blocks/Triggerable/Room/Room.png" id="12_ojo2e"]
+[ext_resource type="Texture2D" uid="uid://bl11w8mnh26ik" path="res://Menus/LevelViewer/LevelEditor/atlas0.png" id="15_yjcdr"]
+[ext_resource type="Texture2D" uid="uid://cejjn8iah4g2v" path="res://Menus/LevelViewer/LevelEditor/atlas1.png" id="16_725wi"]
+[ext_resource type="Texture2D" uid="uid://bcb4l2marmwda" path="res://Menus/LevelViewer/LevelEditor/atlas2.png" id="17_cthcf"]
+[ext_resource type="Texture2D" uid="uid://btewks8ge1ys1" path="res://Menus/LevelViewer/LevelEditor/atlas3.png" id="18_epu5q"]
 
 [sub_resource type="Resource" id="Resource_fi6hf"]
 script = ExtResource("3_cbhye")
+atlasId = 0
 blocks = Array[String](["Basic/BasicBlock/basic_block.tscn", "Basic/Toggleable/Red/red.tscn", "Basic/Toggleable/Blue/blue.tscn"])
 
 [sub_resource type="Resource" id="Resource_me8ts"]
 script = ExtResource("3_cbhye")
+atlasId = 1
 blocks = Array[String](["Triggerable/Hazard/NormalSpike/normal_spike.tscn", "Triggerable/Hazard/PeriodicSpike/periodic_spike.tscn"])
 
 [sub_resource type="Resource" id="Resource_v1prf"]
 script = ExtResource("3_cbhye")
-blocks = Array[String](["Triggerable/Toggle/toggle.tscn", "Triggerable/JumpCharger/jump_charger.tscn", "Triggerable/Linked/Teleporter/teleporter.tscn", "Room/room.tscn"])
+atlasId = 2
+blocks = Array[String](["Triggerable/Toggle/toggle.tscn", "Triggerable/JumpCharger/jump_charger.tscn", "Triggerable/Linked/Teleporter/teleporter.tscn", "Triggerable/Room/room.tscn"])
 
 [sub_resource type="Resource" id="Resource_f84f0"]
 script = ExtResource("3_cbhye")
+atlasId = 3
 blocks = Array[String](["Triggerable/Spawn/spawn.tscn", "Triggerable/Goal/goal.tscn"])
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sb6tx"]
-resource_name = "Ghosts"
-texture = ExtResource("14_f74co")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gckxg"]
+resource_name = "Blocks"
+texture = ExtResource("15_yjcdr")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ykj8"]
+resource_name = "Hazard"
+texture = ExtResource("16_725wi")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbss1"]
+resource_name = "Interactable"
+texture = ExtResource("17_cthcf")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_al6bc"]
+resource_name = "Objective"
+texture = ExtResource("18_epu5q")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_vgvju"]
 tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_sb6tx")
+sources/0 = SubResource("TileSetAtlasSource_gckxg")
+sources/1 = SubResource("TileSetAtlasSource_1ykj8")
+sources/2 = SubResource("TileSetAtlasSource_xbss1")
+sources/3 = SubResource("TileSetAtlasSource_al6bc")
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3
@@ -125,7 +150,7 @@ popup/item_2/text = ""
 popup/item_2/icon = ExtResource("8_nesuw")
 popup/item_2/id = 2
 popup/item_3/text = ""
-popup/item_3/icon = ExtResource("9_1ymhd")
+popup/item_3/icon = ExtResource("12_ojo2e")
 popup/item_3/id = 3
 
 [node name="Objective" parent="VBoxContainer/Topbar/BlockSelector" instance=ExtResource("2_o3uho")]

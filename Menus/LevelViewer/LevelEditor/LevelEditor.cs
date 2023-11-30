@@ -19,6 +19,7 @@ public partial class LevelEditor : LevelViewer
         private Room currentRoom;
 
         private PackedScene currentBlock;
+        private int atlasId;
         private int sourceId;
         private Vector2I prevCursorGridPos = Vector2I.Zero;
 
@@ -35,7 +36,7 @@ public partial class LevelEditor : LevelViewer
                 currentRoom = new Room(tiles);
                 rooms.Add(currentRoom);
 
-                SetCurrentBlock(GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1);
+                SetCurrentBlock(0, GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1);
         }
 
 
@@ -57,7 +58,7 @@ public partial class LevelEditor : LevelViewer
                         return;
                 }
                 ghostmap.EraseCell(0, prevCursorGridPos);
-                ghostmap.SetCell(0, cursorGridPos, 0, Vector2I.Right * (sourceId - 1), 0);
+                ghostmap.SetCell(0, cursorGridPos, atlasId, Vector2I.Right * (sourceId - 1), 0);
                 prevCursorGridPos = cursorGridPos;
 
                 // Place block on left click
@@ -84,7 +85,8 @@ public partial class LevelEditor : LevelViewer
 
 
         // Change currently selected block
-        public void SetCurrentBlock(PackedScene blockScene, int sourceId) {
+        public void SetCurrentBlock(int atlasId, PackedScene blockScene, int sourceId) {
+                this.atlasId = atlasId;
                 this.sourceId = sourceId;
                 currentBlock = blockScene;
                 AbstractBlock instance = currentBlock.Instantiate<AbstractBlock>();

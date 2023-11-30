@@ -18,7 +18,10 @@ public abstract partial class AbstractBlock : Node2D
 		return sprite.Texture;
 	}
 
-	// //public abstract void Edit();
+	public virtual void Edit() {
+
+        }
+
 
 	public static void SetRoom(Room newRoom) {
 		currentRoom = newRoom;
