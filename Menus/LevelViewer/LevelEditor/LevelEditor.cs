@@ -6,12 +6,21 @@ public partial class LevelEditor : LevelViewer
 {
         private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
 
+        private const int tileWidth = 64;
+        private const int tileHeight = 64;
+        private const int roomWidth = 24;
+        private const int roomHeight = 14;
+
+        private Vector2I tileSize = new Vector2I(tileWidth, tileHeight);
+
         private Control topbar;
         private SubViewport viewport;
-        private TileMap tilemap;
+        private TileMap ghostmap;
         private TextureRect currentBlockTextureRect;
         
-        private AbstractBlock currentBlock;
+        private AbstractBlock[,] cells = new AbstractBlock[24, 14]; // prob shouldn't hard code
+
+        private PackedScene currentBlock;
         private int sourceId;
         private Vector2I prevCursorGridPos = Vector2I.Zero;
 
@@ -21,7 +30,7 @@ public partial class LevelEditor : LevelViewer
                 base._Ready();
                 topbar = GetNode<Control>("VBoxContainer/Topbar");
                 viewport = GetNode<SubViewport>("VBoxContainer/LevelViewport/SubViewport");
-                tilemap = viewport.GetNode<TileMap>("TileMap");
+                ghostmap = viewport.GetNode<TileMap>("GhostMap");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
 
                 SetCurrentBlock(GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1);
@@ -37,59 +46,77 @@ public partial class LevelEditor : LevelViewer
                 Vector2 windowSize = 
                         new Vector2((float)ProjectSettings.GetSetting("display/window/size/viewport_width"),
                                 (float)ProjectSettings.GetSetting("display/window/size/viewport_height"));
+                
                 Vector2 scale = windowSize / viewportSize;
-                Vector2I cursorGridPos = tilemap.LocalToMap(GetLocalMousePosition() * scale - new Vector2(0, topbar.Size.Y * scale.Y));
+                Vector2I cursorGridPos = (Vector2I)(GetLocalMousePosition() * scale - new Vector2(0, topbar.Size.Y * scale.Y)) / tileSize;
 
-                Vector2I upperBound = new Vector2I(
-                        (int)(viewport.Size2DOverride.X / tilemap.TileSet.TileSize.X - 1),
-                        (int)(viewport.Size2DOverride.Y / tilemap.TileSet.TileSize.Y - 1));
-                if (cursorGridPos.X < 0 || cursorGridPos.Y < 0 || cursorGridPos.X > upperBound.X || cursorGridPos.Y > upperBound.Y) {
+                // Check if cursor is in-bounds
+                if (cursorGridPos.X < 0 || cursorGridPos.Y < 0 || cursorGridPos.X > roomWidth-1 || cursorGridPos.Y > roomHeight-1) {
                         return;
                 }
-                DeleteBlock(prevCursorGridPos, 1);
-                PlaceBlock(cursorGridPos, 1);
+                ghostmap.EraseCell(0, prevCursorGridPos);
+                ghostmap.SetCell(0, cursorGridPos, 0, Vector2I.Right * (sourceId - 1), 0);
                 prevCursorGridPos = cursorGridPos;
 
                 // Place block on left click
                 if (Input.IsActionPressed("Accept") && !Input.IsActionPressed("Delete")) {
-                        PlaceBlock(cursorGridPos, 0);
+                        PlaceBlock(cursorGridPos);
                 }
                 // Delete block on ctrl left click
                 if (Input.IsActionPressed("Delete")) {
-                        DeleteBlock(cursorGridPos, 0);
+                        DeleteBlock(cursorGridPos);
                 }
         }
 
 
         // Place block
-        private void PlaceBlock(Vector2I pos, int layer) {
-                if (tilemap.GetCellAlternativeTile(layer, pos) == -1) {
-                        if (layer == 0) {
-                              GD.Print("Place ", pos, " ", layer);  
-                        }
-                        tilemap.SetCell(layer, pos, layer, Vector2I.Right * (sourceId - 1) * layer, sourceId * Math.Abs(layer - 1));
+        private void PlaceBlock(Vector2I pos) {
+                if (!IsInstanceValid(GetBlockFromGrid(pos))) {
+                        SetBlockInGrid(pos);
                 }
-                
         }
 
 
         // Delete block
-        private void DeleteBlock(Vector2I pos, int layer) {
-                if (tilemap.GetCellAlternativeTile(layer, pos) != -1) {
-                        if (layer == 0) {
-                              GD.Print("Delete ", pos, " ", layer);  
-                        }
-                        tilemap.SetCell(layer, pos, -1, new Vector2I(-1, -1), -1);
+        private void DeleteBlock(Vector2I pos) {
+                if (IsInstanceValid(GetBlockFromGrid(pos))) {
+                        RemoveBlockFromGrid(pos);
                 }
-                
+        }
+
+        
+        // Returns the block at the given grid position
+        private AbstractBlock GetBlockFromGrid(Vector2I pos) {
+                return cells[pos.X, pos.Y];
+        }
+
+
+        // Builds block in grid
+        private void SetBlockInGrid(Vector2I pos) {
+                AbstractBlock instance = currentBlock.Instantiate<AbstractBlock>();
+                cells[pos.X, pos.Y] = instance;
+                instance.Position = ((pos + Vector2I.One) * tileSize) - (tileSize / 2);
+                viewport.AddChild(instance);
+        }
+
+
+        // Removes block from grid
+        private void RemoveBlockFromGrid(Vector2I pos) {
+                AbstractBlock instance = GetBlockFromGrid(pos);
+                if (IsInstanceValid(instance)) {
+                        instance.QueueFree();
+                        cells[pos.X, pos.Y] = null;
+                }
         }
 
 
         // Change currently selected block
         public void SetCurrentBlock(PackedScene blockScene, int sourceId) {
                 this.sourceId = sourceId;
-                currentBlock = blockScene.Instantiate<AbstractBlock>();
-                currentBlockTextureRect.Texture = currentBlock.GetTexture();
+                currentBlock = blockScene;
+                AbstractBlock instance = currentBlock.Instantiate<AbstractBlock>();
+                currentBlockTextureRect.Texture = instance.GetTexture();
+                instance.QueueFree();
         }
 
 

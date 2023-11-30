@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://by67ptjtbqlp2"]
+[gd_scene load_steps=17 format=3 uid="uid://by67ptjtbqlp2"]
 
 [ext_resource type="Script" path="res://Menus/LevelViewer/LevelEditor/LevelEditor.cs" id="1_jm58u"]
 [ext_resource type="Texture2D" uid="uid://bdtivc5yb61lu" path="res://Menus/LevelViewer/LevelEditor/BasicBlock.png" id="1_s54ka"]
@@ -13,16 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Blocks/Room/Room.png" id="9_1ymhd"]
 [ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Blocks/Triggerable/Spawn/Spawn.png" id="10_bwwnq"]
 [ext_resource type="Texture2D" uid="uid://cuc3kq1auwos8" path="res://Blocks/Triggerable/Goal/Goal.png" id="11_3k8bc"]
-[ext_resource type="PackedScene" uid="uid://bf4oqchko4eg7" path="res://Blocks/Basic/BasicBlock/basic_block.tscn" id="13_wtj4p"]
 [ext_resource type="Texture2D" uid="uid://cou5n2xkjxbmo" path="res://Menus/LevelViewer/LevelEditor/sheet.png" id="14_f74co"]
-[ext_resource type="PackedScene" uid="uid://654xnck7ycan" path="res://Blocks/Basic/Toggleable/Red/red.tscn" id="15_14i5n"]
-[ext_resource type="PackedScene" uid="uid://dfqrgbo76vywt" path="res://Blocks/Basic/Toggleable/Blue/blue.tscn" id="16_co2eq"]
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_jhd4n"]
-resource_name = "Blocks"
-scenes/1/scene = ExtResource("13_wtj4p")
-scenes/2/scene = ExtResource("15_14i5n")
-scenes/3/scene = ExtResource("16_co2eq")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sb6tx"]
 resource_name = "Ghosts"
@@ -42,8 +33,7 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_vgvju"]
 tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetScenesCollectionSource_jhd4n")
-sources/1 = SubResource("TileSetAtlasSource_sb6tx")
+sources/0 = SubResource("TileSetAtlasSource_sb6tx")
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3
@@ -193,18 +183,11 @@ size_2d_override = Vector2i(1536, 896)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="TileMap" type="TileMap" parent="VBoxContainer/LevelViewport/SubViewport"]
+[node name="GhostMap" type="TileMap" parent="VBoxContainer/LevelViewport/SubViewport"]
 tile_set = SubResource("TileSet_vgvju")
 cell_quadrant_size = 24
 format = 2
-layer_0/name = "Solid"
-layer_1/name = "Ghost"
-layer_1/enabled = true
-layer_1/modulate = Color(1, 1, 1, 0.501961)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
-layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array()
+layer_0/modulate = Color(1, 1, 1, 0.376471)
 
 [connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Quit" to="." method="Quit"]
 
