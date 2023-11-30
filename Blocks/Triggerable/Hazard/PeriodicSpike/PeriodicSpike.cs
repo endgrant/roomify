@@ -8,7 +8,9 @@ public partial class PeriodicSpike : AbstractHazard {
 	protected Timer timer;
 	protected AnimationPlayer animator;
 
-    public override void _Ready() {
+
+        // Entered tree
+        public override void _Ready() {
 		base._Ready();
 		timer = GetNode<Timer>("Timer");
 		animator = GetNode<AnimationPlayer>("AnimationPlayer");

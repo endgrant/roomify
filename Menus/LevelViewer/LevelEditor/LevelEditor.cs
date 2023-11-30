@@ -10,7 +10,10 @@ public partial class LevelEditor : LevelViewer
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
 
         private Control topbar;
+        private HBoxContainer editbar;
+        private Label editBlockLabel;
         private SubViewport viewport;
+        private Node2D level;
         private TileMap ghostmap;
         private Node2D tiles;
         private TextureRect currentBlockTextureRect;
@@ -28,9 +31,12 @@ public partial class LevelEditor : LevelViewer
         public override void _Ready() {
                 base._Ready();
                 topbar = GetNode<Control>("VBoxContainer/Topbar");
+                editbar = GetNode<HBoxContainer>("VBoxContainer/Editbar");
+                editBlockLabel = editbar.GetNode<Label>("CurrentBlock");
                 viewport = GetNode<SubViewport>("VBoxContainer/LevelViewport/SubViewport");
-                ghostmap = viewport.GetNode<TileMap>("GhostMap");
-                tiles = viewport.GetNode<Node2D>("Tiles");
+                level = viewport.GetNode<Node2D>("Level");
+                ghostmap = level.GetNode<TileMap>("GhostMap");
+                tiles = level.GetNode<Node2D>("Tiles");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
 
                 currentRoom = new Room(tiles);
@@ -63,24 +69,16 @@ public partial class LevelEditor : LevelViewer
 
                 // Place block on left click
                 if (Input.IsActionPressed("Accept") && !Input.IsActionPressed("Delete")) {
-                        PlaceBlock(cursorGridPos);
+                        currentRoom.PlaceBlock(cursorGridPos, currentBlock);
                 }
                 // Delete block on ctrl left click
                 if (Input.IsActionPressed("Delete")) {
-                        DeleteBlock(cursorGridPos);
+                        currentRoom.DeleteBlock(cursorGridPos);
                 }
-        }
-
-
-        // Place block
-        private void PlaceBlock(Vector2I pos) {
-                currentRoom.PlaceBlock(pos, currentBlock);
-        }
-
-
-        // Delete block
-        private void DeleteBlock(Vector2I pos) {
-                currentRoom.DeleteBlock(pos);
+                // Edit block on right click
+                if (Input.IsActionJustPressed("Edit")) {
+                        currentRoom.EditBlock(cursorGridPos);
+                }
         }
 
 
@@ -92,6 +90,16 @@ public partial class LevelEditor : LevelViewer
                 AbstractBlock instance = currentBlock.Instantiate<AbstractBlock>();
                 currentBlockTextureRect.Texture = instance.GetTexture();
                 instance.QueueFree();
+        }
+
+
+        // Change currently edited block
+        public void SetEditedBlock(AbstractBlock block) {
+                string append = "None";
+                if (IsInstanceValid(block)) {
+                        append = block.Name;
+                }
+                editBlockLabel.Text = "Currently Editing: " + append;
         }
 
 

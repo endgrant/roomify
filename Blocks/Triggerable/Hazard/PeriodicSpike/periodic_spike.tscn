@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://ctwa356sjpo2d"]
 
-[ext_resource type="PackedScene" uid="uid://dpj3gmmawld8r" path="res://Blocks/Triggerable/triggerable_block.tscn" id="1_mn0cv"]
+[ext_resource type="PackedScene" uid="uid://dm56x0pgx8oiw" path="res://Blocks/Triggerable/triggerable_block.tscn" id="1_o8c32"]
 [ext_resource type="Script" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/PeriodicSpike.cs" id="2_j5fem"]
-[ext_resource type="Texture2D" uid="uid://chlo6uy4looro" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/PeriodicSpike.png" id="3_i7pdc"]
+[ext_resource type="Texture2D" uid="uid://mcbw28it60an" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/PeriodicSpike.png" id="3_i7pdc"]
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_yo5xj"]
 points = PackedVector2Array(28, 24, -28, 24, 0, -32)

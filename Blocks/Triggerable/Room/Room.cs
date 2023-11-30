@@ -61,6 +61,15 @@ public partial class Room : AbstractTriggerable
         }
 
 
+        // Begins editing the targeted block
+        public void EditBlock(Vector2I pos) {
+                AbstractBlock block = GetBlockFromGrid(pos);
+                if (IsInstanceValid(block)) {
+                        block.Edit();
+                }
+        }
+
+
         // Returns the block at the given grid position
         private AbstractBlock GetBlockFromGrid(Vector2I pos) {
                 return cells[pos.X, pos.Y];
