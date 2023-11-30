@@ -20,8 +20,7 @@ public partial class PeriodicSpike : AbstractHazard {
 
 
         // Edit block
-        public override void Edit()
-        {
+        public override void Edit() {
                 base.Edit();
         }
 

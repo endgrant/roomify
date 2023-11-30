@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c4pbw3qou6v5d" path="res://Blocks/Triggerable/JumpCharger/jump_charger.tscn" id="4_25kaq"]
 [ext_resource type="PackedScene" uid="uid://bmav3k2skuqet" path="res://Blocks/Triggerable/Hazard/NormalSpike/normal_spike.tscn" id="4_477nh"]
 [ext_resource type="PackedScene" uid="uid://ctwa356sjpo2d" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/periodic_spike.tscn" id="5_ffjhm"]
-[ext_resource type="PackedScene" uid="uid://bfciivolqy5hl" path="res://Blocks/Triggerable/Toggle/toggle.tscn" id="6_vw8pn"]
+[ext_resource type="PackedScene" uid="uid://bfciivolqy5hl" path="res://Blocks/Triggerable/Toggle/toggle_switch.tscn" id="6_vw8pn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fx8mo"]
 rough = true
@@ -40,10 +40,17 @@ position = Vector2(1164, 577)
 position = Vector2(781, 431)
 
 [node name="Toggle" parent="." instance=ExtResource("6_vw8pn")]
-position = Vector2(590, 425)
+position = Vector2(577, 423)
 
 [node name="Toggle2" parent="." instance=ExtResource("6_vw8pn")]
-position = Vector2(590, 499)
+position = Vector2(406, 422)
 
 [node name="PeriodicSpike" parent="." instance=ExtResource("5_ffjhm")]
 position = Vector2(1100, 577)
+period = 5.0
+
+[node name="ToggleSwitch" parent="." instance=ExtResource("6_vw8pn")]
+position = Vector2(979, 417)
+
+[node name="ToggleSwitch2" parent="." instance=ExtResource("6_vw8pn")]
+position = Vector2(406, 364)
