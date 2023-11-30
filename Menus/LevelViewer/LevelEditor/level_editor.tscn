@@ -22,7 +22,7 @@
 [sub_resource type="Resource" id="Resource_fi6hf"]
 script = ExtResource("3_cbhye")
 atlasId = 0
-blocks = Array[String](["Basic/BasicBlock/basic_block.tscn", "Basic/Toggleable/Red/red.tscn", "Basic/Toggleable/Blue/blue.tscn"])
+blocks = Array[String](["Basic/BasicBlock/basic_block.tscn", "Basic/Toggleable/Red/red_block.tscn", "Basic/Toggleable/Blue/blue_block.tscn"])
 
 [sub_resource type="Resource" id="Resource_me8ts"]
 script = ExtResource("3_cbhye")
@@ -32,7 +32,7 @@ blocks = Array[String](["Triggerable/Hazard/NormalSpike/normal_spike.tscn", "Tri
 [sub_resource type="Resource" id="Resource_v1prf"]
 script = ExtResource("3_cbhye")
 atlasId = 2
-blocks = Array[String](["Triggerable/Toggle/toggle.tscn", "Triggerable/JumpCharger/jump_charger.tscn", "Triggerable/Linked/Teleporter/teleporter.tscn", "Triggerable/Room/room.tscn"])
+blocks = Array[String](["Triggerable/Toggle/toggle_switch.tscn", "Triggerable/JumpCharger/jump_charger.tscn", "Triggerable/Linked/Teleporter/teleporter.tscn", "Triggerable/Room/room.tscn"])
 
 [sub_resource type="Resource" id="Resource_f84f0"]
 script = ExtResource("3_cbhye")
