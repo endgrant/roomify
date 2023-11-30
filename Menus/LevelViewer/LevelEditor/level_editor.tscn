@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://by67ptjtbqlp2"]
+[gd_scene load_steps=29 format=3 uid="uid://by67ptjtbqlp2"]
 
 [ext_resource type="Script" path="res://Menus/LevelViewer/LevelEditor/LevelEditor.cs" id="1_jm58u"]
 [ext_resource type="Texture2D" uid="uid://bdtivc5yb61lu" path="res://Menus/LevelViewer/LevelEditor/BasicBlock.png" id="1_s54ka"]
@@ -14,10 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Blocks/Triggerable/Spawn/Spawn.png" id="10_bwwnq"]
 [ext_resource type="Texture2D" uid="uid://cuc3kq1auwos8" path="res://Blocks/Triggerable/Goal/Goal.png" id="11_3k8bc"]
 [ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Blocks/Triggerable/Room/Room.png" id="12_ojo2e"]
-[ext_resource type="Texture2D" uid="uid://bl11w8mnh26ik" path="res://Menus/LevelViewer/LevelEditor/atlas0.png" id="15_yjcdr"]
-[ext_resource type="Texture2D" uid="uid://cejjn8iah4g2v" path="res://Menus/LevelViewer/LevelEditor/atlas1.png" id="16_725wi"]
-[ext_resource type="Texture2D" uid="uid://bcb4l2marmwda" path="res://Menus/LevelViewer/LevelEditor/atlas2.png" id="17_cthcf"]
-[ext_resource type="Texture2D" uid="uid://btewks8ge1ys1" path="res://Menus/LevelViewer/LevelEditor/atlas3.png" id="18_epu5q"]
+[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas0.png" id="15_yjcdr"]
+[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas1.png" id="16_725wi"]
+[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas2.png" id="17_cthcf"]
+[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas3.png" id="18_epu5q"]
 
 [sub_resource type="Resource" id="Resource_fi6hf"]
 script = ExtResource("3_cbhye")
@@ -76,6 +76,10 @@ sources/0 = SubResource("TileSetAtlasSource_gckxg")
 sources/1 = SubResource("TileSetAtlasSource_1ykj8")
 sources/2 = SubResource("TileSetAtlasSource_xbss1")
 sources/3 = SubResource("TileSetAtlasSource_al6bc")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oqmpr"]
+content_margin_left = 16.0
+content_margin_right = 16.0
 
 [node name="LevelEditor" type="Control"]
 layout_mode = 3
@@ -185,10 +189,13 @@ layout_mode = 2
 texture = ExtResource("1_s54ka")
 
 [node name="Toolbar" type="HBoxContainer" parent="VBoxContainer/Topbar"]
-layout_mode = 2
-offset_left = 952.0
-offset_right = 1152.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
 offset_bottom = 72.0
+grow_horizontal = 0
 
 [node name="Play" type="Button" parent="VBoxContainer/Topbar/Toolbar"]
 custom_minimum_size = Vector2(64, 64)
@@ -221,18 +228,61 @@ transparent_bg = true
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
 snap_2d_vertices_to_pixel = true
-size = Vector2i(1536, 764)
+size = Vector2i(1536, 664)
 size_2d_override = Vector2i(1536, 896)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="GhostMap" type="TileMap" parent="VBoxContainer/LevelViewport/SubViewport"]
+[node name="Level" type="Node2D" parent="VBoxContainer/LevelViewport/SubViewport"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="VBoxContainer/LevelViewport/SubViewport/Level"]
+layer = -1
+
+[node name="Backdrop" type="ColorRect" parent="VBoxContainer/LevelViewport/SubViewport/Level/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="VBoxContainer/LevelViewport/SubViewport/Level"]
+position = Vector2(0, 448)
+amount = 100
+lifetime = 40.0
+preprocess = 40.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 324)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+scale_amount_max = 2.0
+
+[node name="GhostMap" type="TileMap" parent="VBoxContainer/LevelViewport/SubViewport/Level"]
 tile_set = SubResource("TileSet_vgvju")
 cell_quadrant_size = 24
 format = 2
 layer_0/modulate = Color(1, 1, 1, 0.376471)
 
-[node name="Tiles" type="Node2D" parent="VBoxContainer/LevelViewport/SubViewport"]
+[node name="Tiles" type="Node2D" parent="VBoxContainer/LevelViewport/SubViewport/Level"]
+
+[node name="Editbar" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+
+[node name="CurrentBlock" type="Label" parent="VBoxContainer/Editbar"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_oqmpr")
+text = "Currently Editing: None"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/Editbar"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+text = "Delete Block"
 
 [connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Quit" to="." method="Quit"]
 

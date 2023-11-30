@@ -3,7 +3,7 @@ using System;
 
 public abstract partial class AbstractBlock : Node2D
 {
-	protected static Room currentRoom;
+        private LevelEditor root;
 
 
 	// Enter scene tree
@@ -18,12 +18,10 @@ public abstract partial class AbstractBlock : Node2D
 		return sprite.Texture;
 	}
 
+
+        // Edit block
 	public virtual void Edit() {
-
+                root = (LevelEditor)GetTree().Root.GetChild<Control>(0);
+                root.SetEditedBlock(this);
         }
-
-
-	public static void SetRoom(Room newRoom) {
-		currentRoom = newRoom;
-	}  
 }
