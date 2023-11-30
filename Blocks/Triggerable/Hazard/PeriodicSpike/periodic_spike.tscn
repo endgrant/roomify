@@ -1,22 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://brfrtsioxmxn1"]
+[gd_scene load_steps=13 format=3 uid="uid://bfr54y5p2onlk"]
 
-[ext_resource type="PackedScene" uid="uid://dm56x0pgx8oiw" path="res://Blocks/Triggerable/triggable_block.tscn" id="1_128f1"]
-[ext_resource type="Script" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/PeriodicSpike.cs" id="2_a2lfv"]
-[ext_resource type="Texture2D" uid="uid://mcbw28it60an" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/PeriodicSpike.png" id="3_og24n"]
+[ext_resource type="PackedScene" uid="uid://dm56x0pgx8oiw" path="res://Blocks/Triggerable/triggable_block.tscn" id="1_o8c32"]
+[ext_resource type="Script" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/PeriodicSpike.cs" id="2_j5fem"]
+[ext_resource type="Texture2D" uid="uid://chlo6uy4looro" path="res://Blocks/Triggerable/Hazard/PeriodicSpike/PeriodicSpike.png" id="3_i7pdc"]
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_3hgun"]
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_hnlar"]
 points = PackedVector2Array(28, 24, -28, 24, 0, -32)
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_b2srs"]
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_eyoyx"]
 points = PackedVector2Array(28, 24, -28, 24, 0, -32)
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_mh868"]
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_njdku"]
 points = PackedVector2Array(20, 24, -20, 24, 0, -16)
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_ctx77"]
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_3vlh6"]
 points = PackedVector2Array(8, 24, -8, 24, 0, 8)
 
-[sub_resource type="Animation" id="Animation_jil45"]
+[sub_resource type="Animation" id="Animation_nwnl3"]
 resource_name = "Close"
 length = 0.2
 step = 0.01
@@ -42,7 +42,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [SubResource("ConvexPolygonShape2D_b2srs"), SubResource("ConvexPolygonShape2D_mh868"), SubResource("ConvexPolygonShape2D_ctx77")]
+"values": [SubResource("ConvexPolygonShape2D_eyoyx"), SubResource("ConvexPolygonShape2D_njdku"), SubResource("ConvexPolygonShape2D_3vlh6")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -57,13 +57,13 @@ tracks/2/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_o1t02"]
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_1whww"]
 points = PackedVector2Array(8, 24, -8, 24, 0, 8)
 
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_4srek"]
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_8wfbc"]
 points = PackedVector2Array(20, 24, -20, 24, 0, -16)
 
-[sub_resource type="Animation" id="Animation_btjoo"]
+[sub_resource type="Animation" id="Animation_op8rx"]
 resource_name = "Open"
 length = 0.2
 step = 0.01
@@ -86,10 +86,10 @@ tracks/1/path = NodePath("CollisionShape2D:shape")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.15),
+"times": PackedFloat32Array(0.05, 0.1, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [SubResource("ConvexPolygonShape2D_o1t02"), SubResource("ConvexPolygonShape2D_4srek"), SubResource("ConvexPolygonShape2D_3hgun")]
+"values": [SubResource("ConvexPolygonShape2D_1whww"), SubResource("ConvexPolygonShape2D_8wfbc"), SubResource("ConvexPolygonShape2D_hnlar")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -104,26 +104,25 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p2sla"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sixnh"]
 _data = {
-"Close": SubResource("Animation_jil45"),
-"Open": SubResource("Animation_btjoo")
+"Close": SubResource("Animation_nwnl3"),
+"Open": SubResource("Animation_op8rx")
 }
 
-[node name="PeriodicSpike" instance=ExtResource("1_128f1")]
-script = ExtResource("2_a2lfv")
+[node name="PeriodicSpike" instance=ExtResource("1_o8c32")]
+script = ExtResource("2_j5fem")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("3_og24n")
+texture = ExtResource("3_i7pdc")
 hframes = 4
 
 [node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource("ConvexPolygonShape2D_3hgun")
+shape = SubResource("ConvexPolygonShape2D_hnlar")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
-reset_on_save = false
 libraries = {
-"": SubResource("AnimationLibrary_p2sla")
+"": SubResource("AnimationLibrary_sixnh")
 }
 
 [node name="Timer" type="Timer" parent="." index="3"]
