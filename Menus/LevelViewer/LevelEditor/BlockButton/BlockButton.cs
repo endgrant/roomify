@@ -3,11 +3,9 @@ using System;
 
 public partial class BlockButton : VBoxContainer
 {
-        private PackedScene[] blocks = {
-                GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"),
-                GD.Load<PackedScene>("res://Blocks/Basic/Toggleable/Red/red.tscn"),
-                GD.Load<PackedScene>("res://Blocks/Basic/Toggleable/Blue/blue.tscn")
-        };
+        [Export]
+        public BlockList blockList;
+
         private LevelEditor root;
 
 
@@ -20,6 +18,6 @@ public partial class BlockButton : VBoxContainer
 
         // New option selected
         public void ItemSelected(int itemId) {
-                root.SetCurrentBlock(blocks[itemId], itemId+1);
+                root.SetCurrentBlock(blockList.GetBlockById(itemId), itemId+1);
         }
 }

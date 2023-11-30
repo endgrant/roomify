@@ -1,24 +1,22 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 public partial class LevelEditor : LevelViewer
 {
         private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
 
-        private const int tileWidth = 64;
-        private const int tileHeight = 64;
-        private const int roomWidth = 24;
-        private const int roomHeight = 14;
-
-        private Vector2I tileSize = new Vector2I(tileWidth, tileHeight);
+        private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
 
         private Control topbar;
         private SubViewport viewport;
         private TileMap ghostmap;
+        private Node2D tiles;
         private TextureRect currentBlockTextureRect;
         
-        private AbstractBlock[,] cells = new AbstractBlock[roomWidth, roomHeight];
+        private List<Room> rooms = new List<Room>();
+        private Room currentRoom;
 
         private PackedScene currentBlock;
         private int sourceId;
@@ -31,7 +29,11 @@ public partial class LevelEditor : LevelViewer
                 topbar = GetNode<Control>("VBoxContainer/Topbar");
                 viewport = GetNode<SubViewport>("VBoxContainer/LevelViewport/SubViewport");
                 ghostmap = viewport.GetNode<TileMap>("GhostMap");
+                tiles = viewport.GetNode<Node2D>("Tiles");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
+
+                currentRoom = new Room(tiles);
+                rooms.Add(currentRoom);
 
                 SetCurrentBlock(GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1);
         }
@@ -51,7 +53,7 @@ public partial class LevelEditor : LevelViewer
                 Vector2I cursorGridPos = (Vector2I)(GetLocalMousePosition() * scale - new Vector2(0, topbar.Size.Y * scale.Y)) / tileSize;
 
                 // Check if cursor is in-bounds
-                if (cursorGridPos.X < 0 || cursorGridPos.Y < 0 || cursorGridPos.X > roomWidth-1 || cursorGridPos.Y > roomHeight-1) {
+                if (cursorGridPos.X < 0 || cursorGridPos.Y < 0 || cursorGridPos.X > Constants.ROOM_WIDTH-1 || cursorGridPos.Y > Constants.ROOM_HEIGHT-1) {
                         return;
                 }
                 ghostmap.EraseCell(0, prevCursorGridPos);
@@ -71,42 +73,13 @@ public partial class LevelEditor : LevelViewer
 
         // Place block
         private void PlaceBlock(Vector2I pos) {
-                if (!IsInstanceValid(GetBlockFromGrid(pos))) {
-                        SetBlockInGrid(pos);
-                }
+                currentRoom.PlaceBlock(pos, currentBlock);
         }
 
 
         // Delete block
         private void DeleteBlock(Vector2I pos) {
-                if (IsInstanceValid(GetBlockFromGrid(pos))) {
-                        RemoveBlockFromGrid(pos);
-                }
-        }
-
-        
-        // Returns the block at the given grid position
-        private AbstractBlock GetBlockFromGrid(Vector2I pos) {
-                return cells[pos.X, pos.Y];
-        }
-
-
-        // Builds block in grid
-        private void SetBlockInGrid(Vector2I pos) {
-                AbstractBlock instance = currentBlock.Instantiate<AbstractBlock>();
-                cells[pos.X, pos.Y] = instance;
-                instance.Position = ((pos + Vector2I.One) * tileSize) - (tileSize / 2);
-                viewport.AddChild(instance);
-        }
-
-
-        // Removes block from grid
-        private void RemoveBlockFromGrid(Vector2I pos) {
-                AbstractBlock instance = GetBlockFromGrid(pos);
-                if (IsInstanceValid(instance)) {
-                        instance.QueueFree();
-                        cells[pos.X, pos.Y] = null;
-                }
+                currentRoom.DeleteBlock(pos);
         }
 
 

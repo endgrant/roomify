@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://by67ptjtbqlp2"]
+[gd_scene load_steps=22 format=3 uid="uid://by67ptjtbqlp2"]
 
 [ext_resource type="Script" path="res://Menus/LevelViewer/LevelEditor/LevelEditor.cs" id="1_jm58u"]
 [ext_resource type="Texture2D" uid="uid://bdtivc5yb61lu" path="res://Menus/LevelViewer/LevelEditor/BasicBlock.png" id="1_s54ka"]
 [ext_resource type="Texture2D" uid="uid://dk70jef1yc2vc" path="res://Menus/LevelViewer/LevelEditor/RedBlock.png" id="2_euxns"]
 [ext_resource type="PackedScene" uid="uid://y1i1qd7a3ftn" path="res://Menus/LevelViewer/LevelEditor/BlockButton/block_button.tscn" id="2_o3uho"]
 [ext_resource type="Texture2D" uid="uid://bp1lmjddgd7pj" path="res://Menus/LevelViewer/LevelEditor/BlueBlock.png" id="3_8bov1"]
+[ext_resource type="Script" path="res://Menus/LevelViewer/LevelEditor/BlockButton/BlockList.cs" id="3_cbhye"]
 [ext_resource type="Texture2D" uid="uid://blnuhrwoytqkc" path="res://Blocks/Triggerable/Hazard/NormalSpike/Spike.png" id="4_ilewd"]
 [ext_resource type="Texture2D" uid="uid://cq2vux817131c" path="res://Menus/LevelViewer/LevelEditor/PeriodicSpikeThumbnail.png" id="5_fqs06"]
 [ext_resource type="Texture2D" uid="uid://bslrb0jc8oik2" path="res://Blocks/Triggerable/Toggle/RedToggle.png" id="6_b5x1v"]
@@ -14,6 +15,22 @@
 [ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Blocks/Triggerable/Spawn/Spawn.png" id="10_bwwnq"]
 [ext_resource type="Texture2D" uid="uid://cuc3kq1auwos8" path="res://Blocks/Triggerable/Goal/Goal.png" id="11_3k8bc"]
 [ext_resource type="Texture2D" uid="uid://cou5n2xkjxbmo" path="res://Menus/LevelViewer/LevelEditor/sheet.png" id="14_f74co"]
+
+[sub_resource type="Resource" id="Resource_fi6hf"]
+script = ExtResource("3_cbhye")
+blocks = Array[String](["Basic/BasicBlock/basic_block.tscn", "Basic/Toggleable/Red/red.tscn", "Basic/Toggleable/Blue/blue.tscn"])
+
+[sub_resource type="Resource" id="Resource_me8ts"]
+script = ExtResource("3_cbhye")
+blocks = Array[String](["Triggerable/Hazard/NormalSpike/normal_spike.tscn", "Triggerable/Hazard/PeriodicSpike/periodic_spike.tscn"])
+
+[sub_resource type="Resource" id="Resource_v1prf"]
+script = ExtResource("3_cbhye")
+blocks = Array[String](["Triggerable/Toggle/toggle.tscn", "Triggerable/JumpCharger/jump_charger.tscn", "Triggerable/Linked/Teleporter/teleporter.tscn", "Room/room.tscn"])
+
+[sub_resource type="Resource" id="Resource_f84f0"]
+script = ExtResource("3_cbhye")
+blocks = Array[String](["Triggerable/Spawn/spawn.tscn", "Triggerable/Goal/goal.tscn"])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sb6tx"]
 resource_name = "Ghosts"
@@ -65,6 +82,7 @@ offset_bottom = 72.0
 
 [node name="Block" parent="VBoxContainer/Topbar/BlockSelector" instance=ExtResource("2_o3uho")]
 layout_mode = 2
+blockList = SubResource("Resource_fi6hf")
 
 [node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Block" index="1"]
 item_count = 3
@@ -78,6 +96,7 @@ popup/item_2/id = 2
 
 [node name="Hazard" parent="VBoxContainer/Topbar/BlockSelector" instance=ExtResource("2_o3uho")]
 layout_mode = 2
+blockList = SubResource("Resource_me8ts")
 
 [node name="Label" parent="VBoxContainer/Topbar/BlockSelector/Hazard" index="0"]
 text = "Hazard"
@@ -85,13 +104,13 @@ text = "Hazard"
 [node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Hazard" index="1"]
 item_count = 2
 popup/item_0/icon = ExtResource("4_ilewd")
-popup/item_0/id = 3
 popup/item_1/text = ""
 popup/item_1/icon = ExtResource("5_fqs06")
-popup/item_1/id = 4
+popup/item_1/id = 1
 
 [node name="Interactable" parent="VBoxContainer/Topbar/BlockSelector" instance=ExtResource("2_o3uho")]
 layout_mode = 2
+blockList = SubResource("Resource_v1prf")
 
 [node name="Label" parent="VBoxContainer/Topbar/BlockSelector/Interactable" index="0"]
 text = "Interactable"
@@ -99,19 +118,19 @@ text = "Interactable"
 [node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Interactable" index="1"]
 item_count = 4
 popup/item_0/icon = ExtResource("6_b5x1v")
-popup/item_0/id = 5
 popup/item_1/text = ""
 popup/item_1/icon = ExtResource("7_f4c28")
-popup/item_1/id = 6
+popup/item_1/id = 1
 popup/item_2/text = ""
 popup/item_2/icon = ExtResource("8_nesuw")
-popup/item_2/id = 7
+popup/item_2/id = 2
 popup/item_3/text = ""
 popup/item_3/icon = ExtResource("9_1ymhd")
-popup/item_3/id = 8
+popup/item_3/id = 3
 
 [node name="Objective" parent="VBoxContainer/Topbar/BlockSelector" instance=ExtResource("2_o3uho")]
 layout_mode = 2
+blockList = SubResource("Resource_f84f0")
 
 [node name="Label" parent="VBoxContainer/Topbar/BlockSelector/Objective" index="0"]
 text = "Objective"
@@ -119,10 +138,9 @@ text = "Objective"
 [node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Objective" index="1"]
 item_count = 2
 popup/item_0/icon = ExtResource("10_bwwnq")
-popup/item_0/id = 9
 popup/item_1/text = ""
 popup/item_1/icon = ExtResource("11_3k8bc")
-popup/item_1/id = 10
+popup/item_1/id = 1
 
 [node name="CurrentBlock" type="VBoxContainer" parent="VBoxContainer/Topbar"]
 custom_minimum_size = Vector2(64, 64)
@@ -188,6 +206,8 @@ tile_set = SubResource("TileSet_vgvju")
 cell_quadrant_size = 24
 format = 2
 layer_0/modulate = Color(1, 1, 1, 0.376471)
+
+[node name="Tiles" type="Node2D" parent="VBoxContainer/LevelViewport/SubViewport"]
 
 [connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Quit" to="." method="Quit"]
 
