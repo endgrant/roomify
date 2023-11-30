@@ -18,7 +18,7 @@ public partial class LevelEditor : LevelViewer
         private TileMap ghostmap;
         private TextureRect currentBlockTextureRect;
         
-        private AbstractBlock[,] cells = new AbstractBlock[24, 14]; // prob shouldn't hard code
+        private AbstractBlock[,] cells = new AbstractBlock[roomWidth, roomHeight];
 
         private PackedScene currentBlock;
         private int sourceId;
