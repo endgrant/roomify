@@ -19,16 +19,25 @@ public partial class PeriodicSpike : AbstractHazard {
 	}
 
 
-	public void SetActive(bool value) {
+        // Edit block
+        public override void Edit()
+        {
+                base.Edit();
+        }
+
+
+        public void SetActive(bool value) {
 		active = value;
 		ChangeState();
 	}
+
 
 	public void Cycle() {
 		timer.Start();
 		active = !active;
 		ChangeState();
 	}
+
 
 	private void ChangeState() {
 		if(active)
