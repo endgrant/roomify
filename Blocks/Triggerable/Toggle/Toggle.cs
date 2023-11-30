@@ -5,6 +5,7 @@ public partial class Toggle : AbstractTriggerable {
 
 	[ExportCategory("Attributes")]
 	[Export] protected bool isRed = true;
+	protected bool onCooldown = false;
 	Sprite2D sprite;
 	Timer timer;
 
@@ -21,19 +22,21 @@ public partial class Toggle : AbstractTriggerable {
 
 	// changes the state of the toggle from red or blue
     public override void Entered(Node2D activator) {
+		if(!timer.IsStopped())
+			return;
+		
         isRed = !isRed;
 		ChangeState();
     }
 
 	private void ChangeState() {
-		if(!(timer.WaitTime == 0))
-			return;
-
 		if(isRed) {
 			sprite.Texture = (Texture2D)GD.Load("res://Blocks/Triggerable/Toggle/RedToggle.png");
+			GD.Print("Red");
 		}
 		else {
 			sprite.Texture = (Texture2D)GD.Load("res://Blocks/Triggerable/Toggle/BlueToggle.png");
+			GD.Print("Blue");
 		}
 		// emit signal and pass current state
 		timer.Start();

@@ -1,15 +1,11 @@
 using Godot;
 using System;
 
-public partial class ToggleBlock : AbstractBasic
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
+public partial class ToggleBlock : BasicBlock {
+	// The toggle block scene inherits the basic block scene, meaning that
+	// anything in the basic block scene will also automatically be applied
+	// to the toggle block, such as sprite or hitbox
+	public override void _Ready() {
+		
 	}
 }
