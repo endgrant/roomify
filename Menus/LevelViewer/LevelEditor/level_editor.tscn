@@ -14,10 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Blocks/Triggerable/Spawn/Spawn.png" id="10_bwwnq"]
 [ext_resource type="Texture2D" uid="uid://cuc3kq1auwos8" path="res://Blocks/Triggerable/Goal/Goal.png" id="11_3k8bc"]
 [ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Blocks/Triggerable/Room/Room.png" id="12_ojo2e"]
-[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas0.png" id="15_yjcdr"]
-[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas1.png" id="16_725wi"]
-[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas2.png" id="17_cthcf"]
-[ext_resource type="Texture2D" path="res://Menus/LevelViewer/LevelEditor/atlas3.png" id="18_epu5q"]
+[ext_resource type="Texture2D" uid="uid://bl11w8mnh26ik" path="res://Menus/LevelViewer/LevelEditor/atlas0.png" id="15_yjcdr"]
+[ext_resource type="Texture2D" uid="uid://cejjn8iah4g2v" path="res://Menus/LevelViewer/LevelEditor/atlas1.png" id="16_725wi"]
+[ext_resource type="Texture2D" uid="uid://bcb4l2marmwda" path="res://Menus/LevelViewer/LevelEditor/atlas2.png" id="17_cthcf"]
+[ext_resource type="Texture2D" uid="uid://btewks8ge1ys1" path="res://Menus/LevelViewer/LevelEditor/atlas3.png" id="18_epu5q"]
 
 [sub_resource type="Resource" id="Resource_fi6hf"]
 script = ExtResource("3_cbhye")

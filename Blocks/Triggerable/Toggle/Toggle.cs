@@ -32,11 +32,9 @@ public partial class Toggle : AbstractTriggerable {
 	private void ChangeState() {
 		if(isRed) {
 			sprite.Texture = (Texture2D)GD.Load("res://Blocks/Triggerable/Toggle/RedToggle.png");
-			GD.Print("Red");
 		}
 		else {
 			sprite.Texture = (Texture2D)GD.Load("res://Blocks/Triggerable/Toggle/BlueToggle.png");
-			GD.Print("Blue");
 		}
 		// emit signal and pass current state
 		timer.Start();

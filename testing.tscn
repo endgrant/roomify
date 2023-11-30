@@ -36,9 +36,6 @@ shape = SubResource("RectangleShape2D_gcen4")
 [node name="NormalSpike" parent="." instance=ExtResource("4_477nh")]
 position = Vector2(1164, 577)
 
-[node name="PeriodicSpike" parent="." instance=ExtResource("5_ffjhm")]
-position = Vector2(1100, 577)
-
 [node name="JumpCharger" parent="." instance=ExtResource("4_25kaq")]
 position = Vector2(781, 431)
 
@@ -47,3 +44,6 @@ position = Vector2(590, 425)
 
 [node name="Toggle2" parent="." instance=ExtResource("6_vw8pn")]
 position = Vector2(590, 499)
+
+[node name="PeriodicSpike" parent="." instance=ExtResource("5_ffjhm")]
+position = Vector2(1100, 577)
