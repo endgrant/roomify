@@ -12,6 +12,7 @@ public partial class PeriodicSpike : AbstractHazard {
         // Entered tree
         public override void _Ready() {
 		base._Ready();
+                displayName = "Periodic Spike";
 		timer = GetNode<Timer>("Timer");
 		animator = GetNode<AnimationPlayer>("AnimationPlayer");
 		timer.WaitTime = period;

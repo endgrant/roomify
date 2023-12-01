@@ -142,7 +142,7 @@ public partial class LevelEditor : LevelViewer
                 ClearEditBar();
                 string append = "None";
                 if (IsInstanceValid(block)) {
-                        append = block.Name;
+                        append = block.GetDisplayName();
                         currentEdit = block;
                 } else {
                         currentEdit = null;

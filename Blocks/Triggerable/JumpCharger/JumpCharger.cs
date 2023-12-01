@@ -6,18 +6,27 @@ public partial class JumpCharger : AbstractTriggerable {
     [ExportCategory("Attributes")]
     [Export(PropertyHint.Range, "0, 10")] protected int extraJumps = 3;
 
-    private void GiveMoreJumps(Player player) {
-        player.SetExtraJumps(extraJumps);
-    }
 
-    /*
-    public override void Edit() {
-        throw new NotImplementedException();
-    }
-    */
+        // Entered scene tree
+	public override void _Ready() {
+                base._Ready();
+                displayName = "Jump Charger";
+        }
 
-    public override void Entered(Node2D activator) {
-        if(activator is Player)
-            GiveMoreJumps((Player)activator);
-    }
+
+        // Grant more jumps to the player
+        private void GiveMoreJumps(Player player) {
+                player.SetExtraJumps(extraJumps);
+        }
+
+
+        public override void Edit() {
+
+        }
+
+
+        public override void Entered(Node2D activator) {
+                if(activator is Player)
+                GiveMoreJumps((Player)activator);
+        }
 }

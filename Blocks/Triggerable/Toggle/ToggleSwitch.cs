@@ -18,6 +18,7 @@ public partial class ToggleSwitch : AbstractTriggerable {
 	protected static ToggleSwitch mainToggle = null;
 
 	public override void _Ready() {
+                displayName = "Switch";
 		if(!IsInstanceValid(timer.GetParent<Node2D>())) {
 			mainToggle = this;
 			AddChild(timer);

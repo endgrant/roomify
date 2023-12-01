@@ -15,6 +15,13 @@ public partial class Room : AbstractTriggerable
         public Room() {}
 
 
+        // Entered scene tree
+	public override void _Ready() {
+                base._Ready();
+                displayName = "Room";
+        }
+
+
         // Entered
         public override void Entered(Node2D activator) {
                 

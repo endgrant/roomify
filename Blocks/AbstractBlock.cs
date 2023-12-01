@@ -3,6 +3,7 @@ using System;
 
 public abstract partial class AbstractBlock : Node2D
 {
+        protected string displayName;
         protected LevelEditor root;
 
 
@@ -23,6 +24,12 @@ public abstract partial class AbstractBlock : Node2D
                 Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
 		return sprite.Texture;
 	}
+
+
+        // Returns the name of this block
+        public string GetDisplayName() {
+                return displayName;
+        }
 
 
         // Edit block
