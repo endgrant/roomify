@@ -73,8 +73,6 @@ public partial class LevelEditor : LevelViewer
                 prevCursorGridPos = cursorGridPos;
 
                 currentCursorGridPos = cursorGridPos;
-
-                
         }
 
 
@@ -123,6 +121,13 @@ public partial class LevelEditor : LevelViewer
                 if (IsInstanceValid(parentRoom)) {
                         ChangeCurrentRoom(parentRoom);
                 }
+        }
+
+
+        // Delete block button in edit bar clicked
+        public void ManualDelete() {
+                currentRoom.DeleteBlock(currentEdit);
+                SetEditedBlock(null);
         }
 
 

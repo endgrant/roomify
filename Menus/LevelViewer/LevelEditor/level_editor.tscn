@@ -304,6 +304,7 @@ layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/Topbar/Button" to="." method="NavPreviousRoom"]
 [connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Quit" to="." method="Quit"]
+[connection signal="pressed" from="VBoxContainer/Editbar/DeleteBlock" to="." method="ManualDelete"]
 
 [editable path="VBoxContainer/Topbar/BlockSelector/Block"]
 [editable path="VBoxContainer/Topbar/BlockSelector/Hazard"]
