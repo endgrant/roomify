@@ -15,6 +15,19 @@ public partial class LevelSelect : Node
 
         // Create button is pressed
         public void Create() {
+                Constants.currentLevelName = "";
+                GetTree().ChangeSceneToPacked(levelEditorMenu);
+        }
+
+
+        // A level is selected
+        public void LevelSelected(string levelName) {
+                Constants.currentLevelName = levelName;
+        }
+
+
+        // Edit selected level
+        public void EditLevel() {
                 GetTree().ChangeSceneToPacked(levelEditorMenu);
         }
 }

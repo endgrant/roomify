@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 public partial class LevelEditor : LevelViewer
 {
         private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
+        private PackedScene defaultLevelScene = GD.Load<PackedScene>("res://Menus/LevelViewer/level.tscn");
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
 
@@ -41,10 +42,17 @@ public partial class LevelEditor : LevelViewer
                 deleteBlockButton = editbar.GetNode<Button>("DeleteBlock");
                 spacer = editbar.GetNode<Control>("Spacer");
                 viewport = GetNode<SubViewport>("VBoxContainer/LevelViewport/SubViewport");
-                level = viewport.GetNode<Node2D>("Level");
                 ghostmap = viewport.GetNode<TileMap>("GhostMap");
-                tiles = level.GetNode<Node2D>("Tiles");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
+
+                if (Constants.currentLevelName.Equals("")) {
+                        level = defaultLevelScene.Instantiate<Node2D>();
+                } else {
+                        PackedScene savedLevelScene = GD.Load<PackedScene>(Constants.SAVE_DIR + "/" + Constants.currentLevelName + ".tscn");
+                        level = savedLevelScene.Instantiate<Node2D>();
+                }
+                viewport.AddChild(level);
+                tiles = level.GetNode<Node2D>("Tiles");
 
                 currentRoom = new Room();
                 currentRoom.SetTiles(tiles);
