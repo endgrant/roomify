@@ -128,60 +128,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 columns = 3
 
-[node name="Button" type="Button" parent="VBoxContainer/PageView/LevelView"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Level 1"
-
-[node name="Button2" type="Button" parent="VBoxContainer/PageView/LevelView"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Level 2"
-
-[node name="Button3" type="Button" parent="VBoxContainer/PageView/LevelView"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Level 3"
-
-[node name="Button4" type="Button" parent="VBoxContainer/PageView/LevelView"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Level 4"
-
-[node name="Button5" type="Button" parent="VBoxContainer/PageView/LevelView"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Level 5"
-
-[node name="Button6" type="Button" parent="VBoxContainer/PageView/LevelView"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Level 6"
-
-[node name="Button7" type="Button" parent="VBoxContainer/PageView/LevelView"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Level 7"
-
-[node name="Button8" type="Button" parent="VBoxContainer/PageView/LevelView"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Level 8"
-
-[node name="Button9" type="Button" parent="VBoxContainer/PageView/LevelView"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-text = "Level 9"
-
 [node name="NextPage" type="Button" parent="VBoxContainer/PageView"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
@@ -196,5 +142,3 @@ layout_mode = 2
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Back" to="." method="Back"]
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Create" to="." method="Create"]
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Edit" to="." method="EditLevel"]
-[connection signal="pressed" from="VBoxContainer/PageView/LevelView/Button" to="." method="LevelSelected" binds= ["1"]]
-[connection signal="pressed" from="VBoxContainer/PageView/LevelView/Button2" to="." method="LevelSelected" binds= ["2"]]

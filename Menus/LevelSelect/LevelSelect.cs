@@ -1,10 +1,41 @@
 using Godot;
 using System;
+using System.IO;
 
 public partial class LevelSelect : Node
 {
 	private PackedScene mainMenu = GD.Load<PackedScene>("res://Menus/MainMenu/main_menu.tscn");
         private PackedScene levelEditorMenu = GD.Load<PackedScene>("res://Menus/LevelViewer/LevelEditor/level_editor.tscn");
+
+        private VBoxContainer main;
+        private GridContainer grid;
+
+
+        // Enter scene tree
+        public override void _Ready() {
+                base._Ready();
+                main = GetNode<VBoxContainer>("VBoxContainer");
+                grid = main.GetNode<GridContainer>("PageView/LevelView");
+
+                string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
+                foreach (string fileName in fileNames) {
+                        Button button = CreateButton(fileName.TrimSuffix(".tscn").TrimPrefix(Constants.SAVE_DIR + "\\"));
+                        Action lambda = () => {LevelSelected(fileName);};
+                        Callable callable = Callable.From(lambda);
+                        button.Connect("pressed", callable);
+                        grid.AddChild(button);
+                }
+        }
+
+
+        // Creates level button
+        private Button CreateButton(string levelName) {
+                Button button = new Button();
+                button.Text = levelName;
+                button.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+                button.CustomMinimumSize = new Vector2(0, main.Size.Y / 3);
+                return button;
+        }
 
 
 	// Back button is pressed

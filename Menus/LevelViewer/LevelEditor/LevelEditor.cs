@@ -46,9 +46,11 @@ public partial class LevelEditor : LevelViewer
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
 
                 if (Constants.currentLevelName.Equals("")) {
+                        // Create new level
                         level = defaultLevelScene.Instantiate<Node2D>();
                 } else {
-                        PackedScene savedLevelScene = GD.Load<PackedScene>(Constants.SAVE_DIR + "/" + Constants.currentLevelName + ".tscn");
+                        // Load existing level
+                        PackedScene savedLevelScene = GD.Load<PackedScene>(Constants.currentLevelName);
                         level = savedLevelScene.Instantiate<Node2D>();
                 }
                 viewport.AddChild(level);
