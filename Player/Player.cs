@@ -51,12 +51,16 @@ public partial class Player : CharacterBody2D {
 		// updates the character's velocity
 		Velocity = new Vector2(xVel, yVel);
 		MoveAndSlide();
+		// Camp Position to sides of screen and kill if you fall out of screen
+		//SetDeferred("GlobalPosition.X", Math.Clamp(GlobalPosition.X, ?, ?))
+		//SetDeferred("GlobalPosition.X", Math.Clamp(GlobalPosition.X, ?, ?))
+		//if(outsideOfScreen)
+		//		Die();
 	}
 
 	public void Die() {
-		// TODO: Add death sound/animation and queue free once 
-		// 		 the death sound/animation has finished playing
-		QueueFree();
+		// Set player's global position to first spawn of level
+		//GlobalPosition = GetNode<Spawn>("Spawn").GlobalPosition;
 	}
 
 	// sets the extra jumps for the player

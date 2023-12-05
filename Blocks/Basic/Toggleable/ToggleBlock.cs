@@ -10,12 +10,13 @@ public abstract partial class ToggleBlock : BasicBlock {
 	public override void _Ready() {
 		sprite = GetNode<Sprite2D>("Sprite2D");
 		hitbox = GetNode<CollisionShape2D>("CollisionShape2D");
-		ToggleSwitch mainToggle = ToggleSwitch.GetMainToggle();
+		ToggleSwitch mainToggle;
+		mainToggle = ToggleSwitch.GetMainToggle();
 		if(!IsInstanceValid(mainToggle)) {
 			mainToggle = new ToggleSwitch();
-			mainToggle.Disable();
 			AddSibling(mainToggle);
 			ToggleSwitch.SetMainToggle(mainToggle);
+			GD.Print("Added hidden toggle!");
 		}
 		mainToggle.Toggle += ChangeState;
 		ChangeState(mainToggle.GetIsRed());
