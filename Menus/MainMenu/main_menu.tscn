@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://yu5gcfm6ihs0"]
+[gd_scene load_steps=7 format=3 uid="uid://yu5gcfm6ihs0"]
 
 [ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Menus/Revamped.otf" id="1_oxnxe"]
 [ext_resource type="Script" path="res://Menus/MainMenu/MainMenu.cs" id="1_qelxs"]
 [ext_resource type="StyleBox" uid="uid://pi5hr1hi6vvl" path="res://Menus/sci-fi_button.tres" id="2_sf5a7"]
-[ext_resource type="AudioStream" uid="uid://cf7kcexfh14es" path="res://Roomify.mp3" id="4_xoyg7"]
+[ext_resource type="AudioStream" uid="uid://cf7kcexfh14es" path="res://Audio/Roomify.mp3" id="4_3te0m"]
+[ext_resource type="Script" path="res://Audio/AudioModifier.cs" id="5_vkgxe"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_trhf2"]
 font_size = 48
@@ -80,8 +81,10 @@ theme_override_styles/normal = ExtResource("2_sf5a7")
 text = "QUIT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_xoyg7")
+stream = ExtResource("4_3te0m")
+volume_db = 24.0
 autoplay = true
+script = ExtResource("5_vkgxe")
 
 [node name="HSlider" type="HSlider" parent="AudioStreamPlayer"]
 offset_left = 592.0
@@ -100,3 +103,4 @@ text = "Volume"
 
 [connection signal="pressed" from="VBoxContainer/Levels" to="." method="Levels"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="Quit"]
+[connection signal="value_changed" from="AudioStreamPlayer/HSlider" to="AudioStreamPlayer" method="SliderChanged"]
