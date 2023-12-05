@@ -49,7 +49,8 @@ public partial class LevelEditor : LevelViewer
                 currentRoom = new Room();
                 currentRoom.SetTiles(tiles);
 
-                SetCurrentBlock(0, GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1);
+                SetCurrentBlock(0, GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1, 
+                        topbar.GetNode<OptionButton>("BlockSelector/Block/Option").GetItemIcon(0));
         }
 
 
@@ -162,12 +163,12 @@ public partial class LevelEditor : LevelViewer
 
 
         // Change currently selected block
-        public void SetCurrentBlock(int atlasId, PackedScene blockScene, int sourceId) {
+        public void SetCurrentBlock(int atlasId, PackedScene blockScene, int sourceId, Texture2D texture) {
                 this.atlasId = atlasId;
                 this.sourceId = sourceId;
                 currentBlock = blockScene;
                 AbstractBlock instance = currentBlock.Instantiate<AbstractBlock>();
-                currentBlockTextureRect.Texture = instance.GetTexture();
+                currentBlockTextureRect.Texture = texture;
                 instance.QueueFree();
         }
 
