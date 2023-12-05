@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bud8kr6827qu4"]
+
+[ext_resource type="Script" path="res://Menus/Universal Menus/Overlay.cs" id="1_jvc8q"]
+[ext_resource type="AudioStream" uid="uid://cf7kcexfh14es" path="res://Menus/Universal Menus/Roomify.mp3" id="2_btoq4"]
+[ext_resource type="Texture2D" uid="uid://gp14bdt6vjuq" path="res://Menus/Universal Menus/Overlay.png" id="2_clrcy"]
+[ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Menus/Revamped.otf" id="2_rdy6j"]
+
+[node name="Overlay" type="Node2D"]
+visible = false
+z_index = 10
+script = ExtResource("1_jvc8q")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_btoq4")
+autoplay = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(768, 448)
+scale = Vector2(0.75, 0.875)
+texture = ExtResource("2_clrcy")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 96.0
+offset_top = 88.0
+offset_right = 238.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("2_rdy6j")
+theme_override_font_sizes/font_size = 29
+text = "Volume"
+metadata/_edit_use_anchors_ = true
+
+[node name="HSlider" type="HSlider" parent="."]
+z_index = 1
+offset_left = 264.0
+offset_top = 96.0
+offset_right = 504.0
+offset_bottom = 112.0
+min_value = -80.0
+max_value = 24.0
+
+[connection signal="value_changed" from="HSlider" to="." method="SliderChanged"]

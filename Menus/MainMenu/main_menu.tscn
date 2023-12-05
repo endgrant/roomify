@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://yu5gcfm6ihs0"]
+[gd_scene load_steps=5 format=3 uid="uid://yu5gcfm6ihs0"]
 
 [ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Menus/Revamped.otf" id="1_oxnxe"]
 [ext_resource type="Script" path="res://Menus/MainMenu/MainMenu.cs" id="1_qelxs"]
 [ext_resource type="StyleBox" uid="uid://pi5hr1hi6vvl" path="res://Menus/sci-fi_button.tres" id="2_sf5a7"]
-[ext_resource type="AudioStream" uid="uid://cf7kcexfh14es" path="res://Audio/Roomify.mp3" id="4_3te0m"]
-[ext_resource type="Script" path="res://Audio/AudioModifier.cs" id="5_vkgxe"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_trhf2"]
 font_size = 48
@@ -23,6 +21,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -45,10 +47,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -128.0
-offset_top = 208.0
-offset_right = 128.0
-offset_bottom = 256.0
+offset_left = -128.5
+offset_top = 96.0
+offset_right = 128.5
+offset_bottom = 150.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_oxnxe")
 text = "ROOMIFY"
@@ -62,6 +64,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -148.0
+offset_right = 60.0
+offset_bottom = -76.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
@@ -80,27 +86,5 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("2_sf5a7")
 text = "QUIT"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_3te0m")
-volume_db = 24.0
-autoplay = true
-script = ExtResource("5_vkgxe")
-
-[node name="HSlider" type="HSlider" parent="AudioStreamPlayer"]
-offset_left = 592.0
-offset_top = 632.0
-offset_right = 944.0
-offset_bottom = 648.0
-
-[node name="Label" type="Label" parent="AudioStreamPlayer"]
-offset_left = 704.0
-offset_top = 600.0
-offset_right = 824.0
-offset_bottom = 628.0
-theme_override_fonts/font = ExtResource("1_oxnxe")
-theme_override_font_sizes/font_size = 23
-text = "Volume"
-
 [connection signal="pressed" from="VBoxContainer/Levels" to="." method="Levels"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="Quit"]
-[connection signal="value_changed" from="AudioStreamPlayer/HSlider" to="AudioStreamPlayer" method="SliderChanged"]
