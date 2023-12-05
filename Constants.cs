@@ -7,4 +7,6 @@ public static class Constants {
         public const int ROOM_HEIGHT = 14;
 
         public const string SAVE_DIR = "Levels";
+
+        public static string currentLevelName;
 }

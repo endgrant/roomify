@@ -195,3 +195,6 @@ layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Back" to="." method="Back"]
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Create" to="." method="Create"]
+[connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Edit" to="." method="EditLevel"]
+[connection signal="pressed" from="VBoxContainer/PageView/LevelView/Button" to="." method="LevelSelected" binds= ["1"]]
+[connection signal="pressed" from="VBoxContainer/PageView/LevelView/Button2" to="." method="LevelSelected" binds= ["2"]]
