@@ -8,6 +8,7 @@
 points = PackedVector2Array(28, 24, -28, 24, 0, -32)
 
 [node name="NormalSpike" instance=ExtResource("1_b5h6j")]
+collision_layer = 4
 script = ExtResource("2_bb1i2")
 
 [node name="Sprite2D" parent="." index="0"]

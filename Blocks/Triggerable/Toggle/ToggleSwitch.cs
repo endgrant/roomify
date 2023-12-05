@@ -18,7 +18,7 @@ public partial class ToggleSwitch : AbstractTriggerable {
 	protected static ToggleSwitch mainToggle = null;
 
 	public override void _Ready() {
-                displayName = "Switch";
+        displayName = "Switch";
 		if(!IsInstanceValid(timer.GetParent<Node2D>())) {
 			mainToggle = this;
 			AddChild(timer);
@@ -27,6 +27,8 @@ public partial class ToggleSwitch : AbstractTriggerable {
 			Toggle += mainToggle.RequestToggle;
 		}
 		mainToggle.Toggle += ChangeState;
+		if(!isRed)
+			ChangeState(isRed);
 	}
 
 	private void RequestToggle(bool isRed) {
@@ -64,7 +66,9 @@ public partial class ToggleSwitch : AbstractTriggerable {
     public override void Entered(Node2D activator) {
 		if(!timer.IsStopped())
 			return;
-		
+		if(!(activator is Player))
+			return;
+
         isRed = !isRed;
 		EmitSignal(SignalName.Toggle, isRed);
     }

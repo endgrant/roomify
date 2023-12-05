@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6ffr8kjnhl0b"]
+[gd_scene load_steps=12 format=3 uid="uid://b6ffr8kjnhl0b"]
 
 [ext_resource type="PackedScene" uid="uid://vf4wqf07hxsv" path="res://Player/Player.tscn" id="1_cpdff"]
 [ext_resource type="Texture2D" uid="uid://cuv1646vk3bd0" path="res://Blocks/Basic/Blocks.png" id="3_xsq2d"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bfciivolqy5hl" path="res://Blocks/Triggerable/Toggle/toggle_switch.tscn" id="6_vw8pn"]
 [ext_resource type="PackedScene" uid="uid://bplv3onhvmk8p" path="res://Blocks/Basic/Toggleable/Red/red_block.tscn" id="7_w7yeg"]
 [ext_resource type="PackedScene" uid="uid://bts0fy4pgy5ht" path="res://Blocks/Basic/Toggleable/Blue/blue_block.tscn" id="8_evnod"]
+[ext_resource type="PackedScene" uid="uid://bqe7p2ytitrvp" path="res://Blocks/Triggerable/Goal/goal.tscn" id="9_aeo2b"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fx8mo"]
 rough = true
@@ -61,3 +62,6 @@ position = Vector2(908, 576)
 
 [node name="BasicBlock" parent="." instance=ExtResource("8_evnod")]
 position = Vector2(461, 576)
+
+[node name="Goal" parent="." instance=ExtResource("9_aeo2b")]
+position = Vector2(271, 567)

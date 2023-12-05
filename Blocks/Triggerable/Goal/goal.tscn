@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqe7p2ytitrvp"]
+
+[ext_resource type="PackedScene" uid="uid://dpj3gmmawld8r" path="res://Blocks/Triggerable/triggerable_block.tscn" id="1_w55vm"]
+[ext_resource type="Script" path="res://Blocks/Triggerable/Goal/Goal.cs" id="2_cmag3"]
+[ext_resource type="Texture2D" uid="uid://cuc3kq1auwos8" path="res://Blocks/Triggerable/Goal/Goal.png" id="3_fxeek"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_58t01"]
+radius = 32.0
+
+[node name="Goal" instance=ExtResource("1_w55vm")]
+collision_layer = 8
+script = ExtResource("2_cmag3")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_fxeek")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_58t01")
+
+[connection signal="body_entered" from="." to="." method="Entered"]
