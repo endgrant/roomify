@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 public partial class LevelEditor : LevelViewer
@@ -40,7 +42,7 @@ public partial class LevelEditor : LevelViewer
                 spacer = editbar.GetNode<Control>("Spacer");
                 viewport = GetNode<SubViewport>("VBoxContainer/LevelViewport/SubViewport");
                 level = viewport.GetNode<Node2D>("Level");
-                ghostmap = level.GetNode<TileMap>("GhostMap");
+                ghostmap = viewport.GetNode<TileMap>("GhostMap");
                 tiles = level.GetNode<Node2D>("Tiles");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
 
@@ -93,6 +95,34 @@ public partial class LevelEditor : LevelViewer
                 }
         }
 
+
+        // Saves the level to file
+        public void SaveLevel() {
+                int greatestFileName = 0;
+                string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
+                foreach (string fileName in fileNames) {
+                        try {
+                                int fileIndex = Int32.Parse(fileName.TrimSuffix(".tscn").TrimPrefix(Constants.SAVE_DIR + "\\"));
+                                if (fileIndex > greatestFileName) {
+                                        greatestFileName = fileIndex;
+                                }
+                        } catch (Exception e) {
+                                GD.Print(e);
+                        };
+                }
+                greatestFileName++;
+
+                foreach (Node child in tiles.GetChildren()) {
+                        child.Owner = level;
+                }
+
+                PackedScene levelScene = new PackedScene();
+                Error error = levelScene.Pack(level);
+                if (error.Equals(Error.Ok)) {
+                        ResourceSaver.Save(levelScene, Constants.SAVE_DIR + "/" + greatestFileName + ".tscn");
+                }
+        }
+        
 
         // Changes the current room
         public void ChangeCurrentRoom(Room newRoom) {

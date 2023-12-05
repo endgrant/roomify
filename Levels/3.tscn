@@ -1,0 +1,88 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://Blocks/Basic/BasicBlock/basic_block.tscn" id="1_n5ldh"]
+[ext_resource type="Script" path="res://Blocks/Basic/BasicBlock/BasicBlock.cs" id="2_s1ck8"]
+
+[node name="Level" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Backdrop" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 448)
+amount = 100
+lifetime = 40.0
+preprocess = 40.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 324)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+scale_amount_max = 2.0
+
+[node name="Tiles" type="Node2D" parent="."]
+
+[node name="BasicBlock" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(32, 864)
+collision_layer = 2
+script = ExtResource("2_s1ck8")
+
+[node name="@StaticBody2D@27" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(32, 736)
+collision_layer = 2
+script = ExtResource("2_s1ck8")
+
+[node name="@StaticBody2D@29" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(32, 608)
+collision_layer = 2
+script = ExtResource("2_s1ck8")
+
+[node name="@StaticBody2D@30" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(160, 864)
+collision_layer = 2
+script = ExtResource("2_s1ck8")
+
+[node name="@StaticBody2D@31" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(96, 864)
+collision_layer = 2
+script = ExtResource("2_s1ck8")
+
+[node name="@StaticBody2D@32" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(96, 736)
+collision_layer = 2
+script = ExtResource("2_s1ck8")
+
+[node name="@StaticBody2D@33" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(160, 736)
+collision_layer = 2
+script = ExtResource("2_s1ck8")
+
+[node name="@StaticBody2D@34" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(160, 672)
+collision_layer = 2
+script = ExtResource("2_s1ck8")
+
+[node name="@StaticBody2D@35" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(160, 608)
+collision_layer = 2
+script = ExtResource("2_s1ck8")
+
+[node name="@StaticBody2D@36" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(96, 608)
+collision_layer = 2
+script = ExtResource("2_s1ck8")
+
+[node name="@StaticBody2D@37" type="StaticBody2D" parent="Tiles" instance=ExtResource("1_n5ldh")]
+position = Vector2(160, 800)
+collision_layer = 2
+script = ExtResource("2_s1ck8")

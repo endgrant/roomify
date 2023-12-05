@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dlgffanhasp85"]
+
+[node name="Level" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Backdrop" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 448)
+amount = 100
+lifetime = 40.0
+preprocess = 40.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 324)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 100.0
+scale_amount_max = 2.0
+
+[node name="Tiles" type="Node2D" parent="."]
