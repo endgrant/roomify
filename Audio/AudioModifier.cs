@@ -3,6 +3,7 @@ using System;
 
 public partial class AudioModifier : AudioStreamPlayer {
 	private HSlider slider;
+	private static float volume = 0;
 
 	public override void _Ready() {
 		base._Ready();
@@ -12,6 +13,7 @@ public partial class AudioModifier : AudioStreamPlayer {
 	}
 
 	public void SliderChanged(float value) {
+		volume = value;
 		SetDeferred("volume_db", value);
 	}
 }
