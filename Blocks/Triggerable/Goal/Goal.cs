@@ -17,4 +17,5 @@ public partial class Goal : AbstractTriggerable
                 // TODO: Implement end of level
                 GD.Print("Level Ended. Congratulations!");
         }
+
 }

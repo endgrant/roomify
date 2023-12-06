@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Overlay : Control {
+public partial class PauseOverlay : CanvasLayer {
 	private AudioStreamPlayer audio;
 
 	public override void _Ready() {

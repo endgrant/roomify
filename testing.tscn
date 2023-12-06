@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bfciivolqy5hl" path="res://Blocks/Triggerable/Toggle/toggle_switch.tscn" id="6_vw8pn"]
 [ext_resource type="PackedScene" uid="uid://bplv3onhvmk8p" path="res://Blocks/Basic/Toggleable/Red/red_block.tscn" id="7_w7yeg"]
 [ext_resource type="PackedScene" uid="uid://bts0fy4pgy5ht" path="res://Blocks/Basic/Toggleable/Blue/blue_block.tscn" id="8_evnod"]
-[ext_resource type="PackedScene" path="res://Blocks/Triggerable/Goal/goal.tscn" id="9_aeo2b"]
+[ext_resource type="PackedScene" uid="uid://bqe7p2ytitrvp" path="res://Blocks/Triggerable/Goal/goal.tscn" id="9_aeo2b"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fx8mo"]
 rough = true
