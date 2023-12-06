@@ -126,7 +126,7 @@ public partial class Room : AbstractTriggerable
                         roomInstance.SetTiles(tiles);
                         roomInstance.SetParentRoom(this);
                 }
-
+                GD.Print(this,tiles);
                 tiles.AddChild(block);
         }
 
@@ -159,7 +159,27 @@ public partial class Room : AbstractTriggerable
 
 
         public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
-                base.Load(data);
-                //data["Cells"]
+                Godot.Collections.Dictionary<string, string> cells = (
+                        Godot.Collections.Dictionary<string, string>)data["Cells"];
+
+                foreach (System.Collections.Generic.KeyValuePair<string, string> keyValuePair in cells) {
+                        Variant? internalData = Json.ParseString(keyValuePair.Value);
+                        if (internalData == null) {
+                                GD.Print("Parse Error");
+                        }
+                        Godot.Collections.Dictionary<string, Variant> internalDict = (Godot.Collections.Dictionary<string, Variant>)internalData;
+
+                        PackedScene blockScene = GD.Load<PackedScene>((string)internalDict["Path"]);
+                        AbstractBlock block = blockScene.Instantiate<AbstractBlock>();
+
+                        // Load block internal data if its not a sub-Room
+                        if (!(block is Room)) {
+                                block.Load(internalDict);
+                        }
+                        
+                        string[] stringVector = keyValuePair.Key.TrimPrefix("[").TrimSuffix("]").Split(",");
+                        Vector2I gridPos = new Vector2I(Int32.Parse(stringVector[0]), Int32.Parse(stringVector[1]));
+                        PlaceBlock(gridPos, block);
+                }
         }
 }

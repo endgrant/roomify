@@ -8,6 +8,7 @@ public partial class LevelEditor : LevelViewer
 {
         private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
         private PackedScene defaultLevelScene = GD.Load<PackedScene>("res://Level/level.tscn");
+        private PackedScene defaultRoomScene = GD.Load<PackedScene>("res://Blocks/Triggerable/Room/room.tscn");
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
 
@@ -45,7 +46,7 @@ public partial class LevelEditor : LevelViewer
                 ghostmap = viewport.GetNode<TileMap>("GhostMap");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
 
-                Room startingRoom = new Room();
+                Room startingRoom = defaultRoomScene.Instantiate<Room>();
                 level = defaultLevelScene.Instantiate<Level>();
                 level.masterRoom = startingRoom;
                 level.currentRoom = startingRoom;
@@ -112,7 +113,7 @@ public partial class LevelEditor : LevelViewer
                 level.levelName = "test";
                 level.Save();
         }
-        
+
 
         // Changes the current room
         public void ChangeCurrentRoom(Room newRoom) {
