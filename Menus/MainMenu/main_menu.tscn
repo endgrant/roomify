@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://yu5gcfm6ihs0"]
+[gd_scene load_steps=6 format=3 uid="uid://yu5gcfm6ihs0"]
 
 [ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Menus/Revamped.otf" id="1_oxnxe"]
 [ext_resource type="Script" path="res://Menus/MainMenu/MainMenu.cs" id="1_qelxs"]
 [ext_resource type="StyleBox" uid="uid://pi5hr1hi6vvl" path="res://Menus/sci-fi_button.tres" id="2_sf5a7"]
+[ext_resource type="FontFile" uid="uid://b3ey0yo4o63i8" path="res://Menus/TT Octosquares Trial Black Italic.ttf" id="4_tjh84"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_trhf2"]
 font_size = 48
@@ -21,10 +22,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 32.0
+offset_bottom = 24.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
@@ -65,9 +66,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -194.0
-offset_top = -48.0
+offset_top = -54.0
 offset_right = 194.0
-offset_bottom = 65.0
+offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
@@ -89,11 +90,12 @@ text = "QUIT"
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_oxnxe")
-theme_override_font_sizes/font_size = 16
-text = "Press Esc for more info and options"
+theme_override_fonts/normal_font = ExtResource("4_tjh84")
+bbcode_enabled = true
+text = "[center]Press Esc for more info and options"
 
 [connection signal="pressed" from="VBoxContainer/Levels" to="." method="Levels"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="Quit"]
