@@ -39,9 +39,7 @@ public partial class JumpCharger : AbstractTriggerable {
 
         public override string Save() {
                 return Json.Stringify(new Godot.Collections.Dictionary{
-                        ["Path"] = "res://Blocks/Triggerable/JumpCharger/jump_charger.tscn",
-                        ["PosX"] = Position.X,
-                        ["PosY"] = Position.Y,
+                        ["Path"] = "res://Blocks/Triggerable/JumpCharger/jump_charger.tscn",                   
                         ["Jumps"] = extraJumps
                 });
         }
