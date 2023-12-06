@@ -11,8 +11,13 @@ public partial class Player : CharacterBody2D {
 	[Export(PropertyHint.Range, "0, 4000")] private float jumpForce = 1500;
 	[Export(PropertyHint.Range, "0, 100")] private float gravityAccel = 75;
 	[Export(PropertyHint.Range, "0, 4000")] private float gravityMax = 2000;
+	private bool isTester = false;
 
 	public void _physics_process(float delta) {
+		// ignores player inputs if the pause screen is open and the player is not listed to be a test player
+		if(!isTester && GetNode<PauseOverlay>("/root/PauseMenu").Visible == true)
+			return;
+
 		float xVel;
 		float yVel;
 		// gets the inputted movement direction from the player as a combination of inputs
@@ -56,6 +61,10 @@ public partial class Player : CharacterBody2D {
 		//SetDeferred("GlobalPosition.X", Math.Clamp(GlobalPosition.X, ?, ?))
 		//if(outsideOfScreen)
 		//		Die();
+	}
+
+	public void SetIsTester(bool value) {
+		isTester = value;
 	}
 
 	public void Die() {

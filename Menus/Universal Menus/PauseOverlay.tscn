@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bud8kr6827qu4"]
+[gd_scene load_steps=6 format=3 uid="uid://bud8kr6827qu4"]
 
 [ext_resource type="Script" path="res://Menus/Universal Menus/PauseOverlay.cs" id="1_7nam7"]
 [ext_resource type="AudioStream" uid="uid://cf7kcexfh14es" path="res://Menus/Universal Menus/Roomify.mp3" id="2_q2nau"]
 [ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Menus/Revamped.otf" id="3_njfqg"]
 [ext_resource type="FontFile" uid="uid://b3ey0yo4o63i8" path="res://Menus/TT Octosquares Trial Black Italic.ttf" id="4_kxo07"]
+[ext_resource type="PackedScene" uid="uid://bf4oqchko4eg7" path="res://Blocks/Basic/BasicBlock/basic_block.tscn" id="5_lhbkm"]
 
 [node name="Overlay" type="CanvasLayer"]
 visible = false
@@ -97,5 +98,89 @@ text = "[center][b]--- Level Editor Controls ---[/b][/center]
   Along the top right of the screen are options to play, save, and quit the level editor. Quiting will return to the level selector screen.
   Along the bottom of the screen is the block editor. This will show the properties of a chosen block. Place a block, left click in the grid. To chose a block to edit, right click on a placed block. To quickly delete a block, press Ctrl+Left Click."
 fit_content = true
+
+[node name="PlayTester" type="Panel" parent="."]
+offset_left = 448.0
+offset_top = 192.0
+offset_right = 960.0
+offset_bottom = 640.0
+
+[node name="BasicBlock" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(32, 416)
+
+[node name="BasicBlock2" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(96, 416)
+
+[node name="BasicBlock3" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(160, 416)
+
+[node name="BasicBlock4" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(224, 416)
+
+[node name="BasicBlock5" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(288, 416)
+
+[node name="BasicBlock6" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(352, 416)
+
+[node name="BasicBlock7" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(416, 416)
+
+[node name="BasicBlock8" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(480, 416)
+
+[node name="BasicBlock9" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(480, 352)
+
+[node name="BasicBlock10" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(480, 288)
+
+[node name="BasicBlock11" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(480, 224)
+
+[node name="BasicBlock12" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(480, 160)
+
+[node name="BasicBlock13" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(480, 96)
+
+[node name="BasicBlock14" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(480, 32)
+
+[node name="BasicBlock15" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(416, 32)
+
+[node name="BasicBlock16" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(352, 32)
+
+[node name="BasicBlock17" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(288, 32)
+
+[node name="BasicBlock18" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(224, 32)
+
+[node name="BasicBlock19" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(160, 32)
+
+[node name="BasicBlock20" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(96, 32)
+
+[node name="BasicBlock21" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(32, 32)
+
+[node name="BasicBlock22" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(32, 96)
+
+[node name="BasicBlock23" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(32, 160)
+
+[node name="BasicBlock24" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(32, 224)
+
+[node name="BasicBlock25" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(32, 288)
+
+[node name="BasicBlock26" parent="PlayTester" instance=ExtResource("5_lhbkm")]
+position = Vector2(32, 352)
 
 [connection signal="value_changed" from="HSlider" to="." method="SliderChanged"]

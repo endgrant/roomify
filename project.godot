@@ -16,7 +16,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-OverlayOld="*res://Menus/Universal Menus/PauseOverlay.tscn"
+PauseMenu="*res://Menus/Universal Menus/PauseOverlay.tscn"
 
 [display]
 
