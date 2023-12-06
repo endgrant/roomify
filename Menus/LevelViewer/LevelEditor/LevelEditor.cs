@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 public partial class LevelEditor : LevelViewer
 {
         private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
-        private PackedScene defaultLevelScene = GD.Load<PackedScene>("res://Menus/LevelViewer/level.tscn");
+        private PackedScene defaultLevelScene = GD.Load<PackedScene>("res://Level/level.tscn");
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
 

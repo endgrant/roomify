@@ -85,7 +85,7 @@ public partial class Room : AbstractTriggerable
         // Remove block by reference
         public void DeleteBlock(AbstractBlock block) {
                 if (IsInstanceValid(block)) {
-                        Vector2I gridPos = (Vector2I)(block.Position / new Vector2(Constants.CELL_SIZE, Constants.CELL_SIZE));
+                        Vector2I gridPos = block.GetGridPosition();
                         RemoveBlockFromGrid(gridPos);
                 }
         }

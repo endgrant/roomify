@@ -13,16 +13,9 @@ public abstract partial class AbstractBlock : Node2D
 		try{
 			root = (LevelEditor)GetTree().Root.GetChild<Control>(0);
 		}
-        catch(Exception ex) {
-			root = null;
-		}
-	}
-
-
-	// Returns the texture of the sprite
-	public Texture2D GetTexture() {
-                Sprite2D sprite = GetNode<Sprite2D>("Sprite2D");
-		return sprite.Texture;
+                catch(Exception ex) {
+                        root = null;
+                }
 	}
 
 
@@ -35,5 +28,11 @@ public abstract partial class AbstractBlock : Node2D
         // Edit block
 	public virtual void Edit() {
                 root.SetEditedBlock(this);
+        }
+
+
+        // Returns the grid position of this block
+        public Vector2I GetGridPosition() {
+                return (Vector2I)(Position / new Vector2(Constants.CELL_SIZE, Constants.CELL_SIZE));
         }
 }
