@@ -14,7 +14,7 @@ public abstract partial class AbstractBlock : Node2D
 		base._Ready();
 
 		try{
-			root = (LevelEditor)GetTree().Root.GetChild<Control>(0);
+			root = GetTree().Root.GetNode<LevelEditor>("LevelEditor");
 		}
                 catch(Exception ex) {
                         root = null;
@@ -45,5 +45,7 @@ public abstract partial class AbstractBlock : Node2D
 
 
         // Compiles the block from a json string
-        public abstract void Load(string data);
+        public virtual void Load(Godot.Collections.Dictionary<string, Variant> data) {
+
+        }
 }

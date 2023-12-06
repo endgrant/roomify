@@ -66,7 +66,7 @@ public partial class PeriodicSpike : AbstractHazard {
         }
 
 
-        public override void Load(string data) {
-                
+        public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
+                base.Load(data);             
         }
 }

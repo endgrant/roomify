@@ -45,19 +45,19 @@ public partial class LevelEditor : LevelViewer
                 ghostmap = viewport.GetNode<TileMap>("GhostMap");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
 
-                if (Constants.currentLevelName.Equals("")) {
-                        // Create new level
-                        level = defaultLevelScene.Instantiate<Level>();
-                } else {
+                Room startingRoom = new Room();
+                level = defaultLevelScene.Instantiate<Level>();
+                level.masterRoom = startingRoom;
+                level.currentRoom = startingRoom;
+                tiles = level.GetNode<Node2D>("Tiles");
+                level.currentRoom.SetTiles(tiles);
+
+                if (!Constants.currentLevelName.Equals("")) {
                         // Load existing level
-                        PackedScene savedLevelScene = GD.Load<PackedScene>(Constants.currentLevelName);
-                        level = savedLevelScene.Instantiate<Level>();
+                        level.levelName = "test";
+                        level.Load();
                 }
                 viewport.AddChild(level);
-                tiles = level.GetNode<Node2D>("Tiles");
-
-                level.currentRoom = new Room();
-                level.currentRoom.SetTiles(tiles);
 
                 SetCurrentBlock(0, GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1, 
                         topbar.GetNode<OptionButton>("BlockSelector/Block/Option").GetItemIcon(0));
@@ -229,5 +229,4 @@ public partial class LevelEditor : LevelViewer
         public void Quit() {
                 GetTree().ChangeSceneToPacked(levelSelectMenu);
         }
-
 }
