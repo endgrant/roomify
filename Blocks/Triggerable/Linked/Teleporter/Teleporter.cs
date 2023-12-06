@@ -30,9 +30,7 @@ public partial class Teleporter : AbstractLinked {
 
         public override string Save() {
                 return Json.Stringify(new Godot.Collections.Dictionary{
-                        ["Path"] = "res://Blocks/Triggerable/Linked/Teleporter/teleporter.tscn",
-                        ["PosX"] = Position.X,
-                        ["PosY"] = Position.Y,
+                        ["Path"] = "res://Blocks/Triggerable/Linked/Teleporter/teleporter.tscn",                     
                         ["TargetX"] = target.X,
                         ["TargetY"] = target.Y
                 });

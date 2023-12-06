@@ -23,9 +23,7 @@ public partial class Red : ToggleBlock {
 
         public override string Save() {
                return Json.Stringify(new Godot.Collections.Dictionary{
-                        ["Path"] = "res://Blocks/Basic/Toggleable/Red/red_block.tscn",
-                        ["PosX"] = Position.X,
-                        ["PosY"] = Position.Y,
+                        ["Path"] = "res://Blocks/Basic/Toggleable/Red/red_block.tscn"        
                 });
         }
 

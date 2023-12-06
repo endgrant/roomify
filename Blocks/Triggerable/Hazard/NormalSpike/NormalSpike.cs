@@ -11,9 +11,7 @@ public partial class NormalSpike : AbstractHazard {
 
         public override string Save() {
                 return Json.Stringify(new Godot.Collections.Dictionary{
-                        ["Path"] = "res://Blocks/Triggerable/Hazard/NormalSpike/normal_spike.tscn",
-                        ["PosX"] = Position.X,
-                        ["PosY"] = Position.Y,
+                        ["Path"] = "res://Blocks/Triggerable/Hazard/NormalSpike/normal_spike.tscn"                
                 });
         }
 

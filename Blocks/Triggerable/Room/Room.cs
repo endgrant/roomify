@@ -152,9 +152,7 @@ public partial class Room : AbstractTriggerable
                 }
 
                 return Json.Stringify(new Godot.Collections.Dictionary{
-                        ["Path"] = "res://Blocks/Triggerable/Room/room.tscn",
-                        ["PosX"] = Position.X,
-                        ["PosY"] = Position.Y,
+                        ["Path"] = "res://Blocks/Triggerable/Room/room.tscn",             
                         ["Cells"] = dict
                 });
         }
@@ -162,6 +160,6 @@ public partial class Room : AbstractTriggerable
 
         public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
                 base.Load(data);
-                
+                data["Cells"]
         }
 }

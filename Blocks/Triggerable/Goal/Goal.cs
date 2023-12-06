@@ -21,9 +21,7 @@ public partial class Goal : AbstractTriggerable
 
         public override string Save() {
                 return Json.Stringify(new Godot.Collections.Dictionary{
-                        ["Path"] = "res://Blocks/Triggerable/Goal/goal.tscn",
-                        ["PosX"] = Position.X,
-                        ["PosY"] = Position.Y,
+                        ["Path"] = "res://Blocks/Triggerable/Goal/goal.tscn"      
                 });
         }
 
