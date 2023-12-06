@@ -2,23 +2,19 @@ using Godot;
 using System;
 using System.Reflection.Metadata;
 
-public abstract partial class AbstractBlock : Node2D
-{
+public abstract partial class AbstractBlock : Node2D {
+        [ExportCategory("Attributes")]
+        [Export] protected bool inPauseMenu = false;
         protected string displayName;
-        protected LevelEditor root;
+        protected static LevelEditor root;
         protected int id;
 
 
 	// Enter scene tree
 	public override void _Ready() {
 		base._Ready();
-
-		try{
-			root = GetTree().Root.GetNode<LevelEditor>("LevelEditor");
-		}
-                catch(Exception ex) {
-                        root = null;
-                }
+                if(root == null && !inPauseMenu)
+                        root = GetTree().Root.GetNode<LevelEditor>("LevelEditor");
 	}
 
 

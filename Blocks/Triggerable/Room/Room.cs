@@ -160,6 +160,6 @@ public partial class Room : AbstractTriggerable
 
         public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
                 base.Load(data);
-                data["Cells"]
+                //data["Cells"]
         }
 }

@@ -107,80 +107,106 @@ offset_bottom = 640.0
 
 [node name="BasicBlock" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 416)
+inPauseMenu = true
 
 [node name="BasicBlock2" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(96, 416)
+inPauseMenu = true
 
 [node name="BasicBlock3" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(160, 416)
+inPauseMenu = true
 
 [node name="BasicBlock4" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(224, 416)
+inPauseMenu = true
 
 [node name="BasicBlock5" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(288, 416)
+inPauseMenu = true
 
 [node name="BasicBlock6" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(352, 416)
+inPauseMenu = true
 
 [node name="BasicBlock7" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(416, 416)
+inPauseMenu = true
 
 [node name="BasicBlock8" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 416)
+inPauseMenu = true
 
 [node name="BasicBlock9" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 352)
+inPauseMenu = true
 
 [node name="BasicBlock10" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 288)
+inPauseMenu = true
 
 [node name="BasicBlock11" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 224)
+inPauseMenu = true
 
 [node name="BasicBlock12" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 160)
+inPauseMenu = true
 
 [node name="BasicBlock13" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 96)
+inPauseMenu = true
 
 [node name="BasicBlock14" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 32)
+inPauseMenu = true
 
 [node name="BasicBlock15" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(416, 32)
+inPauseMenu = true
 
 [node name="BasicBlock16" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(352, 32)
+inPauseMenu = true
 
 [node name="BasicBlock17" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(288, 32)
+inPauseMenu = true
 
 [node name="BasicBlock18" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(224, 32)
+inPauseMenu = true
 
 [node name="BasicBlock19" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(160, 32)
+inPauseMenu = true
 
 [node name="BasicBlock20" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(96, 32)
+inPauseMenu = true
 
 [node name="BasicBlock21" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 32)
+inPauseMenu = true
 
 [node name="BasicBlock22" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 96)
+inPauseMenu = true
 
 [node name="BasicBlock23" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 160)
+inPauseMenu = true
 
 [node name="BasicBlock24" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 224)
+inPauseMenu = true
 
 [node name="BasicBlock25" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 288)
+inPauseMenu = true
 
 [node name="BasicBlock26" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 352)
+inPauseMenu = true
 
 [connection signal="value_changed" from="HSlider" to="." method="SliderChanged"]
