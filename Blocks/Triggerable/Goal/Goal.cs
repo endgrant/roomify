@@ -18,4 +18,17 @@ public partial class Goal : AbstractTriggerable
                 GD.Print("Level Ended. Congratulations!");
         }
 
+
+        public override string Save() {
+                return Json.Stringify(new Godot.Collections.Dictionary{
+                        ["Path"] = "res://Blocks/Triggerable/Goal/goal.tscn",
+                        ["PosX"] = Position.X,
+                        ["PosY"] = Position.Y,
+                });
+        }
+
+
+        public override void Load(string data) {
+                
+        }
 }

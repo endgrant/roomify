@@ -2,9 +2,8 @@ using Godot;
 using System;
 
 public partial class JumpCharger : AbstractTriggerable {
-
-    [ExportCategory("Attributes")]
-    [Export(PropertyHint.Range, "0, 10")] protected int extraJumps = 3;
+        [ExportCategory("Attributes")]
+        [Export(PropertyHint.Range, "0, 10")] protected int extraJumps = 3;
 
 
         // Entered scene tree
@@ -28,5 +27,20 @@ public partial class JumpCharger : AbstractTriggerable {
         public override void Entered(Node2D activator) {
                 if(activator is Player)
                 GiveMoreJumps((Player)activator);
+        }
+
+
+        public override string Save() {
+                return Json.Stringify(new Godot.Collections.Dictionary{
+                        ["Path"] = "res://Blocks/Triggerable/JumpCharger/jump_charger.tscn",
+                        ["PosX"] = Position.X,
+                        ["PosY"] = Position.Y,
+                        ["Jumps"] = extraJumps
+                });
+        }
+
+
+        public override void Load(string data) {
+                
         }
 }

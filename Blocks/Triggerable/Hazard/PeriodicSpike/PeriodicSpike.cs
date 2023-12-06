@@ -54,4 +54,19 @@ public partial class PeriodicSpike : AbstractHazard {
 		else
 			animator.Play("Close");
 	}
+
+
+        public override string Save() {
+                return Json.Stringify(new Godot.Collections.Dictionary{
+                        ["Path"] = "res://Blocks/Triggerable/Hazard/PeriodicSpike/periodic_spike.tscn",
+                        ["PosX"] = Position.X,
+                        ["PosY"] = Position.Y,
+                        ["Period"] = period
+                });
+        }
+
+
+        public override void Load(string data) {
+                
+        }
 }

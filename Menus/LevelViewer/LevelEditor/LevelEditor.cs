@@ -17,12 +17,12 @@ public partial class LevelEditor : LevelViewer
         private Button deleteBlockButton;
         private Control spacer;
         private SubViewport viewport;
-        private Node2D level;
+        private Level level;
         private TileMap ghostmap;
         private Node2D tiles;
         private TextureRect currentBlockTextureRect;
         
-        private Room currentRoom;
+        
 
         private PackedScene currentBlock;
         private AbstractBlock currentEdit;
@@ -47,17 +47,17 @@ public partial class LevelEditor : LevelViewer
 
                 if (Constants.currentLevelName.Equals("")) {
                         // Create new level
-                        level = defaultLevelScene.Instantiate<Node2D>();
+                        level = defaultLevelScene.Instantiate<Level>();
                 } else {
                         // Load existing level
                         PackedScene savedLevelScene = GD.Load<PackedScene>(Constants.currentLevelName);
-                        level = savedLevelScene.Instantiate<Node2D>();
+                        level = savedLevelScene.Instantiate<Level>();
                 }
                 viewport.AddChild(level);
                 tiles = level.GetNode<Node2D>("Tiles");
 
-                currentRoom = new Room();
-                currentRoom.SetTiles(tiles);
+                level.currentRoom = new Room();
+                level.currentRoom.SetTiles(tiles);
 
                 SetCurrentBlock(0, GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1, 
                         topbar.GetNode<OptionButton>("BlockSelector/Block/Option").GetItemIcon(0));
@@ -94,46 +94,24 @@ public partial class LevelEditor : LevelViewer
                 if (input.IsActionPressed("Accept")) {
                         if (input.IsActionPressed("Delete")) {
                                 // Delete block on ctrl left click
-                                currentRoom.DeleteBlock(currentCursorGridPos);
+                                level.currentRoom.DeleteBlock(currentCursorGridPos);
                         } else {
                                 // Place block on left click
-                               currentRoom.PlaceBlock(currentCursorGridPos, currentBlock); 
+                               level.currentRoom.PlaceBlock(currentCursorGridPos, currentBlock); 
                         }
                 }
                 // Edit block on right click
                 if (Input.IsActionJustPressed("Edit")) {
-                        currentRoom.EditBlock(currentCursorGridPos);
+                        level.currentRoom.EditBlock(currentCursorGridPos);
                 }
         }
 
 
         // Saves the level to file
-        /*
         public void SaveLevel() {
-                int greatestFileName = 0;
-                string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
-                foreach (string fileName in fileNames) {
-                        try {
-                                int fileIndex = Int32.Parse(fileName.TrimSuffix(".tscn").TrimPrefix(Constants.SAVE_DIR + "\\"));
-                                if (fileIndex > greatestFileName) {
-                                        greatestFileName = fileIndex;
-                                }
-                        } catch (Exception e) {
-                                GD.Print(e);
-                        };
-                }
-                greatestFileName++;
-
-                foreach (Node child in tiles.GetChildren()) {
-                        child.Owner = level;
-                }
-
-                PackedScene levelScene = new PackedScene();
-                Error error = levelScene.Pack(level);
-                if (error.Equals(Error.Ok)) {
-                        ResourceSaver.Save(levelScene, Constants.SAVE_DIR + "/" + greatestFileName + ".tscn");
-                }
-        }*/
+                level.levelName = "test";
+                level.Save();
+        }
         
 
         // Changes the current room
@@ -146,9 +124,9 @@ public partial class LevelEditor : LevelViewer
                 }
 
                 SetEditedBlock(null);
-                currentRoom = newRoom;
+                level.currentRoom = newRoom;
 
-                foreach (AbstractBlock block in currentRoom.GetCells()) {
+                foreach (AbstractBlock block in level.currentRoom.GetCells()) {
                         if (IsInstanceValid(block)) {
                               tiles.AddChild(block);  
                         }  
@@ -158,7 +136,7 @@ public partial class LevelEditor : LevelViewer
 
         // Navigates up one room in the room tree
         public void NavPreviousRoom() {
-                Room parentRoom = currentRoom.GetParentRoom();
+                Room parentRoom = level.currentRoom.GetParentRoom();
 
                 if (IsInstanceValid(parentRoom)) {
                         ChangeCurrentRoom(parentRoom);
@@ -168,7 +146,7 @@ public partial class LevelEditor : LevelViewer
 
         // Delete block button in edit bar clicked
         public void ManualDelete() {
-                currentRoom.DeleteBlock(currentEdit);
+                level.currentRoom.DeleteBlock(currentEdit);
                 SetEditedBlock(null);
         }
 
