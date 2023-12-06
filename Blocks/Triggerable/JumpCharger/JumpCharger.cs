@@ -3,7 +3,7 @@ using System;
 
 public partial class JumpCharger : AbstractTriggerable {
         [ExportCategory("Attributes")]
-        [Export(PropertyHint.Range, "0, 10")] protected int extraJumps = 3;
+        [Export(PropertyHint.Range, "0, 20")] protected int extraJumps = 3;
 
 
         // Entered scene tree
@@ -20,7 +20,14 @@ public partial class JumpCharger : AbstractTriggerable {
 
 
         public override void Edit() {
+                base.Edit();
+                HSlider slider = root.CreateSlider(extraJumps, "Jumps", 0, 20, 1);
+                Callable callable = new Callable(this, "JumpsChanged");
+                slider.Connect("value_changed", callable);
+        }
 
+        public void JumpsChanged(float value) {
+                extraJumps = (int)value;
         }
 
 

@@ -211,6 +211,8 @@ public partial class LevelEditor : LevelViewer
                 return slider;
         }
 
+        //public
+
 
         // Helper to create simple button
         public Button CreateButton(string buttonName) {

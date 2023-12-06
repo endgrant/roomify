@@ -10,6 +10,7 @@ public partial class PauseOverlay : CanvasLayer {
 		base._Ready();
                 panel = GetNode<Panel>("PlayTester");
 		audio = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+                Visible = false;
 	}
 
 
