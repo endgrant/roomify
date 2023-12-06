@@ -141,12 +141,16 @@ public partial class Room : AbstractTriggerable
                         }
                 }
 
-                Resource script = (Resource)GetScript() ;  
                 return Json.Stringify(new Godot.Collections.Dictionary{
-                        ["Path"] = script.ResourcePath,
-                        ["Position"] = Position,
-                        ["Parent"] = parentRoom,
+                        ["Path"] = "res://Blocks/Triggerable/Room/room.tscn",
+                        ["PosX"] = Position.X,
+                        ["PosY"] = Position.Y,
                         ["Cells"] = dict
                 });
+        }
+
+
+        public override void Load(string data) {
+                
         }
 }

@@ -22,5 +22,6 @@ public abstract partial class ToggleBlock : BasicBlock {
 		ChangeState(mainToggle.GetIsRed());
 	}
 
-    protected abstract void ChangeState(bool isRed);
+
+        protected abstract void ChangeState(bool isRed);
 }

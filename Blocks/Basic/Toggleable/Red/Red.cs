@@ -19,4 +19,18 @@ public partial class Red : ToggleBlock {
                                 GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
                         }
         }
+
+
+        public override string Save() {
+               return Json.Stringify(new Godot.Collections.Dictionary{
+                        ["Path"] = "res://Blocks/Basic/Toggleable/Red/red_block.tscn",
+                        ["PosX"] = Position.X,
+                        ["PosY"] = Position.Y,
+                });
+        }
+
+
+        public override void Load(string data) {
+                
+        }
 }

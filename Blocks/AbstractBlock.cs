@@ -42,4 +42,8 @@ public abstract partial class AbstractBlock : Node2D
 
         // Decompiles the block into a json string
         public abstract string Save();
+
+
+        // Compiles the block from a json string
+        public abstract void Load(string data);
 }
