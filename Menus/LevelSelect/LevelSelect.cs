@@ -67,6 +67,7 @@ public partial class LevelSelect : Node
         public void DeleteLevel() {
                 string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
                 foreach (string fileName in fileNames) {
+                        GD.Print(fileName, Constants.currentLevelName);
                         if (fileName.Equals(Constants.currentLevelName)) {
                                 DirAccess.RemoveAbsolute(fileName);
                                 break;

@@ -12,11 +12,13 @@ public partial class Level : Node2D {
 
                 FileAccess file = FileAccess.Open(Constants.SAVE_DIR + "/" + levelName + ".lvl", FileAccess.ModeFlags.Write);
                 file.StoreLine(jsonString);
+                
+                file.Close();
         }
 
 
         public void Load() {
-                FileAccess file = FileAccess.Open(Constants.SAVE_DIR + "/" + levelName + ".lvl", FileAccess.ModeFlags.Read);
+                FileAccess file = FileAccess.Open(levelName, FileAccess.ModeFlags.Read);
                 string jsonString = file.GetLine();
                 Variant? data = Json.ParseString(jsonString);
                 if (data == null) {
@@ -26,5 +28,7 @@ public partial class Level : Node2D {
                 Godot.Collections.Dictionary<string, Variant> dict = (Godot.Collections.Dictionary<string, Variant>)data;
                 masterRoom.SetRoomData(dict);
                 masterRoom.Load(dict);
+
+                file.Close();
         }
 }
