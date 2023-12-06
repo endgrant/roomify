@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -36,6 +35,7 @@ public partial class LevelEditor : LevelViewer
         // Entered scene
         public override void _Ready() {
                 base._Ready();
+
                 topbar = GetNode<Control>("VBoxContainer/Topbar");
                 editbar = GetNode<HBoxContainer>("VBoxContainer/Editbar");
                 editBlockLabel = editbar.GetNode<Label>("CurrentBlock");
@@ -108,6 +108,7 @@ public partial class LevelEditor : LevelViewer
 
 
         // Saves the level to file
+        /*
         public void SaveLevel() {
                 int greatestFileName = 0;
                 string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
@@ -132,7 +133,7 @@ public partial class LevelEditor : LevelViewer
                 if (error.Equals(Error.Ok)) {
                         ResourceSaver.Save(levelScene, Constants.SAVE_DIR + "/" + greatestFileName + ".tscn");
                 }
-        }
+        }*/
         
 
         // Changes the current room

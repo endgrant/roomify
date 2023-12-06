@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.IO.Enumeration;
 
 public partial class Room : AbstractTriggerable
 {
@@ -129,5 +130,23 @@ public partial class Room : AbstractTriggerable
                         instance.QueueFree();
                         cells[pos.X, pos.Y] = null;
                 }
+        }
+
+
+        public override string Save() {
+                Godot.Collections.Dictionary<string, string> dict = new();
+                for (int i = 0; i < cells.GetLength(0); i++) {
+                        for (int j = 0; j < cells.GetLength(1); j++) {
+                                dict.Add("[" + i.ToString() + "," + j.ToString() + "]", cells[i, j].Save());
+                        }
+                }
+
+                Resource script = (Resource)GetScript() ;  
+                return Json.Stringify(new Godot.Collections.Dictionary{
+                        ["Path"] = script.ResourcePath,
+                        ["Position"] = Position,
+                        ["Parent"] = parentRoom,
+                        ["Cells"] = dict
+                });
         }
 }
