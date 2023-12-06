@@ -8,7 +8,7 @@ public partial class Room : AbstractTriggerable
         private Node2D tiles;
 	private Room parentRoom;
         private AbstractBlock[,] cells = new AbstractBlock[Constants.ROOM_WIDTH, Constants.ROOM_HEIGHT];
-        private List<Room> rooms = new List<Room>();
+        private Godot.Collections.Dictionary<string, Variant> roomData;
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
 
@@ -67,6 +67,18 @@ public partial class Room : AbstractTriggerable
         }
 
 
+        // Assigns room data
+        public void SetRoomData(Godot.Collections.Dictionary<string, Variant> data) {
+                roomData = data;
+        }
+
+
+        // Returns this room's data
+        public Godot.Collections.Dictionary<string, Variant> GetRoomData() {
+                return roomData;
+        }
+
+
         // Place block in room grid from scene
         public void PlaceBlock(Vector2I pos, PackedScene blockScene) {
                 if (!IsInstanceValid(GetBlockFromGrid(pos))) {
@@ -86,7 +98,9 @@ public partial class Room : AbstractTriggerable
 
         // Remove block from room grid
         public void DeleteBlock(Vector2I pos) {
-                if (IsInstanceValid(GetBlockFromGrid(pos))) {
+                AbstractBlock block = GetBlockFromGrid(pos);
+                if (IsInstanceValid(block)) {
+                        tiles.RemoveChild(block);
                         RemoveBlockFromGrid(pos);
                 }
         }
@@ -95,6 +109,7 @@ public partial class Room : AbstractTriggerable
         // Remove block by reference
         public void DeleteBlock(AbstractBlock block) {
                 if (IsInstanceValid(block)) {
+                        tiles.RemoveChild(block);
                         Vector2I gridPos = block.GetGridPosition();
                         RemoveBlockFromGrid(gridPos);
                 }
@@ -126,7 +141,7 @@ public partial class Room : AbstractTriggerable
                         roomInstance.SetTiles(tiles);
                         roomInstance.SetParentRoom(this);
                 }
-                GD.Print(this,tiles);
+
                 tiles.AddChild(block);
         }
 
@@ -175,6 +190,10 @@ public partial class Room : AbstractTriggerable
                         // Load block internal data if its not a sub-Room
                         if (!(block is Room)) {
                                 block.Load(internalDict);
+                        } else {
+                                // Store room data for later loading
+                                Room subRoom = (Room)block;
+                                subRoom.SetRoomData(internalDict);
                         }
                         
                         string[] stringVector = keyValuePair.Key.TrimPrefix("[").TrimSuffix("]").Split(",");

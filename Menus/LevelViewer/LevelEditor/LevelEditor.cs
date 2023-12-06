@@ -119,19 +119,14 @@ public partial class LevelEditor : LevelViewer
         public void ChangeCurrentRoom(Room newRoom) {
                 foreach (AbstractBlock block in tiles.GetChildren()) {
                         if (IsInstanceValid(block)) {
-                              tiles.RemoveChild(block);  
+                              level.currentRoom.DeleteBlock(block);  
                         }
                         
                 }
 
                 SetEditedBlock(null);
                 level.currentRoom = newRoom;
-
-                foreach (AbstractBlock block in level.currentRoom.GetCells()) {
-                        if (IsInstanceValid(block)) {
-                              tiles.AddChild(block);  
-                        }  
-                }
+                level.currentRoom.Load(level.currentRoom.GetRoomData());
         }
 
 
@@ -211,6 +206,7 @@ public partial class LevelEditor : LevelViewer
 
                 return slider;
         }
+
 
         // Helper to create an integer selector on the edit bar
         public SpinBox CreateIntSelector(float value, string optionName, float min, float max, float step) {

@@ -24,6 +24,7 @@ public partial class Level : Node2D {
                 }
 
                 Godot.Collections.Dictionary<string, Variant> dict = (Godot.Collections.Dictionary<string, Variant>)data;
+                masterRoom.SetRoomData(dict);
                 masterRoom.Load(dict);
         }
 }
