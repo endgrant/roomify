@@ -211,7 +211,28 @@ public partial class LevelEditor : LevelViewer
                 return slider;
         }
 
-        //public
+        // Helper to create an integer selector on the edit bar
+        public SpinBox CreateIntSelector(float value, string optionName, float min, float max, float step) {
+                VBoxContainer container = new VBoxContainer();
+                Label label = new Label();
+                SpinBox selector = new SpinBox();
+
+                container.CustomMinimumSize = new Vector2(192, 96);
+
+                label.Text = optionName;
+                label.HorizontalAlignment = HorizontalAlignment.Center;
+
+                selector.Value = value;
+                selector.MinValue = min;
+                selector.MaxValue = max;
+                selector.Step = step;
+
+                container.AddChild(label);
+                container.AddChild(selector);
+                editbar.AddChild(container);
+
+                return selector;
+        }
 
 
         // Helper to create simple button

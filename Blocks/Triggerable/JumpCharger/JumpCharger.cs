@@ -21,7 +21,7 @@ public partial class JumpCharger : AbstractTriggerable {
 
         public override void Edit() {
                 base.Edit();
-                HSlider slider = root.CreateSlider(extraJumps, "Jumps", 0, 20, 1);
+                SpinBox slider = root.CreateIntSelector(extraJumps, "Jumps", 0, 20, 1);
                 Callable callable = new Callable(this, "JumpsChanged");
                 slider.Connect("value_changed", callable);
         }
