@@ -13,7 +13,7 @@ public partial class BlockButton : VBoxContainer
         // Enter scene tree
         public override void _Ready() {
                 base._Ready();
-                root = (LevelEditor)GetTree().Root.GetChild<Control>(0);
+                root = GetTree().Root.GetNode<LevelEditor>("LevelEditor");
         }
 
 

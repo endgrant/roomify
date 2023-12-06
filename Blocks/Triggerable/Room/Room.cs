@@ -67,10 +67,19 @@ public partial class Room : AbstractTriggerable
         }
 
 
-        // Place block in room grid
+        // Place block in room grid from scene
         public void PlaceBlock(Vector2I pos, PackedScene blockScene) {
                 if (!IsInstanceValid(GetBlockFromGrid(pos))) {
-                        SetBlockInGrid(pos, blockScene);
+                        AbstractBlock instance = blockScene.Instantiate<AbstractBlock>();
+                        SetBlockInGrid(pos, instance);
+                }
+        }
+
+
+        // Place block in room grid from object
+        public void PlaceBlock(Vector2I pos, AbstractBlock block) {
+                if (!IsInstanceValid(GetBlockFromGrid(pos))) {
+                        SetBlockInGrid(pos, block);
                 }
         }
 
@@ -107,19 +116,18 @@ public partial class Room : AbstractTriggerable
         }
 
 
-        // Builds block in grid
-        private void SetBlockInGrid(Vector2I pos, PackedScene scene) {
-                AbstractBlock instance = scene.Instantiate<AbstractBlock>();
-                cells[pos.X, pos.Y] = instance;
-                instance.Position = ((pos + Vector2I.One) * tileSize) - (tileSize / 2);
+        // Builds block in grid from object
+        private void SetBlockInGrid(Vector2I pos, AbstractBlock block) {
+                cells[pos.X, pos.Y] = block;
+                block.Position = ((pos + Vector2I.One) * tileSize) - (tileSize / 2);
 
-                if (instance is Room) {
-                        Room roomInstance = (Room)instance;
+                if (block is Room) {
+                        Room roomInstance = (Room)block;
                         roomInstance.SetTiles(tiles);
                         roomInstance.SetParentRoom(this);
                 }
 
-                tiles.AddChild(instance);
+                tiles.AddChild(block);
         }
 
 
@@ -137,7 +145,9 @@ public partial class Room : AbstractTriggerable
                 Godot.Collections.Dictionary<string, string> dict = new();
                 for (int i = 0; i < cells.GetLength(0); i++) {
                         for (int j = 0; j < cells.GetLength(1); j++) {
-                                dict.Add("[" + i.ToString() + "," + j.ToString() + "]", cells[i, j].Save());
+                                if (IsInstanceValid(cells[i, j])) {
+                                        dict.Add("[" + i.ToString() + "," + j.ToString() + "]", cells[i, j].Save());
+                                }
                         }
                 }
 
@@ -150,7 +160,8 @@ public partial class Room : AbstractTriggerable
         }
 
 
-        public override void Load(string data) {
+        public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
+                base.Load(data);
                 
         }
 }

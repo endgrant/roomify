@@ -25,7 +25,7 @@ public partial class Spawn : AbstractTriggerable {
         }
 
 
-        public override void Load(string data) {
-                
+        public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
+                base.Load(data);             
         }
 }

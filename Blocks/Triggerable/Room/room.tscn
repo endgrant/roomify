@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhsvx34r6jdqp"]
 
-[ext_resource type="PackedScene" uid="uid://dm56x0pgx8oiw" path="res://Blocks/Triggerable/triggerable_block.tscn" id="1_7xbbs"]
+[ext_resource type="PackedScene" uid="uid://dpj3gmmawld8r" path="res://Blocks/Triggerable/triggerable_block.tscn" id="1_7xbbs"]
 [ext_resource type="Script" path="res://Blocks/Triggerable/Room/Room.cs" id="2_kxs82"]
 [ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Blocks/Triggerable/Room/Room.png" id="2_nxs5i"]
 
