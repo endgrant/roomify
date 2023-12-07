@@ -126,21 +126,27 @@ public partial class LevelEditor : LevelViewer {
         // Changes the current room
         public void ChangeCurrentRoom(Room newRoom) {
                 changingRooms = true;
+
+                level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));
+
                 foreach (AbstractBlock block in tiles.GetChildren()) {
-                        if (IsInstanceValid(block)) {
-                              level.currentRoom.DeleteBlock(block);  
+                        if (IsInstanceValid(block)) {             
+                                level.currentRoom.DeleteBlock(block);  
                         }
                 }
+
                 SetEditedBlock(null);
                 parentRoomPos = newRoom.GlobalPosition;
                 level.currentRoom = newRoom;
                 level.currentRoom.Load(level.currentRoom.GetRoomData());
                 hasSpawn = false;
+
                 foreach (AbstractBlock block in tiles.GetChildren()) {
                         if (IsInstanceValid(block) && block is Spawn) {
                               hasSpawn = true;  
                         }
                 }
+
                 changingRooms = false;
         }
 
