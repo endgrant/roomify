@@ -9,4 +9,6 @@ public static class Constants {
         public const string SAVE_DIR = "Levels";
 
         public static string currentLevelName;
+
+        public static int levelSelectPage = 1;
 }

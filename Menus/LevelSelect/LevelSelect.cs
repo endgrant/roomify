@@ -6,6 +6,7 @@ public partial class LevelSelect : Node
 {
 	private PackedScene mainMenu = GD.Load<PackedScene>("res://Menus/MainMenu/main_menu.tscn");
         private PackedScene levelEditorMenu = GD.Load<PackedScene>("res://Menus/LevelViewer/LevelEditor/level_editor.tscn");
+        private PackedScene levelSelectButton = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select_button.tscn");
 
         private VBoxContainer main;
         private GridContainer grid;
@@ -21,8 +22,13 @@ public partial class LevelSelect : Node
                 overlay = main.GetNode<VBoxContainer>("Center/RenameOverlay");
                 lineEdit = overlay.GetNode<LineEdit>("LineEdit");
 
-                string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
-                foreach (string fileName in fileNames) {
+                string[] fileNames = DirAccess.GetFilesAt(Constants.SAVE_DIR);
+                for (int i = (Constants.levelSelectPage-1) * 9; i < Constants.levelSelectPage * 9; i++) {
+                        if (i + 1 > fileNames.Length) {
+                                break;
+                        }
+
+                        string fileName = fileNames[i];
                         Button button = CreateButton(fileName.TrimSuffix(".lvl").TrimPrefix(Constants.SAVE_DIR + "\\"));
                         Action lambda = () => {LevelSelected(fileName);};
                         Callable callable = Callable.From(lambda);
@@ -34,9 +40,8 @@ public partial class LevelSelect : Node
 
         // Creates level button
         private Button CreateButton(string levelName) {
-                Button button = new Button();
+                Button button = levelSelectButton.Instantiate<Button>();
                 button.Text = levelName;
-                button.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
                 button.CustomMinimumSize = new Vector2(0, grid.GetParentAreaSize().Y / 3);
                 return button;
         }
@@ -69,10 +74,10 @@ public partial class LevelSelect : Node
 
         // Delete selected level
         public void DeleteLevel() {
-                string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
+                string[] fileNames = DirAccess.GetFilesAt(Constants.SAVE_DIR);
                 foreach (string fileName in fileNames) {
                         if (fileName.Equals(Constants.currentLevelName)) {
-                                DirAccess.RemoveAbsolute(fileName);
+                                DirAccess.RemoveAbsolute(Constants.SAVE_DIR + "/" + fileName);
                                 break;
                         }
                 }
@@ -83,7 +88,7 @@ public partial class LevelSelect : Node
 
         // Change level name
         public void ChangeLevelName() {                
-                string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
+                string[] fileNames = DirAccess.GetFilesAt(Constants.SAVE_DIR);
                 foreach (string fileName in fileNames) {
                         if (fileName.Equals(Constants.currentLevelName)) {
                                 // Remove a few forbidden characters
@@ -95,7 +100,7 @@ public partial class LevelSelect : Node
                                         lineEdit.Text = "Unnamed_Level";
                                 }
 
-                                DirAccess.RenameAbsolute(fileName, Constants.SAVE_DIR + "/" + lineEdit.Text + ".lvl");
+                                DirAccess.RenameAbsolute(Constants.SAVE_DIR + "/" + fileName, Constants.SAVE_DIR + "/" + lineEdit.Text + ".lvl");
                                 break;
                         }
                 }
@@ -115,5 +120,24 @@ public partial class LevelSelect : Node
         // Cancel level name change
         public void CancelNameChange() {
                 overlay.Visible = false;
+        }
+
+
+        // Previous Constants.levelSelectPage
+        public void PreviousPage() {
+                Constants.levelSelectPage--;
+                Constants.levelSelectPage = Math.Max(Constants.levelSelectPage, 1);
+
+                GetTree().ReloadCurrentScene();
+        }
+
+
+        // Next Constants.levelSelectPage
+        public void NextPage() {
+                Constants.levelSelectPage++;
+                string[] fileNames = DirAccess.GetFilesAt(Constants.SAVE_DIR);
+                Constants.levelSelectPage = Math.Min(Constants.levelSelectPage, (int)Math.Ceiling(fileNames.Length / 9.0F));
+
+                GetTree().ReloadCurrentScene();
         }
 }
