@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-public partial class LevelEditorNew : LevelViewer {
+public partial class LevelEditor : LevelViewer {
         [Signal]
         public delegate void NewEditEventHandler(AbstractBlock block);
         private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
@@ -13,6 +13,8 @@ public partial class LevelEditorNew : LevelViewer {
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
         private Vector2 parentRoomPos;
+        private bool hasGoal = false;
+        private bool hasSpawn = false;
 
         private Control topbar;
         private HBoxContainer editbar;
@@ -127,6 +129,7 @@ public partial class LevelEditorNew : LevelViewer {
                 parentRoomPos = newRoom.GlobalPosition;
                 level.currentRoom = newRoom;
                 level.currentRoom.Load(level.currentRoom.GetRoomData());
+                hasSpawn = false;
         }
 
 
@@ -243,6 +246,22 @@ public partial class LevelEditorNew : LevelViewer {
                 editbar.AddChild(button);
 
                 return button;
+        }
+
+        public bool GetHasSpawn() {
+                return hasSpawn;
+        }
+
+        public void SetHasSpawn(bool value) {
+                hasSpawn = value;
+        }
+
+        public bool GetHasGoal() {
+                return hasGoal;
+        }
+
+        public void SetHasGoal(bool value) {
+                hasGoal = value;
         }
 
 

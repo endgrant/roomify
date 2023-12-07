@@ -31,7 +31,7 @@ public partial class Room : AbstractTriggerable
 
         public override void Edit() {
                 base.Edit();
-                Button button = root.CreateButton("Enter Room");
+                Button button = ((LevelEditor)root).CreateButton("Enter Room");
                 Callable callable = new Callable(this, "ChangeRoom");
                 button.Connect("pressed", callable);
         }
@@ -39,7 +39,7 @@ public partial class Room : AbstractTriggerable
 
         // Changes the current room to this one
         public void ChangeRoom() {
-                root.ChangeCurrentRoom(this);
+                ((LevelEditor)root).ChangeCurrentRoom(this);
         }
 
 
@@ -81,10 +81,19 @@ public partial class Room : AbstractTriggerable
 
         // Place block in room grid from scene
         public void PlaceBlock(Vector2I pos, PackedScene blockScene) {
-                if (!IsInstanceValid(GetBlockFromGrid(pos))) {
-                        AbstractBlock instance = blockScene.Instantiate<AbstractBlock>();
-                        SetBlockInGrid(pos, instance);
-                }
+                if(IsInstanceValid(GetBlockFromGrid(pos)))
+                        return;
+                AbstractBlock instance = blockScene.Instantiate<AbstractBlock>();
+                if(instance is Spawn && ((LevelEditor)root).GetHasSpawn())
+                        return;
+                if(instance is Goal && ((LevelEditor)root).GetHasGoal())
+                        return;
+                SetBlockInGrid(pos, instance);
+                if(instance is Spawn)
+                        ((LevelEditor)root).SetHasSpawn(true);
+                if(instance is Goal)
+                        ((LevelEditor)root).SetHasGoal(true);
+
         }
 
 
@@ -99,10 +108,15 @@ public partial class Room : AbstractTriggerable
         // Remove block from room grid
         public void DeleteBlock(Vector2I pos) {
                 AbstractBlock block = GetBlockFromGrid(pos);
-                if (IsInstanceValid(block)) {
-                        tiles.RemoveChild(block);
-                        RemoveBlockFromGrid(pos);
-                }
+                if (!IsInstanceValid(block))
+                        return;
+                if(block is Spawn)
+                        ((LevelEditor)root).SetHasSpawn(false);
+                if(block is Goal)
+                        ((LevelEditor)root).SetHasGoal(false);
+
+                tiles.RemoveChild(block);
+                RemoveBlockFromGrid(pos);
         }
 
 

@@ -23,7 +23,7 @@ public partial class PeriodicSpike : AbstractHazard {
         // Edit block
         public override void Edit() {
                 base.Edit();
-                HSlider slider = root.CreateSlider(period, "Period", 0.4F, 6.0F, 0.1F);
+                HSlider slider = ((LevelEditor)root).CreateSlider(period, "Period", 0.4F, 6.0F, 0.1F);
                 Callable callable = new Callable(this, "PeriodChanged");
                 slider.Connect("value_changed", callable);
         }

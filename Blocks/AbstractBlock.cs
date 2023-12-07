@@ -15,6 +15,8 @@ public abstract partial class AbstractBlock : Node2D {
 		base._Ready();
                 if(!IsInstanceValid(root) && !inPauseMenu) {
                         root = GetTree().Root.GetNode<LevelEditor>("LevelEditor");
+                        if(!IsInstanceValid(root))
+                                root = GetTree().Root.GetNode<LevelPlayer>("LevelPlayer");
                 }
 	}
 

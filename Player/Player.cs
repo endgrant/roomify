@@ -12,6 +12,7 @@ public partial class Player : CharacterBody2D {
 	[Export(PropertyHint.Range, "0, 100")] private float gravityAccel = 75;
 	[Export(PropertyHint.Range, "0, 4000")] private float gravityMax = 2000;
 	private bool isTester = false;
+	private bool enteredRoom = false;
 
 	public void _physics_process(float delta) {
 		// ignores player inputs if the pause screen is open and the player is not listed to be a test player
@@ -53,6 +54,11 @@ public partial class Player : CharacterBody2D {
 			}
 		}
 
+		// checks if the player just entered a new room to avoid a race situation
+		if(enteredRoom) {
+			enteredRoom = false;
+			return;
+		}
 		// updates the character's velocity
 		Velocity = new Vector2(xVel, yVel);
 		MoveAndSlide();
@@ -77,4 +83,12 @@ public partial class Player : CharacterBody2D {
 		if(extraJumps < jumps)
 			extraJumps = jumps;
 	}
+
+    internal void EnterRoom(Vector2 parentPos) {
+		enteredRoom = true;
+        Velocity = new Vector2(0, 0);
+		MoveAndSlide();
+		GlobalPosition = parentPos;
+    }
+
 }

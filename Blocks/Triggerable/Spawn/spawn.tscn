@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dk6p1bpvcj8f2"]
+
+[ext_resource type="PackedScene" uid="uid://dpj3gmmawld8r" path="res://Blocks/Triggerable/triggerable_block.tscn" id="1_m5tma"]
+[ext_resource type="Script" path="res://Blocks/Triggerable/Spawn/Spawn.cs" id="2_dhyvn"]
+[ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Blocks/Triggerable/Spawn/Spawn.png" id="3_uwkqv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3jqdu"]
+radius = 32.0
+
+[node name="Spawn" instance=ExtResource("1_m5tma")]
+script = ExtResource("2_dhyvn")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("3_uwkqv")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_3jqdu")
+
+[connection signal="body_entered" from="." to="." method="Entered"]

@@ -12,14 +12,22 @@ public partial class Spawn : AbstractTriggerable {
 
 
         public override void Entered(Node2D activator) {
-                if(activator is Player)
+                if(!(((LevelPlayer)root).timer.WaitTime == 0))
+                        return;
+
+                if(activator is Player) {
+                        ((LevelPlayer)root).timer.Start();
                         ((LevelPlayer)root).NavPreviousRoom();
+                        ((Player)activator).EnterRoom(parentPos);
+                }
         }
 
 
         public override string Save() {
                 return Json.Stringify(new Godot.Collections.Dictionary{
-                        ["Path"] = "res://Blocks/Triggerable/Spawn/spawn.tscn",                  
+                        ["Path"] = "res://Blocks/Triggerable/Spawn/spawn.tscn",    
+                        ["X"] = parentPos.X,
+                        ["Y"] = parentPos.Y              
                 });
         }
 

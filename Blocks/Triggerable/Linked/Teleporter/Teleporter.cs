@@ -9,7 +9,7 @@ public partial class Teleporter : AbstractLinked {
                 base._Ready();
                 displayName = "Teleporter";
                 locator = GetNode<Sprite2D>("Location");
-                root.NewEdit += HideLocator;
+                ((LevelEditor)root).NewEdit += HideLocator;
         }
 
 
@@ -26,11 +26,11 @@ public partial class Teleporter : AbstractLinked {
         public override void Edit() {
                 base.Edit();
                 locator.Visible = true;
-                Button button = root.CreateButton("Reset Location");
+                Button button = ((LevelEditor)root).CreateButton("Reset Location");
                 button.Pressed += ResetLocation;
-                HSlider sliderX = root.CreateSlider(GlobalPosition.X, "X Location", 32, 1504, 64);
+                HSlider sliderX = ((LevelEditor)root).CreateSlider(GlobalPosition.X, "X Location", 32, 1504, 64);
                 sliderX.ValueChanged += SetXLocation;
-                HSlider sliderY = root.CreateSlider(GlobalPosition.Y, "Y Location", 32, 864, 64);
+                HSlider sliderY = ((LevelEditor)root).CreateSlider(GlobalPosition.Y, "Y Location", 32, 864, 64);
                 sliderY.ValueChanged += SetYLocation;
         }
 
