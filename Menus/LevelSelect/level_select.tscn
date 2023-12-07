@@ -215,5 +215,7 @@ text = "Cancel"
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Edit" to="." method="EditLevel"]
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Rename" to="." method="BeginNameChange"]
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Delete" to="." method="DeleteLevel"]
+[connection signal="pressed" from="VBoxContainer/Center/PageView/PreviousPage" to="." method="PreviousPage"]
+[connection signal="pressed" from="VBoxContainer/Center/PageView/NextPage" to="." method="NextPage"]
 [connection signal="pressed" from="VBoxContainer/Center/RenameOverlay/HBoxContainer/Submit" to="." method="ChangeLevelName"]
 [connection signal="pressed" from="VBoxContainer/Center/RenameOverlay/HBoxContainer/Cancel" to="." method="CancelNameChange"]

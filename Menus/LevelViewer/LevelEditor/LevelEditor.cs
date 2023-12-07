@@ -59,6 +59,8 @@ public partial class LevelEditor : LevelViewer {
                         // Load existing level
                         level.levelName = Constants.currentLevelName;
                         level.Load();
+                } else {
+                        level.levelName = "Unnamed_Level";
                 }
                 viewport.AddChild(level);
 
@@ -112,7 +114,6 @@ public partial class LevelEditor : LevelViewer {
 
         // Saves the level to file
         public void SaveLevel() {
-                level.levelName = "Unnamed_Level";
                 level.Save();
         }
 

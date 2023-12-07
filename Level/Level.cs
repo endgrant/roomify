@@ -10,7 +10,7 @@ public partial class Level : Node2D {
         public void Save() {
                 string jsonString = masterRoom.Save();
 
-                FileAccess file = FileAccess.Open(Constants.SAVE_DIR + "/" + levelName + ".lvl", FileAccess.ModeFlags.Write);
+                FileAccess file = FileAccess.Open(Constants.SAVE_DIR + "/" + levelName, FileAccess.ModeFlags.Write);
                 file.StoreLine(jsonString);
                 
                 file.Close();
@@ -18,7 +18,7 @@ public partial class Level : Node2D {
 
 
         public void Load() {
-                FileAccess file = FileAccess.Open(levelName, FileAccess.ModeFlags.Read);
+                FileAccess file = FileAccess.Open(Constants.SAVE_DIR + "/" + levelName, FileAccess.ModeFlags.Read);
                 string jsonString = file.GetLine();
                 Variant? data = Json.ParseString(jsonString);
                 if (data == null) {

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://i8n46moa1n4w"]
+
+[ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Menus/Revamped.otf" id="1_ygftf"]
+
+[node name="LevelSelectButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_ygftf")
+theme_override_font_sizes/font_size = 36
