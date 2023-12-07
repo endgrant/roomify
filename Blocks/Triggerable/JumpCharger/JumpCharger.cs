@@ -46,6 +46,7 @@ public partial class JumpCharger : AbstractTriggerable {
 
 
         public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
-                base.Load(data);            
+                base.Load(data);
+                extraJumps = (int)data["Jumps"];          
         }
 }
