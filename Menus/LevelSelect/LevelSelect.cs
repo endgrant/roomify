@@ -9,17 +9,21 @@ public partial class LevelSelect : Node
 
         private VBoxContainer main;
         private GridContainer grid;
+        private VBoxContainer overlay;
+        private LineEdit lineEdit;
 
 
         // Enter scene tree
         public override void _Ready() {
                 base._Ready();
                 main = GetNode<VBoxContainer>("VBoxContainer");
-                grid = main.GetNode<GridContainer>("PageView/LevelView");
+                grid = main.GetNode<GridContainer>("Center/PageView/LevelView");
+                overlay = main.GetNode<VBoxContainer>("Center/RenameOverlay");
+                lineEdit = overlay.GetNode<LineEdit>("LineEdit");
 
                 string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
                 foreach (string fileName in fileNames) {
-                        Button button = CreateButton(fileName.TrimSuffix(".tscn").TrimPrefix(Constants.SAVE_DIR + "\\"));
+                        Button button = CreateButton(fileName.TrimSuffix(".lvl").TrimPrefix(Constants.SAVE_DIR + "\\"));
                         Action lambda = () => {LevelSelected(fileName);};
                         Callable callable = Callable.From(lambda);
                         button.Connect("pressed", callable);
@@ -60,5 +64,56 @@ public partial class LevelSelect : Node
         // Edit selected level
         public void EditLevel() {
                 GetTree().ChangeSceneToPacked(levelEditorMenu);
+        }
+
+
+        // Delete selected level
+        public void DeleteLevel() {
+                string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
+                foreach (string fileName in fileNames) {
+                        if (fileName.Equals(Constants.currentLevelName)) {
+                                DirAccess.RemoveAbsolute(fileName);
+                                break;
+                        }
+                }
+
+                GetTree().ReloadCurrentScene();
+        }
+
+
+        // Change level name
+        public void ChangeLevelName() {                
+                string[] fileNames = Directory.GetFiles(Constants.SAVE_DIR);
+                foreach (string fileName in fileNames) {
+                        if (fileName.Equals(Constants.currentLevelName)) {
+                                // Remove a few forbidden characters
+                                lineEdit.Text = lineEdit.Text.Replace(".", "");
+                                lineEdit.Text = lineEdit.Text.Replace("\\", "");
+                                lineEdit.Text = lineEdit.Text.Replace("/", "");
+
+                                if (lineEdit.Text.Equals("")) {
+                                        lineEdit.Text = "Unnamed_Level";
+                                }
+
+                                DirAccess.RenameAbsolute(fileName, Constants.SAVE_DIR + "/" + lineEdit.Text + ".lvl");
+                                break;
+                        }
+                }
+
+                CancelNameChange();
+                GetTree().ReloadCurrentScene();
+        }
+
+
+        // Begin level name change
+        public void BeginNameChange() {
+                lineEdit.Text = "";
+                overlay.Visible = true;
+        }
+
+
+        // Cancel level name change
+        public void CancelNameChange() {
+                overlay.Visible = false;
         }
 }

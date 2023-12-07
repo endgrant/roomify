@@ -108,37 +108,95 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("1_d8v2r")
 text = "DELETE"
 
-[node name="PageView" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Center" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LeftMargin" type="Control" parent="VBoxContainer/PageView"]
+[node name="PageView" type="HBoxContainer" parent="VBoxContainer/Center"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 1536.0
+offset_bottom = 812.0
+size_flags_vertical = 3
+
+[node name="LeftMargin" type="Control" parent="VBoxContainer/Center/PageView"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 
-[node name="PreviousPage" type="Button" parent="VBoxContainer/PageView"]
+[node name="PreviousPage" type="Button" parent="VBoxContainer/Center/PageView"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
 text = "<"
 
-[node name="LevelView" type="GridContainer" parent="VBoxContainer/PageView"]
+[node name="LevelView" type="GridContainer" parent="VBoxContainer/Center/PageView"]
 layout_mode = 2
 size_flags_horizontal = 3
 columns = 3
 
-[node name="NextPage" type="Button" parent="VBoxContainer/PageView"]
+[node name="NextPage" type="Button" parent="VBoxContainer/Center/PageView"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
 text = ">"
 
-[node name="RightMargin" type="Control" parent="VBoxContainer/PageView"]
+[node name="RightMargin" type="Control" parent="VBoxContainer/Center/PageView"]
 custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
+
+[node name="RenameOverlay" type="VBoxContainer" parent="VBoxContainer/Center"]
+visible = false
+custom_minimum_size = Vector2(512, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -32.0
+offset_right = 128.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/Center/RenameOverlay"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+placeholder_text = "Enter Level Name"
+alignment = 1
+max_length = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Center/RenameOverlay"]
+layout_mode = 2
+alignment = 1
+
+[node name="Submit" type="Button" parent="VBoxContainer/Center/RenameOverlay/HBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_oc0x0")
+theme_override_styles/normal = ExtResource("1_d8v2r")
+text = "Submit"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/Center/RenameOverlay/HBoxContainer"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="VBoxContainer/Center/RenameOverlay/HBoxContainer"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_oc0x0")
+theme_override_styles/normal = ExtResource("1_d8v2r")
+text = "Cancel"
 
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Back" to="." method="Back"]
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Create" to="." method="Create"]
 [connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Edit" to="." method="EditLevel"]
+[connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Rename" to="." method="BeginNameChange"]
+[connection signal="pressed" from="VBoxContainer/Topbar/HBoxContainer/Delete" to="." method="DeleteLevel"]
+[connection signal="pressed" from="VBoxContainer/Center/RenameOverlay/HBoxContainer/Submit" to="." method="ChangeLevelName"]
+[connection signal="pressed" from="VBoxContainer/Center/RenameOverlay/HBoxContainer/Cancel" to="." method="CancelNameChange"]
