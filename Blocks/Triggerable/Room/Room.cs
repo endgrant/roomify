@@ -167,6 +167,7 @@ public partial class Room : AbstractTriggerable
                         Room roomInstance = (Room)block;
                         roomInstance.SetTiles(tiles);
                         roomInstance.SetParentRoom(this);
+                        GD.Print(IsInstanceValid(this));
                 }
 
                 tiles.AddChild(block);
@@ -200,7 +201,11 @@ public partial class Room : AbstractTriggerable
         }
 
 
-        public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
+        public override void Load(Godot.Collections.Dictionary<string, Variant> data) {
+                if (data == null) {
+                        return;
+                }
+
                 Godot.Collections.Dictionary<string, string> cells = (
                         Godot.Collections.Dictionary<string, string>)data["Cells"];
 

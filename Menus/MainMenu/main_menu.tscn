@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://yu5gcfm6ihs0"]
+[gd_scene load_steps=5 format=3 uid="uid://yu5gcfm6ihs0"]
 
 [ext_resource type="FontFile" uid="uid://b48bc0ebqne3l" path="res://Menus/Revamped.otf" id="1_oxnxe"]
 [ext_resource type="Script" path="res://Menus/MainMenu/MainMenu.cs" id="1_qelxs"]
 [ext_resource type="StyleBox" uid="uid://pi5hr1hi6vvl" path="res://Menus/sci-fi_button.tres" id="2_sf5a7"]
 [ext_resource type="FontFile" uid="uid://b3ey0yo4o63i8" path="res://Menus/TT Octosquares Trial Black Italic.ttf" id="4_tjh84"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_trhf2"]
-font_size = 48
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -54,8 +51,8 @@ offset_right = 129.0
 offset_bottom = 254.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_oxnxe")
+theme_override_font_sizes/font_size = 64
 text = "ROOMIFY"
-label_settings = SubResource("LabelSettings_trhf2")
 uppercase = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -80,6 +77,10 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = ExtResource("2_sf5a7")
 text = "LEVELS"
 
+[node name="Control" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_oxnxe")
@@ -94,6 +95,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("4_tjh84")
+theme_override_font_sizes/normal_font_size = 18
 bbcode_enabled = true
 text = "[center]Press Esc for more info and options"
 
