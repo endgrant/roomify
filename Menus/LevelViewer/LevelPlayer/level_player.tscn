@@ -40,3 +40,5 @@ scale_amount_max = 2.0
 
 [node name="Player" parent="." instance=ExtResource("2_e1cbq")]
 position = Vector2(-96, -96)
+
+[node name="Timer" type="Timer" parent="."]
