@@ -15,6 +15,7 @@ public partial class LevelEditor : LevelViewer {
         private Vector2 parentRoomPos;
         private bool hasGoal = false;
         private bool hasSpawn = false;
+        private bool changingRooms = false;
 
         private Control topbar;
         private HBoxContainer editbar;
@@ -25,7 +26,8 @@ public partial class LevelEditor : LevelViewer {
         private Level level;
         private TileMap ghostmap;
         private Node2D tiles;
-        private TextureRect currentBlockTextureRect;        
+        private TextureRect currentBlockTextureRect;
+        private CanvasLayer prompt;
 
         private PackedScene currentBlock;
         private AbstractBlock currentEdit;
@@ -48,6 +50,7 @@ public partial class LevelEditor : LevelViewer {
                 viewport = GetNode<SubViewport>("VBoxContainer/LevelViewport/SubViewport");
                 ghostmap = viewport.GetNode<TileMap>("GhostMap");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
+                prompt = GetNode<CanvasLayer>("Prompt");
 
                 Room startingRoom = defaultRoomScene.Instantiate<Room>();
                 level = defaultLevelScene.Instantiate<Level>();
@@ -67,6 +70,7 @@ public partial class LevelEditor : LevelViewer {
 
                 SetCurrentBlock(0, GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1, 
                         topbar.GetNode<OptionButton>("BlockSelector/Block/Option").GetItemIcon(0));
+                AbstractBlock.SetRoot(this);
         }
 
 
@@ -121,17 +125,23 @@ public partial class LevelEditor : LevelViewer {
 
         // Changes the current room
         public void ChangeCurrentRoom(Room newRoom) {
+                changingRooms = true;
                 foreach (AbstractBlock block in tiles.GetChildren()) {
                         if (IsInstanceValid(block)) {
                               level.currentRoom.DeleteBlock(block);  
                         }
                 }
-
                 SetEditedBlock(null);
                 parentRoomPos = newRoom.GlobalPosition;
                 level.currentRoom = newRoom;
                 level.currentRoom.Load(level.currentRoom.GetRoomData());
                 hasSpawn = false;
+                foreach (AbstractBlock block in tiles.GetChildren()) {
+                        if (IsInstanceValid(block) && block is Spawn) {
+                              hasSpawn = true;  
+                        }
+                }
+                changingRooms = false;
         }
 
 
@@ -271,4 +281,21 @@ public partial class LevelEditor : LevelViewer {
         public void Quit() {
                 GetTree().ChangeSceneToPacked(levelSelectMenu);
         }
+
+        public Vector2 GetParentRoomPos() {
+                return parentRoomPos;
+        }
+
+        public bool IsChangingRooms() {
+                return changingRooms;
+        }
+
+    public void OpenPrompt(string message) {
+        prompt.GetNode<Button>("CenterContainer/Button").Text = message;
+        prompt.Visible = true;
+    }
+
+    public void ExitPrompt() {
+        prompt.Visible = false;
+    }
 }

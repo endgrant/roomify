@@ -39,6 +39,10 @@ public partial class Room : AbstractTriggerable
 
         // Changes the current room to this one
         public void ChangeRoom() {
+                if(!((LevelEditor)root).GetHasSpawn()) {
+                        ((LevelEditor)root).OpenPrompt("Place a spawn before changing rooms!");
+                        return;
+                }
                 ((LevelEditor)root).ChangeCurrentRoom(this);
         }
 
@@ -84,10 +88,14 @@ public partial class Room : AbstractTriggerable
                 if(IsInstanceValid(GetBlockFromGrid(pos)))
                         return;
                 AbstractBlock instance = blockScene.Instantiate<AbstractBlock>();
-                if(instance is Spawn && ((LevelEditor)root).GetHasSpawn())
+                if(instance is Spawn && ((LevelEditor)root).GetHasSpawn()) {
+                        ((LevelEditor)root).OpenPrompt("There is already a spawn in this room!");
                         return;
-                if(instance is Goal && ((LevelEditor)root).GetHasGoal())
+                }
+                if(instance is Goal && ((LevelEditor)root).GetHasGoal()) {
+                        ((LevelEditor)root).OpenPrompt("There is already a goal in this level!");
                         return;
+                }
                 SetBlockInGrid(pos, instance);
                 if(instance is Spawn)
                         ((LevelEditor)root).SetHasSpawn(true);
@@ -126,7 +134,7 @@ public partial class Room : AbstractTriggerable
                         return;
                 if(block is Spawn)
                         ((LevelEditor)root).SetHasSpawn(false);
-                if(block is Goal)
+                if(block is Goal && ((LevelEditor)root).IsChangingRooms())
                         ((LevelEditor)root).SetHasGoal(false);
 
                 tiles.RemoveChild(block);

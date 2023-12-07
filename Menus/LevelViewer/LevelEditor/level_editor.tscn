@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://by67ptjtbqlp2"]
+[gd_scene load_steps=30 format=3 uid="uid://by67ptjtbqlp2"]
 
 [ext_resource type="Script" path="res://Menus/LevelViewer/LevelEditor/LevelEditor.cs" id="1_jm58u"]
 [ext_resource type="Texture2D" uid="uid://bdtivc5yb61lu" path="res://Menus/LevelViewer/LevelEditor/BasicBlock.png" id="1_s54ka"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cejjn8iah4g2v" path="res://Menus/LevelViewer/LevelEditor/atlas1.png" id="16_725wi"]
 [ext_resource type="Texture2D" uid="uid://bcb4l2marmwda" path="res://Menus/LevelViewer/LevelEditor/atlas2.png" id="17_cthcf"]
 [ext_resource type="Texture2D" uid="uid://btewks8ge1ys1" path="res://Menus/LevelViewer/LevelEditor/atlas3.png" id="18_epu5q"]
+[ext_resource type="FontFile" uid="uid://b3ey0yo4o63i8" path="res://Menus/TT Octosquares Trial Black Italic.ttf" id="19_wiei7"]
 
 [sub_resource type="Resource" id="Resource_fi6hf"]
 script = ExtResource("3_cbhye")
@@ -273,10 +274,28 @@ text = "Delete Block"
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 
+[node name="Prompt" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="Prompt"]
+offset_right = 1536.0
+offset_bottom = 896.0
+color = Color(0.588235, 0.588235, 0.588235, 0.32549)
+
+[node name="CenterContainer" type="CenterContainer" parent="Prompt"]
+offset_right = 1536.0
+offset_bottom = 896.0
+
+[node name="Button" type="Button" parent="Prompt/CenterContainer"]
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("19_wiei7")
+
 [connection signal="pressed" from="VBoxContainer/Topbar/Button" to="." method="NavPreviousRoom"]
 [connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Save" to="." method="SaveLevel"]
 [connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Quit" to="." method="Quit"]
 [connection signal="pressed" from="VBoxContainer/Editbar/DeleteBlock" to="." method="ManualDelete"]
+[connection signal="pressed" from="Prompt/CenterContainer/Button" to="." method="ExitPrompt"]
 
 [editable path="VBoxContainer/Topbar/BlockSelector/Block"]
 [editable path="VBoxContainer/Topbar/BlockSelector/Hazard"]

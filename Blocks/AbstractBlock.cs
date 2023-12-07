@@ -13,11 +13,6 @@ public abstract partial class AbstractBlock : Node2D {
 	// Enter scene tree
 	public override void _Ready() {
 		base._Ready();
-                if(!IsInstanceValid(root) && !inPauseMenu) {
-                        root = GetTree().Root.GetNode<LevelEditor>("LevelEditor");
-                        if(!IsInstanceValid(root))
-                                root = GetTree().Root.GetNode<LevelPlayer>("LevelPlayer");
-                }
 	}
 
 
@@ -45,4 +40,8 @@ public abstract partial class AbstractBlock : Node2D {
 
         // Compiles the block from a json string
         public virtual void Load(Godot.Collections.Dictionary<string, Variant> data) {}
+
+        public static void SetRoot(LevelViewer viewer) {
+                root = viewer;
+        }
 }

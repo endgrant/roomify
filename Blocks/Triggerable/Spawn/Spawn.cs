@@ -8,6 +8,8 @@ public partial class Spawn : AbstractTriggerable {
 	public override void _Ready() {
                 base._Ready();
                 displayName = "Spawn";
+                parentPos = ((LevelEditor)root).GetParentRoomPos();
+                GD.Print(parentPos);
         }
 
 
