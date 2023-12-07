@@ -3,12 +3,12 @@ using System;
 
 public partial class PauseOverlay : CanvasLayer {
         private PackedScene playerScene = (PackedScene)GD.Load("res://Player/Player.tscn");
-        private Panel panel;
+        private Panel tester;
 	private AudioStreamPlayer audio;
 
 	public override void _Ready() {
 		base._Ready();
-                panel = GetNode<Panel>("PlayTester");
+                tester = GetNode<Panel>("PlayTester");
 		audio = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
                 Visible = false;
 	}
@@ -21,15 +21,14 @@ public partial class PauseOverlay : CanvasLayer {
                         if(Visible) {
                                 Player player = (Player)playerScene.Instantiate();
                                 player.SetIsTester(true);
-                                panel.AddChild(player);
-                                player.Position = new Vector2(256, 352);
+                                AddChild(player);
+                                player.EnteredRoom(new Vector2(704, 544));
                         }
                         else {
-                                panel.GetNode<Player>("Player").QueueFree();
+                                GetNode<Player>("Player").QueueFree();
                         }
                 }
         }
-
 
         public void SliderChanged(float value) {
                 audio.VolumeDb = value;

@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://cglqq8snxc1nu"]
+
+[ext_resource type="Script" path="res://Menus/LevelViewer/LevelPlayer/LevelPlayer.cs" id="1_h4h73"]
+[ext_resource type="PackedScene" uid="uid://vf4wqf07hxsv" path="res://Player/Player.tscn" id="2_e1cbq"]
+
+[node name="LevelPlayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h4h73")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -24.0
+offset_right = 32.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 448)
+amount = 100
+lifetime = 60.0
+preprocess = 30.0
+emission_shape = 3
+emission_rect_extents = Vector2(1, 450)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 100.0
+scale_amount_max = 2.0
+
+[node name="Player" parent="." instance=ExtResource("2_e1cbq")]
+position = Vector2(-96, -96)

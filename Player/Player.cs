@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Numerics;
 
 public partial class Player : CharacterBody2D {
 
@@ -13,8 +14,17 @@ public partial class Player : CharacterBody2D {
 	[Export(PropertyHint.Range, "0, 4000")] private float gravityMax = 2000;
 	private bool isTester = false;
 	private bool enteredRoom = false;
+	private Godot.Vector2 respawnPoint;
+	private AnimationPlayer animator;
 
-	public void _physics_process(float delta) {
+    public override void _Ready() {
+        base._Ready();
+		respawnPoint = GlobalPosition;
+		animator = GetNode<AnimationPlayer>("AnimationPlayer");
+		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
+    }
+
+    public void _physics_process(float delta) {
 		// ignores player inputs if the pause screen is open and the player is not listed to be a test player
 		if(!isTester && GetNode<PauseOverlay>("/root/PauseMenu").Visible == true)
 			return;
@@ -52,6 +62,13 @@ public partial class Player : CharacterBody2D {
 				yVel = -jumpForce * 0.75f;
 				extraJumps--;
 			}
+			//triggers animation
+			if(yVel < 0) {
+				if(xVel >= 0)
+					animator.Play("Jump Right");
+				else
+					animator.Play("Jump Left");
+			}
 		}
 
 		// checks if the player just entered a new room to avoid a race situation
@@ -60,22 +77,25 @@ public partial class Player : CharacterBody2D {
 			return;
 		}
 		// updates the character's velocity
-		Velocity = new Vector2(xVel, yVel);
+		Velocity = new Godot.Vector2(xVel, yVel);
 		MoveAndSlide();
-		// Camp Position to sides of screen and kill if you fall out of screen
-		//SetDeferred("GlobalPosition.X", Math.Clamp(GlobalPosition.X, ?, ?))
-		//SetDeferred("GlobalPosition.X", Math.Clamp(GlobalPosition.X, ?, ?))
-		//if(outsideOfScreen)
-		//		Die();
+		// Clamp Position to sides of screen and kill if you fall out of screen
+		GlobalPosition = new Godot.Vector2(Math.Clamp(GlobalPosition.X, 32, 1504), Math.Clamp(GlobalPosition.Y, 32, 950));
+		if(GlobalPosition.Y >= 900)
+			Die();
 	}
 
 	public void SetIsTester(bool value) {
 		isTester = value;
+		SetCollisionLayerValue(1, !isTester);
+		SetCollisionLayerValue(5, isTester);
+		for(int i = 2; i < 5; i++)
+			SetCollisionMaskValue(i, !isTester);
+		SetCollisionMaskValue(5, isTester);
 	}
 
 	public void Die() {
-		// Set player's global position to first spawn of level
-		//GlobalPosition = GetNode<Spawn>("Spawn").GlobalPosition;
+		EnteredRoom(respawnPoint);
 	}
 
 	// sets the extra jumps for the player
@@ -84,14 +104,28 @@ public partial class Player : CharacterBody2D {
 			extraJumps = jumps;
 	}
 
-    internal void EnteredRoom(Vector2 parentPos) {
+    internal void EnteredRoom(Godot.Vector2 parentPos) {
+		GetParent<LevelPlayer>().StartTimer();
 		enteredRoom = true;
-        Velocity = new Vector2(0, 0);
+        Velocity = new Godot.Vector2(0, 0);
 		MoveAndSlide();
-		GlobalPosition = parentPos;
+		respawnPoint = parentPos;
+		GlobalPosition = respawnPoint;
     }
 
-    internal void Win() {
-        
+    public void Win() {
+        animator.Play("Win");
     }
+
+	public void StartedAnimation(string title) {
+		SetPhysicsProcess(false);
+	}
+
+	public void FinishedAnimation(string title) {
+		if(title.Equals("Win")) {
+			GetParent<LevelPlayer>().EndLevel();
+		}
+		else
+			SetPhysicsProcess(true);
+	}
 }

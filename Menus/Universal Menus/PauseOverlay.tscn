@@ -107,80 +107,132 @@ offset_bottom = 640.0
 
 [node name="BasicBlock" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 416)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock2" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(96, 416)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock3" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(160, 416)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock4" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(224, 416)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock5" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(288, 416)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock6" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(352, 416)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock7" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(416, 416)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock8" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 416)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock9" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 352)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock10" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 288)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock11" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 224)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock12" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 160)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock13" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 96)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock14" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(480, 32)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock15" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(416, 32)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock16" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(352, 32)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock17" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(288, 32)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock18" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(224, 32)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock19" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(160, 32)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock20" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(96, 32)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock21" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 32)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock22" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 96)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock23" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 160)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock24" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 224)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock25" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 288)
+collision_layer = 16
+collision_mask = 16
 
 [node name="BasicBlock26" parent="PlayTester" instance=ExtResource("5_lhbkm")]
 position = Vector2(32, 352)
+collision_layer = 16
+collision_mask = 16
 
 [connection signal="value_changed" from="HSlider" to="." method="SliderChanged"]

@@ -13,15 +13,14 @@ public partial class Spawn : AbstractTriggerable {
 
 
         public override void Entered(Node2D activator) {
-                if(!(((LevelPlayer)root).timer.WaitTime == 0))
+                if(!(((LevelPlayer)root).GetTimeLeft() == 0.0))
                         return;
-                if(parentPos.X == -1 && parentPos.Y == 1)
+                if(parentPos.X == -96 && parentPos.Y == -96)
                         return;
 
                 if(activator is Player) {
-                        ((LevelPlayer)root).timer.Start();
-                        ((LevelPlayer)root).NavPreviousRoom();
                         ((Player)activator).EnteredRoom(parentPos);
+                        ((LevelPlayer)root).NavPreviousRoom();
                 }
         }
 
