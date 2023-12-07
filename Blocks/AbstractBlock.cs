@@ -13,8 +13,9 @@ public abstract partial class AbstractBlock : Node2D {
 	// Enter scene tree
 	public override void _Ready() {
 		base._Ready();
-                if(root == null && !inPauseMenu)
+                if(!IsInstanceValid(root) && !inPauseMenu) {
                         root = GetTree().Root.GetNode<LevelEditor>("LevelEditor");
+                }
 	}
 
 
@@ -26,6 +27,7 @@ public abstract partial class AbstractBlock : Node2D {
 
         // Edit block
 	public virtual void Edit() {
+                GD.Print(IsInstanceValid(root));
                 root.SetEditedBlock(this);
         }
 

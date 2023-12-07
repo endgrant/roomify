@@ -23,8 +23,6 @@ public partial class LevelEditor : LevelViewer {
         private TileMap ghostmap;
         private Node2D tiles;
         private TextureRect currentBlockTextureRect;
-        
-        
 
         private PackedScene currentBlock;
         private AbstractBlock currentEdit;
@@ -46,7 +44,6 @@ public partial class LevelEditor : LevelViewer {
                 viewport = GetNode<SubViewport>("VBoxContainer/LevelViewport/SubViewport");
                 ghostmap = viewport.GetNode<TileMap>("GhostMap");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
-
                 Room startingRoom = defaultRoomScene.Instantiate<Room>();
                 level = defaultLevelScene.Instantiate<Level>();
                 level.masterRoom = startingRoom;

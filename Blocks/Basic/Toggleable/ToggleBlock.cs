@@ -16,7 +16,6 @@ public abstract partial class ToggleBlock : BasicBlock {
 			mainToggle = new ToggleSwitch();
 			AddSibling(mainToggle);
 			ToggleSwitch.SetMainToggle(mainToggle);
-			GD.Print("Added hidden toggle!");
 		}
 		mainToggle.Toggle += ChangeState;
 		ChangeState(mainToggle.GetIsRed());

@@ -37,7 +37,7 @@ public partial class LevelSelect : Node
                 Button button = new Button();
                 button.Text = levelName;
                 button.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
-                button.CustomMinimumSize = new Vector2(0, main.Size.Y / 3);
+                button.CustomMinimumSize = new Vector2(0, grid.GetParentAreaSize().Y / 3);
                 return button;
         }
 
