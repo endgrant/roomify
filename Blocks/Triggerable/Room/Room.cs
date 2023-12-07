@@ -122,11 +122,16 @@ public partial class Room : AbstractTriggerable
 
         // Remove block by reference
         public void DeleteBlock(AbstractBlock block) {
-                if (IsInstanceValid(block)) {
-                        tiles.RemoveChild(block);
-                        Vector2I gridPos = block.GetGridPosition();
-                        RemoveBlockFromGrid(gridPos);
-                }
+                if(!IsInstanceValid(block))
+                        return;
+                if(block is Spawn)
+                        ((LevelEditor)root).SetHasSpawn(false);
+                if(block is Goal)
+                        ((LevelEditor)root).SetHasGoal(false);
+
+                tiles.RemoveChild(block);
+                Vector2I gridPos = block.GetGridPosition();
+                RemoveBlockFromGrid(gridPos);
         }
 
 

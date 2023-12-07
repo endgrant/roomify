@@ -84,11 +84,14 @@ public partial class Player : CharacterBody2D {
 			extraJumps = jumps;
 	}
 
-    internal void EnterRoom(Vector2 parentPos) {
+    internal void EnteredRoom(Vector2 parentPos) {
 		enteredRoom = true;
         Velocity = new Vector2(0, 0);
 		MoveAndSlide();
 		GlobalPosition = parentPos;
     }
 
+    internal void Win() {
+        
+    }
 }

@@ -39,6 +39,7 @@ public partial class LevelEditor : LevelViewer {
         public override void _Ready() {
                 base._Ready();
 
+                parentRoomPos = new Vector2(-1, 1);
                 topbar = GetNode<Control>("VBoxContainer/Topbar");
                 editbar = GetNode<HBoxContainer>("VBoxContainer/Editbar");
                 editBlockLabel = editbar.GetNode<Label>("CurrentBlock");

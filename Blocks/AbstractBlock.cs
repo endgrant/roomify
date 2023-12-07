@@ -45,7 +45,5 @@ public abstract partial class AbstractBlock : Node2D {
 
 
         // Compiles the block from a json string
-        public virtual void Load(Godot.Collections.Dictionary<string, Variant> data) {
-
-        }
+        public virtual void Load(Godot.Collections.Dictionary<string, Variant> data) {}
 }

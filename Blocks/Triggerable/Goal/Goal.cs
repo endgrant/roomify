@@ -13,9 +13,7 @@ public partial class Goal : AbstractTriggerable
         public override void Entered(Node2D activator) {
                 if(!(activator is Player))
 			return;
-                
-                // TODO: Implement end of level
-                GD.Print("Level Ended. Congratulations!");
+                ((Player)activator).Win();
         }
 
 
