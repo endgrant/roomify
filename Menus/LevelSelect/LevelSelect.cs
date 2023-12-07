@@ -2,8 +2,7 @@ using Godot;
 using System;
 using System.IO;
 
-public partial class LevelSelect : Node
-{
+public partial class LevelSelect : Node {
 	private PackedScene mainMenu = GD.Load<PackedScene>("res://Menus/MainMenu/main_menu.tscn");
         private PackedScene levelEditorMenu = GD.Load<PackedScene>("res://Menus/LevelViewer/LevelEditor/level_editor.tscn");
         private PackedScene levelSelectButton = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select_button.tscn");
@@ -22,6 +21,8 @@ public partial class LevelSelect : Node
                 overlay = main.GetNode<VBoxContainer>("Center/RenameOverlay");
                 lineEdit = overlay.GetNode<LineEdit>("LineEdit");
 
+                if(!Directory.Exists(Constants.SAVE_DIR))
+                        Directory.CreateDirectory(Constants.SAVE_DIR);
                 string[] fileNames = DirAccess.GetFilesAt(Constants.SAVE_DIR);
                 for (int i = (Constants.levelSelectPage-1) * 9; i < Constants.levelSelectPage * 9; i++) {
                         if (i + 1 > fileNames.Length) {
@@ -137,7 +138,6 @@ public partial class LevelSelect : Node
                 Constants.levelSelectPage++;
                 string[] fileNames = DirAccess.GetFilesAt(Constants.SAVE_DIR);
                 Constants.levelSelectPage = Math.Min(Constants.levelSelectPage, (int)Math.Ceiling(fileNames.Length / 9.0F));
-
                 GetTree().ReloadCurrentScene();
         }
 }

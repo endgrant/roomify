@@ -23,6 +23,7 @@ PauseMenu="*res://Menus/Universal Menus/PauseOverlay.tscn"
 
 window/size/viewport_width=1536
 window/size/viewport_height=896
+window/stretch/mode="viewport"
 
 [dotnet]
 
