@@ -29,7 +29,6 @@ public abstract partial class AbstractBlock : Node2D {
 
         // Edit block
 	public virtual void Edit() {
-                GD.Print(IsInstanceValid(root));
                 ((LevelEditor)root).SetEditedBlock(this);
         }
 

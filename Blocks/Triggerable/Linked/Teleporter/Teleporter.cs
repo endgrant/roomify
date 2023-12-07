@@ -2,6 +2,7 @@ using Godot;
 using System;
 
 public partial class Teleporter : AbstractLinked {
+        private Vector2 location = new Vector2(-1, -1);
         private Sprite2D locator;
         
 	// Entered scene tree
@@ -66,6 +67,8 @@ public partial class Teleporter : AbstractLinked {
 
 
         public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
-                base.Load(data);            
+                base.Load(data);
+                Vector2 target = new Vector2((float)data["TargetX"], (float)data["TargetY"]);
+                location = target;          
         }
 }
