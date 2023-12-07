@@ -107,7 +107,7 @@ public partial class LevelEditor : LevelViewer {
                                 level.currentRoom.DeleteBlock(currentCursorGridPos);
                         } else {
                                 // Place block on left click
-                               level.currentRoom.PlaceBlock(currentCursorGridPos, currentBlock); 
+                                level.currentRoom.PlaceBlock(currentCursorGridPos, currentBlock); 
                         }
                         SetEditedBlock(null);
                 }
@@ -125,20 +125,38 @@ public partial class LevelEditor : LevelViewer {
 
 
         // Changes the current room
-        public void ChangeCurrentRoom(Room newRoom) {
-                changingRooms = true;
-
-                level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));
+        public void ChangeCurrentRoom(Room newRoom, bool prev) {
+                Room prevRoom = level.currentRoom;
+                if (prevRoom.GetRoomData() == null) {
+                        prevRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(prevRoom.Save()));
+                }
+                
 
                 foreach (AbstractBlock block in tiles.GetChildren()) {
                         if (IsInstanceValid(block)) {             
-                                level.currentRoom.DeleteBlock(block);  
+                                prevRoom.DeleteBlock(block);  
                         }
                 }
 
                 SetEditedBlock(null);
-                parentRoomPos = newRoom.GlobalPosition;
-                level.currentRoom = newRoom;
+                level.currentRoom = defaultRoomScene.Instantiate<Room>();
+                level.currentRoom.SetTiles(tiles);
+                level.currentRoom.SetParentRoom(newRoom.GetParentRoom());
+                level.currentRoom.parentPos = newRoom.parentPos;
+                Godot.Collections.Dictionary<string, Variant> prevData = prevRoom.GetRoomData();
+                Godot.Collections.Dictionary<string, Variant> newData = newRoom.GetRoomData();
+                GD.Print("OLD:",newData);
+                GD.Print("ADD:",prevData);
+                if (prev) {
+                        
+                        Vector2I gridPos = prevRoom.parentPos;
+                        string index = "[" + gridPos.X + "," + gridPos.Y + "]";
+                        Godot.Collections.Dictionary<string, Variant> cells = (Godot.Collections.Dictionary<string, Variant>)newData["Cells"];
+                        cells[index] = Json.Stringify(prevData);
+                        
+                }
+                GD.Print("NEW:",newData);
+                level.currentRoom.SetRoomData(newData);
                 level.currentRoom.Load(level.currentRoom.GetRoomData());
                 hasSpawn = false;
 
@@ -147,8 +165,6 @@ public partial class LevelEditor : LevelViewer {
                               hasSpawn = true;  
                         }
                 }
-
-                changingRooms = false;
         }
 
 
@@ -157,7 +173,7 @@ public partial class LevelEditor : LevelViewer {
                 Room parentRoom = level.currentRoom.GetParentRoom();
 
                 if (IsInstanceValid(parentRoom)) {
-                        ChangeCurrentRoom(parentRoom);
+                        ChangeCurrentRoom(parentRoom, true);
                 }
         }
 

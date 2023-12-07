@@ -7,6 +7,7 @@ public partial class Room : AbstractTriggerable
 {
         private Node2D tiles;
 	private Room parentRoom;
+        public Vector2I parentPos = Vector2I.Zero;
         private AbstractBlock[,] cells = new AbstractBlock[Constants.ROOM_WIDTH, Constants.ROOM_HEIGHT];
         private Godot.Collections.Dictionary<string, Variant> roomData;
 
@@ -43,7 +44,7 @@ public partial class Room : AbstractTriggerable
                         ((LevelEditor)root).OpenPrompt("Place a spawn before changing rooms!");
                         return;
                 }
-                ((LevelEditor)root).ChangeCurrentRoom(this);
+                ((LevelEditor)root).ChangeCurrentRoom(this, false);
         }
 
 
@@ -52,8 +53,14 @@ public partial class Room : AbstractTriggerable
                 return cells;
         }
 
+        
+        // Returns the tiles collection
+        public Node2D GetTiles() {
+                return tiles;
+        }
 
-        // Assigns the tiles
+
+        // Assigns the tiles collection
         public void SetTiles(Node2D tiles) {
                 this.tiles = tiles;
         }
@@ -167,7 +174,7 @@ public partial class Room : AbstractTriggerable
                         Room roomInstance = (Room)block;
                         roomInstance.SetTiles(tiles);
                         roomInstance.SetParentRoom(this);
-                        GD.Print(IsInstanceValid(this));
+                        roomInstance.parentPos = pos;
                 }
 
                 tiles.AddChild(block);
