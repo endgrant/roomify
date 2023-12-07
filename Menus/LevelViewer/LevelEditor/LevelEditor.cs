@@ -293,9 +293,11 @@ public partial class LevelEditor : LevelViewer {
     public void OpenPrompt(string message) {
         prompt.GetNode<Button>("CenterContainer/Button").Text = message;
         prompt.Visible = true;
+        ghostmap.Visible = false;
     }
 
     public void ExitPrompt() {
         prompt.Visible = false;
+        ghostmap.Visible = true;
     }
 }

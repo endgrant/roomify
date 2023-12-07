@@ -9,7 +9,6 @@ public partial class Spawn : AbstractTriggerable {
                 base._Ready();
                 displayName = "Spawn";
                 parentPos = ((LevelEditor)root).GetParentRoomPos();
-                GD.Print(parentPos);
         }
 
 

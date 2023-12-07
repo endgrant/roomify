@@ -134,7 +134,7 @@ public partial class Room : AbstractTriggerable
                         return;
                 if(block is Spawn)
                         ((LevelEditor)root).SetHasSpawn(false);
-                if(block is Goal && ((LevelEditor)root).IsChangingRooms())
+                if(block is Goal && !((LevelEditor)root).IsChangingRooms())
                         ((LevelEditor)root).SetHasGoal(false);
 
                 tiles.RemoveChild(block);
