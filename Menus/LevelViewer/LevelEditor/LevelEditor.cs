@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-public partial class LevelEditor : LevelViewer
-{
+public partial class LevelEditor : LevelViewer {
+        [Signal]
+        public delegate void NewEditEventHandler(AbstractBlock block);
         private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
         private PackedScene defaultLevelScene = GD.Load<PackedScene>("res://Level/level.tscn");
         private PackedScene defaultRoomScene = GD.Load<PackedScene>("res://Blocks/Triggerable/Room/room.tscn");
@@ -169,6 +170,7 @@ public partial class LevelEditor : LevelViewer
                         currentEdit = null;
                 }
                 editBlockLabel.Text = "Currently Editing: " + append;
+                EmitSignal("NewEdit", block);
         }
 
 

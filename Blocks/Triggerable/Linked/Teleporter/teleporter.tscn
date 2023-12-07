@@ -16,4 +16,9 @@ texture = ExtResource("3_3idh0")
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_m5o35")
 
+[node name="Location" type="Sprite2D" parent="." index="2"]
+visible = false
+modulate = Color(1, 1, 1, 0.490196)
+texture = ExtResource("3_3idh0")
+
 [connection signal="body_entered" from="." to="." method="Entered"]
