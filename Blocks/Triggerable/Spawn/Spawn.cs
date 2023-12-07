@@ -3,16 +3,17 @@ using System;
 
 public partial class Spawn : AbstractTriggerable {
         private Room linkedRoom = null;
-
+        private Vector2 parentPos;
 
 	public override void _Ready() {
-            base._Ready();
-            displayName = "Spawn";
+                base._Ready();
+                displayName = "Spawn";
         }
 
 
         public override void Entered(Node2D activator) {
-                
+                if(activator is Player)
+                        ((LevelPlayer)root).NavPreviousRoom();
         }
 
 

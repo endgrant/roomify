@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
-public partial class LevelEditor : LevelViewer {
+public partial class LevelEditorNew : LevelViewer {
         [Signal]
         public delegate void NewEditEventHandler(AbstractBlock block);
         private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
@@ -12,6 +12,7 @@ public partial class LevelEditor : LevelViewer {
         private PackedScene defaultRoomScene = GD.Load<PackedScene>("res://Blocks/Triggerable/Room/room.tscn");
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
+        private Vector2 parentRoomPos;
 
         private Control topbar;
         private HBoxContainer editbar;
@@ -22,7 +23,7 @@ public partial class LevelEditor : LevelViewer {
         private Level level;
         private TileMap ghostmap;
         private Node2D tiles;
-        private TextureRect currentBlockTextureRect;
+        private TextureRect currentBlockTextureRect;        
 
         private PackedScene currentBlock;
         private AbstractBlock currentEdit;
@@ -44,6 +45,7 @@ public partial class LevelEditor : LevelViewer {
                 viewport = GetNode<SubViewport>("VBoxContainer/LevelViewport/SubViewport");
                 ghostmap = viewport.GetNode<TileMap>("GhostMap");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
+
                 Room startingRoom = defaultRoomScene.Instantiate<Room>();
                 level = defaultLevelScene.Instantiate<Level>();
                 level.masterRoom = startingRoom;
@@ -119,10 +121,10 @@ public partial class LevelEditor : LevelViewer {
                         if (IsInstanceValid(block)) {
                               level.currentRoom.DeleteBlock(block);  
                         }
-                        
                 }
 
                 SetEditedBlock(null);
+                parentRoomPos = newRoom.GlobalPosition;
                 level.currentRoom = newRoom;
                 level.currentRoom.Load(level.currentRoom.GetRoomData());
         }

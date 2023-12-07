@@ -6,7 +6,7 @@ public abstract partial class AbstractBlock : Node2D {
         [ExportCategory("Attributes")]
         [Export] protected bool inPauseMenu = false;
         protected string displayName;
-        protected static LevelEditor root;
+        protected static LevelViewer root;
         protected int id;
 
 
@@ -28,7 +28,7 @@ public abstract partial class AbstractBlock : Node2D {
         // Edit block
 	public virtual void Edit() {
                 GD.Print(IsInstanceValid(root));
-                root.SetEditedBlock(this);
+                ((LevelEditor)root).SetEditedBlock(this);
         }
 
 
