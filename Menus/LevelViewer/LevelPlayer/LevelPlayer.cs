@@ -17,13 +17,13 @@ public partial class LevelPlayer : LevelViewer {
 	public override void _Process(double delta) {
 	}
 
-    internal void NavPreviousRoom() {
+    public void NavPreviousRoom() {
 		if(!(timer.WaitTime == 0))
 			return;
         //navigate to previous room
     }
 
-    internal void EndLevel() {
+    public void EndLevel() {
         if(isEditing)
 			GetTree().ChangeSceneToPacked(editor);
 		else
@@ -34,11 +34,11 @@ public partial class LevelPlayer : LevelViewer {
 		isEditing = value;
 	}
 
-    internal double GetTimeLeft() {
+    public double GetTimeLeft() {
         return timer.WaitTime;
     }
 
-    internal void StartTimer() {
+    public void StartTimer() {
         timer.Start();
     }
 }
