@@ -3,8 +3,6 @@ using System;
 using System.Reflection.Metadata;
 
 public abstract partial class AbstractBlock : Node2D {
-        [ExportCategory("Attributes")]
-        [Export] protected bool inPauseMenu = false;
         protected string displayName;
         protected static LevelViewer root;
         protected int id;
