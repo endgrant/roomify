@@ -88,10 +88,10 @@ public partial class LevelEditor : LevelViewer {
                 Vector2I cursorGridPos = (Vector2I)(GetLocalMousePosition() * scale - new Vector2(0, topbar.Size.Y * scale.Y)) / tileSize;
 
                 // Check if cursor is in-bounds
+                ghostmap.EraseCell(0, prevCursorGridPos);
                 if (cursorGridPos.X < 0 || cursorGridPos.Y < 0 || cursorGridPos.X > Constants.ROOM_WIDTH-1 || cursorGridPos.Y > Constants.ROOM_HEIGHT-1) {
                         return;
                 }
-                ghostmap.EraseCell(0, prevCursorGridPos);
                 ghostmap.SetCell(0, cursorGridPos, atlasId, Vector2I.Right * (sourceId - 1), 0);
                 prevCursorGridPos = cursorGridPos;
 
@@ -109,6 +109,7 @@ public partial class LevelEditor : LevelViewer {
                                 // Place block on left click
                                level.currentRoom.PlaceBlock(currentCursorGridPos, currentBlock); 
                         }
+                        SetEditedBlock(null);
                 }
                 // Edit block on right click
                 if (Input.IsActionJustPressed("Edit")) {
@@ -176,6 +177,7 @@ public partial class LevelEditor : LevelViewer {
                 AbstractBlock instance = currentBlock.Instantiate<AbstractBlock>();
                 currentBlockTextureRect.Texture = texture;
                 instance.QueueFree();
+                SetEditedBlock(null);
         }
 
 
