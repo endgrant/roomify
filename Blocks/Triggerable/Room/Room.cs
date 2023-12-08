@@ -258,7 +258,6 @@ public partial class Room : AbstractTriggerable
                                 GD.Print("Parse Error");
                         }
                         Godot.Collections.Dictionary<string, Variant> internalDict = (Godot.Collections.Dictionary<string, Variant>)internalData;
-                        GD.Print(internalDict);
                         PackedScene blockScene = GD.Load<PackedScene>((string)internalDict["Path"]);
                         AbstractBlock block = blockScene.Instantiate<AbstractBlock>();
 
