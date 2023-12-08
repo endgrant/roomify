@@ -6,9 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0h2x4"]
 size = Vector2(64, 64)
 
-[sub_resource type="Animation" id="Animation_sqnb4"]
-resource_name = "Jump Right"
-length = 0.05
+[sub_resource type="Animation" id="Animation_kukgp"]
+resource_name = "Jump Left"
+length = 0.1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -17,10 +17,10 @@ tracks/0/path = NodePath("Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.5708]
+"values": [0.0, -1.5708]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -29,10 +29,10 @@ tracks/1/path = NodePath("CollisionShape2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.5708]
+"values": [0.0, -1.5708]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -47,9 +47,9 @@ tracks/2/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_kukgp"]
-resource_name = "Jump Left"
-length = 0.05
+[sub_resource type="Animation" id="Animation_sqnb4"]
+resource_name = "Jump Right"
+length = 0.1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -58,10 +58,10 @@ tracks/0/path = NodePath("Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -1.5708]
+"values": [0.0, 1.5708]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -70,10 +70,10 @@ tracks/1/path = NodePath("CollisionShape2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -1.5708]
+"values": [0.0, 1.5708]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -142,11 +142,12 @@ script = ExtResource("1_3pi0j")
 maxSpeed = 500.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
 texture = ExtResource("2_81o6n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_0h2x4")
-disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

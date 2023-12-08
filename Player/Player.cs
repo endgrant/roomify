@@ -111,7 +111,8 @@ public partial class Player : CharacterBody2D {
 
 
 	public void EnteredRoom(Godot.Vector2 parentPos) {
-		levelPlayer.StartTimer();
+		if(IsInstanceValid(levelPlayer))
+			levelPlayer.StartTimer();
 		enteredRoom = true;
 		Velocity = new Godot.Vector2(0, 0);
 		MoveAndSlide();
@@ -126,15 +127,13 @@ public partial class Player : CharacterBody2D {
 
 
 	public void StartedAnimation(string title) {
-		SetPhysicsProcess(false);
+		if(title.Equals("Win"))
+			SetPhysicsProcess(false);
 	}
 
 
 	public void FinishedAnimation(string title) {
-		if(title.Equals("Win")) {
+		if(title.Equals("Win"))
 			levelPlayer.EndLevel();
-		}
-		else
-			SetPhysicsProcess(true);
 	}
 }
