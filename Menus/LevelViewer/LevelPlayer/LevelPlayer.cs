@@ -7,16 +7,28 @@ public partial class LevelPlayer : LevelViewer {
 
         private static bool isEditing;
         private Timer timer;
+        private Player player;
 
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready() {
+                viewport = GetNode<SubViewport>("LevelViewport/SubViewport");
+                player = viewport.GetNode<Player>("Player");
+                Spawn.player = player;
+                Player.levelPlayer = this;
+
+                base._Ready();
+
                 timer = GetNode<Timer>("Timer");
                 previousMenu = this;
+                level.levelName = Constants.currentLevelName;
+                level.Load();
+
+                viewport.AddChild(level);
         }
 
 
-        public void NavPreviousRoom() {
+        public override void NavPreviousRoom() {
                 if(!(timer.WaitTime == 0))
                         return;
                 //navigate to previous room

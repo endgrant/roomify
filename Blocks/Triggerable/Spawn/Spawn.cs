@@ -3,12 +3,23 @@ using System;
 
 public partial class Spawn : AbstractTriggerable {
         private Room linkedRoom = null;
-        private Vector2 parentPos;
+        private Vector2I parentPos;
+        public static Player player;
+
 
 	public override void _Ready() {
                 base._Ready();
                 displayName = "Spawn";
-                parentPos = ((LevelEditor)root).GetParentRoomPos();
+                parentPos = root.GetParentRoomPos();
+                Vector2I spawnLocation = GetGridPosition();
+                if (!parentPos.Equals(new Vector2I(-96, -96))) {
+                        spawnLocation = parentPos;
+                }
+                
+                Player.respawnPoint = spawnLocation * Constants.CELL_SIZE + new Vector2I(Constants.CELL_SIZE / 2, Constants.CELL_SIZE / 2);
+                if (IsInstanceValid(player)) {
+                        player.Position = Player.respawnPoint;
+                }
         }
 
 
@@ -20,7 +31,7 @@ public partial class Spawn : AbstractTriggerable {
 
                 if(activator is Player) {
                         ((Player)activator).EnteredRoom(parentPos);
-                        ((LevelPlayer)root).NavPreviousRoom();
+                        root.NavPreviousRoom();
                 }
         }
 
@@ -36,6 +47,6 @@ public partial class Spawn : AbstractTriggerable {
 
         public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
                 base.Load(data);
-                parentPos = new Vector2((float)data["EntranceX"], (float)data["EntranceY"]);       
+                parentPos = new Vector2I((int)data["EntranceX"], (int)data["EntranceY"]);       
         }
 }

@@ -7,7 +7,7 @@ public partial class Room : AbstractTriggerable
 {
         private Node2D tiles;
 	private Room parentRoom;
-        public Vector2I parentPos = Vector2I.Zero;
+        public Vector2I parentPos = new Vector2I (-96, -96);
         private AbstractBlock[,] cells = new AbstractBlock[Constants.ROOM_WIDTH, Constants.ROOM_HEIGHT];
         private Godot.Collections.Dictionary<string, Variant> roomData;
 
