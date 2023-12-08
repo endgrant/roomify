@@ -288,6 +288,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("19_wiei7")
 
 [connection signal="pressed" from="VBoxContainer/Topbar/Button" to="." method="NavPreviousRoom"]
+[connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Play" to="." method="PlayLevel"]
 [connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Save" to="." method="SaveLevel"]
 [connection signal="pressed" from="VBoxContainer/Topbar/Toolbar/Quit" to="." method="Quit"]
 [connection signal="pressed" from="VBoxContainer/Editbar/DeleteBlock" to="." method="ManualDelete"]

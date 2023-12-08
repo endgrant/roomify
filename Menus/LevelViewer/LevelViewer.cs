@@ -69,4 +69,9 @@ public abstract partial class LevelViewer : AbstractMenu
                 level.currentRoom.SetRoomData(newData);
                 level.currentRoom.Load(level.currentRoom.GetRoomData());
         }
+
+
+        public Node2D GetTiles() {
+                return tiles;
+        }
 }

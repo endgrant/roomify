@@ -14,7 +14,7 @@ public partial class Player : CharacterBody2D {
 	[Export(PropertyHint.Range, "0, 4000")] private float gravityMax = 2000;
 	private bool isTester = false;
 	private bool enteredRoom = false;
-	public static Godot.Vector2 respawnPoint;
+	public Godot.Vector2 respawnPoint;
 	public static LevelPlayer levelPlayer;
 	private AnimationPlayer animator;
 

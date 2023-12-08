@@ -15,11 +15,12 @@ public partial class Spawn : AbstractTriggerable {
                 if (!parentPos.Equals(new Vector2I(-96, -96))) {
                         spawnLocation = parentPos;
                 }
-                
+                /*
                 Player.respawnPoint = spawnLocation * Constants.CELL_SIZE + new Vector2I(Constants.CELL_SIZE / 2, Constants.CELL_SIZE / 2);
                 if (IsInstanceValid(player)) {
                         player.Position = Player.respawnPoint;
                 }
+                */
         }
 
 

@@ -8,6 +8,7 @@ public partial class LevelEditor : LevelViewer {
         [Signal]
         public delegate void NewEditEventHandler(AbstractBlock block);
         private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
+        private PackedScene levelPlayer = GD.Load<PackedScene>("res://Menus/LevelViewer/LevelPlayer/level_player.tscn");
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
         private bool hasGoal = false;
@@ -122,14 +123,14 @@ public partial class LevelEditor : LevelViewer {
 
 
         // Saves the level to file
-        public void SaveLevel() {
+        public bool SaveLevel() {
                 if(!hasGoal) {
                         OpenPrompt("Cannot save a level without a goal!");
-                        return;
+                        return false;
                 }
                 if(!hasSpawn) {
                         OpenPrompt("Cannot save a level without a spawn!");
-                        return;
+                        return false;
                 }
 
                 if (IsInstanceValid(level.currentRoom.GetParentRoom())) {
@@ -147,6 +148,15 @@ public partial class LevelEditor : LevelViewer {
                 }
 
                 level.Save(level.currentRoom.GetRoomData());
+                return true;
+        }
+
+
+        // Plays the level currently being edited
+        public void PlayLevel() {
+                if(!SaveLevel())
+                        return;
+                GetTree().ChangeSceneToPacked(levelPlayer);
         }
 
 

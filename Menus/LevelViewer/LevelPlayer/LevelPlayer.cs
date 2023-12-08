@@ -14,7 +14,6 @@ public partial class LevelPlayer : LevelViewer {
                 container = GetNode<SubViewportContainer>("LevelViewport");
                 viewport = container.GetNode<SubViewport>("SubViewport");
                 player = viewport.GetNode<Player>("Player");
-                Spawn.player = player;
                 Player.levelPlayer = this;
 
                 base._Ready();
@@ -22,6 +21,7 @@ public partial class LevelPlayer : LevelViewer {
                 timer = GetNode<Timer>("Timer");
                 level.levelName = Constants.currentLevelName;
                 level.Load();
+                player.EnteredRoom(GetSpawnLocation(tiles));
 
                 viewport.AddChild(level);
                 previousMenu = this;
@@ -45,11 +45,10 @@ public partial class LevelPlayer : LevelViewer {
                 if(!(GetTimeLeft() == 0))
                         return;
                 base.ChangeCurrentRoom(newRoom, prev);
-                player.EnteredRoom(GetSpawnLocation(newRoom));
+                player.EnteredRoom(GetSpawnLocation(newRoom.GetTiles()));
         }
 
-        private Vector2 GetSpawnLocation(Room newRoom) {
-                Node2D tiles = newRoom.GetTiles();
+        private Vector2 GetSpawnLocation(Node2D tiles) {
                 return tiles.GetNode<Spawn>("Spawn").GlobalPosition;
         }
 

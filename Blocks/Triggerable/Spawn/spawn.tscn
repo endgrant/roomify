@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Blocks/Triggerable/Spawn/Spawn.png" id="3_uwkqv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3jqdu"]
-radius = 32.0
+radius = 31.0
 
 [node name="Spawn" instance=ExtResource("1_m5tma")]
 script = ExtResource("2_dhyvn")

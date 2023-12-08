@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Blocks/Triggerable/Room/Room.png" id="2_nxs5i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_no20h"]
-radius = 32.0
+radius = 31.0
 
 [node name="Room" instance=ExtResource("1_7xbbs")]
 script = ExtResource("2_kxs82")
