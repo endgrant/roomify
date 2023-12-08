@@ -215,7 +215,7 @@ public partial class Room : AbstractTriggerable
 
 
         public override string Save() {
-                Godot.Collections.Dictionary<string, string> dict = new();
+                Godot.Collections.Dictionary<string, Variant> dict = new();
                 for (int i = 0; i < cells.GetLength(0); i++) {
                         for (int j = 0; j < cells.GetLength(1); j++) {
                                 if (IsInstanceValid(cells[i, j])) {
@@ -223,10 +223,15 @@ public partial class Room : AbstractTriggerable
                                         if (cells[i, j] is Room) {
                                                 Room subRoom = (Room)cells[i, j];
                                                 data = Json.Stringify(subRoom.GetRoomData());
+                                                if (data.Equals("null")) {
+                                                        data = Json.Stringify(new Godot.Collections.Dictionary{
+                                                                ["Path"] = "res://Blocks/Triggerable/Room/room.tscn",             
+                                                                ["Cells"] = new Godot.Collections.Dictionary<string, Variant>() {}
+                                                        });
+                                                }
                                         } else {
                                                 data = cells[i, j].Save();
                                         }
-                                        
                                         dict.Add("[" + i.ToString() + "," + j.ToString() + "]", data);
                                 }
                         }
@@ -253,7 +258,7 @@ public partial class Room : AbstractTriggerable
                                 GD.Print("Parse Error");
                         }
                         Godot.Collections.Dictionary<string, Variant> internalDict = (Godot.Collections.Dictionary<string, Variant>)internalData;
-
+                        GD.Print(internalDict);
                         PackedScene blockScene = GD.Load<PackedScene>((string)internalDict["Path"]);
                         AbstractBlock block = blockScene.Instantiate<AbstractBlock>();
 
