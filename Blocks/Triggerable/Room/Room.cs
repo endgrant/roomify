@@ -219,7 +219,15 @@ public partial class Room : AbstractTriggerable
                 for (int i = 0; i < cells.GetLength(0); i++) {
                         for (int j = 0; j < cells.GetLength(1); j++) {
                                 if (IsInstanceValid(cells[i, j])) {
-                                        dict.Add("[" + i.ToString() + "," + j.ToString() + "]", cells[i, j].Save());
+                                        string data;
+                                        if (cells[i, j] is Room) {
+                                                Room subRoom = (Room)cells[i, j];
+                                                data = Json.Stringify(subRoom.GetRoomData());
+                                        } else {
+                                                data = cells[i, j].Save();
+                                        }
+                                        
+                                        dict.Add("[" + i.ToString() + "," + j.ToString() + "]", data);
                                 }
                         }
                 }

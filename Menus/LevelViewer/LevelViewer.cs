@@ -39,9 +39,8 @@ public abstract partial class LevelViewer : AbstractMenu
         // Changes the current room
         public virtual void ChangeCurrentRoom(Room newRoom, bool prev) {
                 Room prevRoom = level.currentRoom;
-                if (prevRoom.GetRoomData() == null) {
-                        prevRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(prevRoom.Save()));
-                }
+
+                prevRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(prevRoom.Save()));
 
                 foreach (AbstractBlock block in tiles.GetChildren()) {
                         if (IsInstanceValid(block)) {             
