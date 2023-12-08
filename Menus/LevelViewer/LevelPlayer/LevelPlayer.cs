@@ -15,6 +15,7 @@ public partial class LevelPlayer : LevelViewer {
                 viewport = GetNode<SubViewport>("LevelViewport/SubViewport");
                 player = viewport.GetNode<Player>("Player");
                 Spawn.player = player;
+                Player.levelPlayer = this;
 
                 base._Ready();
 

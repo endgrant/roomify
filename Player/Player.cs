@@ -14,17 +14,19 @@ public partial class Player : CharacterBody2D {
 	[Export(PropertyHint.Range, "0, 4000")] private float gravityMax = 2000;
 	private bool isTester = false;
 	private bool enteredRoom = false;
-	private Godot.Vector2 respawnPoint;
+	public static Godot.Vector2 respawnPoint;
+        public static LevelPlayer levelPlayer;
 	private AnimationPlayer animator;
 
-    public override void _Ready() {
-        base._Ready();
-		respawnPoint = GlobalPosition;
-		animator = GetNode<AnimationPlayer>("AnimationPlayer");
-		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
-    }
 
-    public void _physics_process(float delta) {
+        public override void _Ready() {
+                base._Ready();
+                        animator = GetNode<AnimationPlayer>("AnimationPlayer");
+                        GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
+        }
+
+
+        public void _physics_process(float delta) {
 		// ignores player inputs if the pause screen is open and the player is not listed to be a test player
 		if(!isTester && GetNode<PauseOverlay>("/root/PauseMenu").Visible == true)
 			return;
@@ -85,6 +87,7 @@ public partial class Player : CharacterBody2D {
 			Die();
 	}
 
+
 	public void SetIsTester(bool value) {
 		isTester = value;
 		SetCollisionLayerValue(1, !isTester);
@@ -94,9 +97,11 @@ public partial class Player : CharacterBody2D {
 		SetCollisionMaskValue(5, isTester);
 	}
 
+
 	public void Die() {
 		EnteredRoom(respawnPoint);
 	}
+
 
 	// sets the extra jumps for the player
 	public void SetExtraJumps(int jumps) {
@@ -104,26 +109,30 @@ public partial class Player : CharacterBody2D {
 			extraJumps = jumps;
 	}
 
-    internal void EnteredRoom(Godot.Vector2 parentPos) {
-		GetParent<LevelPlayer>().StartTimer();
-		enteredRoom = true;
-        Velocity = new Godot.Vector2(0, 0);
-		MoveAndSlide();
-		respawnPoint = parentPos;
-		GlobalPosition = respawnPoint;
-    }
 
-    public void Win() {
-        animator.Play("Win");
-    }
+        internal void EnteredRoom(Godot.Vector2 parentPos) {
+                        GetParent<LevelPlayer>().StartTimer();
+                        enteredRoom = true;
+                        Velocity = new Godot.Vector2(0, 0);
+                        MoveAndSlide();
+                        respawnPoint = parentPos;
+                        GlobalPosition = respawnPoint;
+        }
+
+
+        public void Win() {
+                animator.Play("Win");
+        }
+
 
 	public void StartedAnimation(string title) {
 		SetPhysicsProcess(false);
 	}
 
+
 	public void FinishedAnimation(string title) {
 		if(title.Equals("Win")) {
-			GetParent<LevelPlayer>().EndLevel();
+			levelPlayer.EndLevel();
 		}
 		else
 			SetPhysicsProcess(true);
