@@ -5,7 +5,21 @@ using System.Collections.Generic;
 public partial class Level : Node2D {
         public string levelName;
 	public Room currentRoom;
-        
+        public Vector2I parentRoomPos = new Vector2I(-96, -96);
+
+
+        public Level() {
+                RoomRequester.currentLevel = this;
+        }
+
+
+        public void ChangeRoom(Room newRoom, bool prev) {
+                GD.Print(newRoom, prev);
+                RoomLoader loader = RoomRequester.GetLoader();
+                Room room = loader.GetRoom(newRoom, prev); 
+                currentRoom = room;
+        }
+
 
         public void Save(Godot.Collections.Dictionary<string, Variant> data) {
                 string jsonString = Json.Stringify(data);

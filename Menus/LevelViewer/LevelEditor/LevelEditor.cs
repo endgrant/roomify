@@ -69,6 +69,7 @@ public partial class LevelEditor : LevelViewer {
                 EmitSignal(SignalName.MenuChanged, 0);
         }
 
+
         private void CheckForSpawn() {
                 foreach (AbstractBlock block in tiles.GetChildren()) {
                         if (IsInstanceValid(block) && block is Spawn) {
