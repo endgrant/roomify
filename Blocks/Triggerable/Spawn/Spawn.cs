@@ -30,8 +30,7 @@ public partial class Spawn : AbstractTriggerable {
                         return;
 
                 if(activator is Player) {
-                        ((Player)activator).EnteredRoom(parentPos);
-                        root.NavPreviousRoom();
+                        root.ChangeCurrentRoom(linkedRoom, true);
                 }
         }
 

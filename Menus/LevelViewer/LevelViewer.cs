@@ -38,6 +38,9 @@ public abstract partial class LevelViewer : AbstractMenu
 
         // Changes the current room
         public virtual void ChangeCurrentRoom(Room newRoom, bool prev) {
+                if(newRoom == null) {
+                        return;
+                }
                 Room prevRoom = level.currentRoom;
 
                 prevRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(prevRoom.Save()));
@@ -56,7 +59,7 @@ public abstract partial class LevelViewer : AbstractMenu
                 Godot.Collections.Dictionary<string, Variant> newData = newRoom.GetRoomData();
 
                 if (prev) {
-                         Vector2I gridPos = prevRoom.parentPos;
+                        Vector2I gridPos = prevRoom.parentPos;
                         string index = "[" + gridPos.X + "," + gridPos.Y + "]";
                         Godot.Collections.Dictionary<string, Variant> cells = (Godot.Collections.Dictionary<string, Variant>)newData["Cells"];
                         cells[index] = Json.Stringify(prevData); 

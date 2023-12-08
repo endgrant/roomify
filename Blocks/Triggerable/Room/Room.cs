@@ -110,6 +110,12 @@ public partial class Room : AbstractTriggerable
         }
 
 
+        // Returns the spawn location of the room
+        public void GetSpawnLocation() {
+                
+        }
+
+
         // Place block in room grid from scene
         public void PlaceBlock(Vector2I pos, PackedScene blockScene) {
                 if(IsInstanceValid(GetBlockFromGrid(pos)))
