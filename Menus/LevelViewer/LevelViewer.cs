@@ -24,7 +24,7 @@ public abstract partial class LevelViewer : AbstractMenu
                 level.currentRoom = startingRoom;
                 tiles = level.GetNode<Node2D>("Tiles");
                 level.currentRoom.SetTiles(tiles);
-                level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));
+                level.currentRoom.SetRoomData(null);
         }
 
 

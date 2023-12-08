@@ -51,6 +51,7 @@ public partial class LevelEditor : LevelViewer {
                         level.Load();
                 } else {
                         level.levelName = "Unnamed_Level";
+                        level.currentRoom.SetRoomData(null);
                 }
                 viewport.AddChild(level);
 
