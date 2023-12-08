@@ -15,7 +15,7 @@ public partial class Player : CharacterBody2D {
 	private bool isTester = false;
 	private bool enteredRoom = false;
 	public static Godot.Vector2 respawnPoint;
-        public static LevelPlayer levelPlayer;
+	public static LevelPlayer levelPlayer;
 	private AnimationPlayer animator;
 
 
