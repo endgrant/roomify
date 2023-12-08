@@ -7,11 +7,15 @@ public partial class PauseOverlay : CanvasLayer {
         private PackedScene levelEditMenu = GD.Load<PackedScene>("res://Menus/LevelViewer/LevelEditor/level_editor.tscn");
         private Panel tester;
 	private AudioStreamPlayer audio;
+        private static Button editButton;
+        private static Button selectButton;
 
 	public override void _Ready() {
 		base._Ready();
                 tester = GetNode<Panel>("PlayTester");
 		audio = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
+                editButton = GetNode<Button>("Edit");
+                selectButton = GetNode<Button>("Select");
                 Visible = false;
 	}
 
@@ -32,7 +36,7 @@ public partial class PauseOverlay : CanvasLayer {
                 audio.VolumeDb = value;
         }
 
-        public void Show() {
+        public new void Show() {
                 Visible = true;
                 Player player = (Player)playerScene.Instantiate();
                 player.SetIsTester(true);
@@ -40,9 +44,22 @@ public partial class PauseOverlay : CanvasLayer {
                 player.EnteredRoom(new Vector2(704, 544));
         }
 
-        public void Hide() {
+        public new void Hide() {
                 Visible = false;
                 GetNode<Player>("Player").QueueFree();
+        }
+
+        public static void ChangedMenu(int menuType) {
+                switch(menuType) {
+                        case 0:
+                                editButton.Visible = false;
+                                selectButton.Visible = false;
+                                break;
+                        case 1:
+                                editButton.Visible = true;
+                                selectButton.Visible = true;
+                                break;
+                }
         }
 
         public void QuitToEditor() {

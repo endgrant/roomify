@@ -38,6 +38,7 @@ public partial class LevelSelect : AbstractMenu {
                         button.Connect("pressed", callable);
                         grid.AddChild(button);
                 }
+                EmitSignal(SignalName.MenuChanged, 0);
         }
 
 

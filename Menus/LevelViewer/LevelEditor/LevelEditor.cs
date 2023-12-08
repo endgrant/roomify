@@ -64,6 +64,8 @@ public partial class LevelEditor : LevelViewer {
                 if(previousMenu is LevelPlayer)
                         hasGoal = true;
                 CheckForSpawn();
+                previousMenu = this;
+                EmitSignal(SignalName.MenuChanged, 0);
         }
 
         private void CheckForSpawn() {
@@ -123,6 +125,10 @@ public partial class LevelEditor : LevelViewer {
         public void SaveLevel() {
                 if(!hasGoal) {
                         OpenPrompt("Cannot save a level without a goal!");
+                        return;
+                }
+                if(!hasSpawn) {
+                        OpenPrompt("Cannot save a level without a spawn!");
                         return;
                 }
 

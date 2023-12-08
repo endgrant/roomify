@@ -18,11 +18,12 @@ public partial class LevelPlayer : LevelViewer {
                 base._Ready();
 
                 timer = GetNode<Timer>("Timer");
-                previousMenu = this;
                 level.levelName = Constants.currentLevelName;
                 level.Load();
 
                 viewport.AddChild(level);
+                previousMenu = this;
+                EmitSignal(SignalName.MenuChanged, 1);
         }
 
 
