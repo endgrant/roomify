@@ -48,11 +48,13 @@ public partial class LevelPlayer : LevelViewer {
                 player.EnteredRoom(GetSpawnLocation(newRoom.GetTiles()));
         }
 
+
         private Vector2 GetSpawnLocation(Node2D tiles) {
                 return tiles.GetNode<Spawn>("Spawn").GlobalPosition;
         }
 
-    public void EndLevel() {
+
+        public void EndLevel() {
                 ToggleHandler.instance.ResetToggle();
                 if(previousMenu is LevelEditor) {
                         GetTree().ChangeSceneToPacked(editor);
