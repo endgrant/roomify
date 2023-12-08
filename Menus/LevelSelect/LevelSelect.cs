@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.IO;
 
-public partial class LevelSelect : Node {
+public partial class LevelSelect : AbstractMenu {
 	private PackedScene mainMenu = GD.Load<PackedScene>("res://Menus/MainMenu/main_menu.tscn");
         private PackedScene levelEditorMenu = GD.Load<PackedScene>("res://Menus/LevelViewer/LevelEditor/level_editor.tscn");
         private PackedScene levelSelectButton = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select_button.tscn");
@@ -21,6 +21,7 @@ public partial class LevelSelect : Node {
                 grid = main.GetNode<GridContainer>("Center/PageView/LevelView");
                 overlay = main.GetNode<VBoxContainer>("Center/RenameOverlay");
                 lineEdit = overlay.GetNode<LineEdit>("LineEdit");
+                previousMenu = this;
 
                 if(!Directory.Exists(Constants.SAVE_DIR))
                         Directory.CreateDirectory(Constants.SAVE_DIR);
@@ -58,6 +59,7 @@ public partial class LevelSelect : Node {
         // Create button is pressed
         public void Create() {
                 Constants.currentLevelName = "";
+                lastButtonPressed = "create";
                 GetTree().ChangeSceneToPacked(levelEditorMenu);
         }
 
@@ -73,6 +75,7 @@ public partial class LevelSelect : Node {
                 if (Constants.currentLevelName.Equals("")) {
                         return;
                 }
+                lastButtonPressed = "play";
                 GetTree().ChangeSceneToPacked(levelPlayerMenu);
         }
 
@@ -82,6 +85,7 @@ public partial class LevelSelect : Node {
                 if (Constants.currentLevelName.Equals("")) {
                         return;
                 }
+                lastButtonPressed = "edit";
                 GetTree().ChangeSceneToPacked(levelEditorMenu);
         }
 
@@ -98,7 +102,7 @@ public partial class LevelSelect : Node {
                                 break;
                         }
                 }
-
+                lastButtonPressed = "delete";
                 GetTree().ReloadCurrentScene();
         }
 
@@ -124,8 +128,8 @@ public partial class LevelSelect : Node {
                                 break;
                         }
                 }
-
                 CancelNameChange();
+                lastButtonPressed = "rename";
                 GetTree().ReloadCurrentScene();
         }
 

@@ -71,6 +71,20 @@ public partial class LevelEditor : LevelViewer {
                 SetCurrentBlock(0, GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1, 
                         topbar.GetNode<OptionButton>("BlockSelector/Block/Option").GetItemIcon(0));
                 AbstractBlock.SetRoot(this);
+
+                if(previousMenu is LevelSelect && lastButtonPressed == "edit")
+                        hasGoal = true;
+                if(previousMenu is LevelPlayer)
+                        hasGoal = true;
+                CheckForSpawn();
+        }
+
+        private void CheckForSpawn() {
+                foreach (AbstractBlock block in tiles.GetChildren()) {
+                        if (IsInstanceValid(block) && block is Spawn) {
+                              hasSpawn = true;  
+                        }
+                }
         }
 
 
@@ -120,6 +134,11 @@ public partial class LevelEditor : LevelViewer {
 
         // Saves the level to file
         public void SaveLevel() {
+                if(!hasGoal) {
+                        OpenPrompt("Cannot save a level without a goal!");
+                        return;
+                }
+
                 if (IsInstanceValid(level.currentRoom.GetParentRoom())) {
                         while (true) {
                                 NavPreviousRoom();
@@ -170,12 +189,8 @@ public partial class LevelEditor : LevelViewer {
                 level.currentRoom.SetRoomData(newData);
                 level.currentRoom.Load(level.currentRoom.GetRoomData());
                 hasSpawn = false;
-
-                foreach (AbstractBlock block in tiles.GetChildren()) {
-                        if (IsInstanceValid(block) && block is Spawn) {
-                              hasSpawn = true;  
-                        }
-                }
+                GD.Print(hasGoal);
+                CheckForSpawn();
         }
 
 
