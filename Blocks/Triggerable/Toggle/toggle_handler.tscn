@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://brali4xx1nd1u"]
+
+[ext_resource type="PackedScene" uid="uid://bfciivolqy5hl" path="res://Blocks/Triggerable/Toggle/toggle_switch.tscn" id="1_lsgp0"]
+[ext_resource type="Script" path="res://Blocks/Triggerable/Toggle/ToggleHandler.cs" id="2_vew0w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pris0"]
+size = Vector2(0, 0)
+
+[node name="ToggleSwitch" instance=ExtResource("1_lsgp0")]
+script = ExtResource("2_vew0w")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = null
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_pris0")
+
+[node name="Timer" type="Timer" parent="." index="2"]
+wait_time = 0.2
+one_shot = true

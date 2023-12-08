@@ -110,14 +110,14 @@ public partial class Player : CharacterBody2D {
 	}
 
 
-        internal void EnteredRoom(Godot.Vector2 parentPos) {
-                        GetParent<LevelPlayer>().StartTimer();
-                        enteredRoom = true;
-                        Velocity = new Godot.Vector2(0, 0);
-                        MoveAndSlide();
-                        respawnPoint = parentPos;
-                        GlobalPosition = respawnPoint;
-        }
+	public void EnteredRoom(Godot.Vector2 parentPos) {
+		levelPlayer.StartTimer();
+		enteredRoom = true;
+		Velocity = new Godot.Vector2(0, 0);
+		MoveAndSlide();
+		respawnPoint = parentPos;
+		GlobalPosition = respawnPoint;
+	}
 
 
         public void Win() {

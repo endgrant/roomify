@@ -4,8 +4,6 @@ using System;
 public partial class LevelPlayer : LevelViewer {
 	private static PackedScene editor = GD.Load<PackedScene>("res://Menus/LevelViewer/LevelEditor/level_editor.tscn");
 	private static PackedScene selector = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
-
-        private static bool isEditing;
         private Timer timer;
         private Player player;
 
@@ -36,16 +34,12 @@ public partial class LevelPlayer : LevelViewer {
 
 
         public void EndLevel() {
-                if(isEditing) {
+                ToggleHandler.instance.ResetToggle();
+                if(previousMenu is LevelEditor) {
                         GetTree().ChangeSceneToPacked(editor);
                 } else {
                         GetTree().ChangeSceneToPacked(selector);
                 }
-        }
-
-
-        public void SetIsEditing(bool value) {
-                isEditing = value;
         }
 
 

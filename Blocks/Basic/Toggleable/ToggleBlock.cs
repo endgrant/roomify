@@ -10,15 +10,8 @@ public abstract partial class ToggleBlock : BasicBlock {
 	public override void _Ready() {
 		sprite = GetNode<Sprite2D>("Sprite2D");
 		hitbox = GetNode<CollisionShape2D>("CollisionShape2D");
-		ToggleSwitch mainToggle;
-		mainToggle = ToggleSwitch.GetMainToggle();
-		if(!IsInstanceValid(mainToggle)) {
-			mainToggle = new ToggleSwitch();
-			AddSibling(mainToggle);
-			ToggleSwitch.SetMainToggle(mainToggle);
-		}
-		mainToggle.Toggle += ChangeState;
-		ChangeState(mainToggle.GetIsRed());
+		ToggleHandler.instance.Toggle += ChangeState;
+		ChangeState(ToggleHandler.instance.GetIsRed());
 	}
 
 
