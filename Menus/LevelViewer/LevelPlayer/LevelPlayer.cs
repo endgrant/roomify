@@ -6,11 +6,13 @@ public partial class LevelPlayer : LevelViewer {
 	private static PackedScene selector = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
         private Timer timer;
         private Player player;
+        private SubViewportContainer container;
 
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready() {
-                viewport = GetNode<SubViewport>("LevelViewport/SubViewport");
+                container = GetNode<SubViewportContainer>("LevelViewport");
+                viewport = container.GetNode<SubViewport>("SubViewport");
                 player = viewport.GetNode<Player>("Player");
                 Spawn.player = player;
                 Player.levelPlayer = this;
@@ -26,8 +28,13 @@ public partial class LevelPlayer : LevelViewer {
         }
 
 
+        public void SetViewportVisibility(bool visible) {
+                container.Visible = visible;
+        } 
+
+
         public override void NavPreviousRoom() {
-                if(!(timer.WaitTime == 0))
+                if(!(GetTimeLeft() == 0))
                         return;
                 //navigate to previous room
         }
@@ -44,7 +51,7 @@ public partial class LevelPlayer : LevelViewer {
 
 
         public double GetTimeLeft() {
-                return timer.WaitTime;
+                return timer.TimeLeft;
         }
 
 

@@ -34,4 +34,37 @@ public abstract partial class LevelViewer : AbstractMenu
         public Vector2I GetParentRoomPos() {
                 return parentRoomPos;
         }
+
+
+        // Changes the current room
+        public virtual void ChangeCurrentRoom(Room newRoom, bool prev) {
+                Room prevRoom = level.currentRoom;
+                if (prevRoom.GetRoomData() == null) {
+                        prevRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(prevRoom.Save()));
+                }
+
+                foreach (AbstractBlock block in tiles.GetChildren()) {
+                        if (IsInstanceValid(block)) {             
+                                prevRoom.DeleteBlock(block);  
+                        }
+                }
+                
+                level.currentRoom = defaultRoomScene.Instantiate<Room>();
+                level.currentRoom.SetTiles(tiles);
+                level.currentRoom.SetParentRoom(newRoom.GetParentRoom());
+                level.currentRoom.parentPos = newRoom.parentPos;
+                Godot.Collections.Dictionary<string, Variant> prevData = prevRoom.GetRoomData();
+                Godot.Collections.Dictionary<string, Variant> newData = newRoom.GetRoomData();
+
+                if (prev) {
+                         Vector2I gridPos = prevRoom.parentPos;
+                        string index = "[" + gridPos.X + "," + gridPos.Y + "]";
+                        Godot.Collections.Dictionary<string, Variant> cells = (Godot.Collections.Dictionary<string, Variant>)newData["Cells"];
+                        cells[index] = Json.Stringify(prevData); 
+                }
+
+                parentRoomPos = level.currentRoom.parentPos;
+                level.currentRoom.SetRoomData(newData);
+                level.currentRoom.Load(level.currentRoom.GetRoomData());
+        }
 }

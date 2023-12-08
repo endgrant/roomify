@@ -15,3 +15,10 @@ texture = ExtResource("2_nxs5i")
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_no20h")
+
+[node name="Timer" type="Timer" parent="." index="2"]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="Entered"]
+[connection signal="timeout" from="Timer" to="." method="Flushed"]

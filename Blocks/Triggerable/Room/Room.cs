@@ -13,12 +13,16 @@ public partial class Room : AbstractTriggerable
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
 
+        private Timer flush;
+
 
         public Room() {}
 
 
         // Entered scene tree
 	public override void _Ready() {
+                flush = GetNode<Timer>("Timer");
+
                 base._Ready();
                 displayName = "Room";
         }
@@ -26,7 +30,21 @@ public partial class Room : AbstractTriggerable
 
         // Entered
         public override void Entered(Node2D activator) {
-                
+                if (!(activator is Player)) {
+                        return;
+                }
+                activator.Position = new Vector2I(-96, -96);
+
+                LevelPlayer levelPlayer = (LevelPlayer)root;
+                levelPlayer.SetViewportVisibility(false);
+                flush.Start();
+        }
+
+
+        public void Flushed() {
+                LevelPlayer levelPlayer = (LevelPlayer)root;
+                ChangeRoom();
+                levelPlayer.SetViewportVisibility(true);
         }
 
 
@@ -40,11 +58,13 @@ public partial class Room : AbstractTriggerable
 
         // Changes the current room to this one
         public void ChangeRoom() {
-                if(!((LevelEditor)root).GetHasSpawn()) {
-                        ((LevelEditor)root).OpenPrompt("Place a spawn before changing rooms!");
-                        return;
+                if (root is LevelEditor) {
+                        if(!((LevelEditor)root).GetHasSpawn()) {
+                                ((LevelEditor)root).OpenPrompt("Place a spawn before changing rooms!");
+                                return;
+                        }
                 }
-                ((LevelEditor)root).ChangeCurrentRoom(this, false);
+                root.ChangeCurrentRoom(this, false);
         }
 
 
@@ -139,11 +159,14 @@ public partial class Room : AbstractTriggerable
         public void DeleteBlock(AbstractBlock block) {
                 if(!IsInstanceValid(block))
                         return;
-                if(block is Spawn)
-                        ((LevelEditor)root).SetHasSpawn(false);
-                if(block is Goal && !((LevelEditor)root).IsChangingRooms())
-                        ((LevelEditor)root).SetHasGoal(false);
-
+                
+                if (root is LevelEditor) {
+                        if(block is Spawn)
+                                ((LevelEditor)root).SetHasSpawn(false);
+                        if(block is Goal && !((LevelEditor)root).IsChangingRooms())
+                                ((LevelEditor)root).SetHasGoal(false);
+                }
+                
                 tiles.RemoveChild(block);
                 Vector2I gridPos = block.GetGridPosition();
                 RemoveBlockFromGrid(gridPos);
