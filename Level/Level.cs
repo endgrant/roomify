@@ -3,12 +3,11 @@ using System;
 
 public partial class Level : Node2D {
         public string levelName;
-        public Room masterRoom;
 	public Room currentRoom;
         
 
-        public void Save() {
-                string jsonString = masterRoom.Save();
+        public void Save(Godot.Collections.Dictionary<string, Variant> data) {
+                string jsonString = Json.Stringify(data);
                 levelName = levelName.TrimSuffix(".lvl");
                 FileAccess file = FileAccess.Open(Constants.SAVE_DIR + "/" + levelName + ".lvl", FileAccess.ModeFlags.Write);
                 file.StoreLine(jsonString);
@@ -27,8 +26,8 @@ public partial class Level : Node2D {
                 }
 
                 Godot.Collections.Dictionary<string, Variant> dict = (Godot.Collections.Dictionary<string, Variant>)data;
-                masterRoom.SetRoomData(dict);
-                masterRoom.Load(dict);
+                currentRoom.SetRoomData(dict);
+                currentRoom.Load(dict);
 
                 file.Close();
         }

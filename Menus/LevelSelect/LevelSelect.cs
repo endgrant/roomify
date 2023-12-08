@@ -6,6 +6,7 @@ public partial class LevelSelect : Node {
 	private PackedScene mainMenu = GD.Load<PackedScene>("res://Menus/MainMenu/main_menu.tscn");
         private PackedScene levelEditorMenu = GD.Load<PackedScene>("res://Menus/LevelViewer/LevelEditor/level_editor.tscn");
         private PackedScene levelSelectButton = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select_button.tscn");
+        private PackedScene levelPlayerMenu = GD.Load<PackedScene>("res://Menus/LevelViewer/LevelPlayer/level_player.tscn");
 
         private VBoxContainer main;
         private GridContainer grid;
@@ -67,14 +68,29 @@ public partial class LevelSelect : Node {
         }
 
 
+        // PLay select level
+        public void PlayLevel() {
+                if (Constants.currentLevelName.Equals("")) {
+                        return;
+                }
+                GetTree().ChangeSceneToPacked(levelPlayerMenu);
+        }
+
+
         // Edit selected level
         public void EditLevel() {
+                if (Constants.currentLevelName.Equals("")) {
+                        return;
+                }
                 GetTree().ChangeSceneToPacked(levelEditorMenu);
         }
 
 
         // Delete selected level
         public void DeleteLevel() {
+                if (Constants.currentLevelName.Equals("")) {
+                        return;
+                }
                 string[] fileNames = DirAccess.GetFilesAt(Constants.SAVE_DIR);
                 foreach (string fileName in fileNames) {
                         if (fileName.Equals(Constants.currentLevelName)) {
@@ -88,7 +104,10 @@ public partial class LevelSelect : Node {
 
 
         // Change level name
-        public void ChangeLevelName() {                
+        public void ChangeLevelName() { 
+                if (Constants.currentLevelName.Equals("")) {
+                        return;
+                }               
                 string[] fileNames = DirAccess.GetFilesAt(Constants.SAVE_DIR);
                 foreach (string fileName in fileNames) {
                         if (fileName.Equals(Constants.currentLevelName)) {

@@ -54,10 +54,10 @@ public partial class LevelEditor : LevelViewer {
 
                 Room startingRoom = defaultRoomScene.Instantiate<Room>();
                 level = defaultLevelScene.Instantiate<Level>();
-                level.masterRoom = startingRoom;
                 level.currentRoom = startingRoom;
                 tiles = level.GetNode<Node2D>("Tiles");
                 level.currentRoom.SetTiles(tiles);
+                level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));
 
                 if (!Constants.currentLevelName.Equals("")) {
                         // Load existing level
@@ -120,7 +120,20 @@ public partial class LevelEditor : LevelViewer {
 
         // Saves the level to file
         public void SaveLevel() {
-                level.Save();
+                if (IsInstanceValid(level.currentRoom.GetParentRoom())) {
+                        while (true) {
+                                NavPreviousRoom();
+
+                                Room parentRoom = level.currentRoom.GetParentRoom();
+
+                                if (!IsInstanceValid(parentRoom)) {
+                                        break;
+                                }
+                        }
+                } else {
+                        level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));
+                        level.Save(level.currentRoom.GetRoomData());
+                }
         }
 
 
@@ -130,7 +143,6 @@ public partial class LevelEditor : LevelViewer {
                 if (prevRoom.GetRoomData() == null) {
                         prevRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(prevRoom.Save()));
                 }
-                
 
                 foreach (AbstractBlock block in tiles.GetChildren()) {
                         if (IsInstanceValid(block)) {             
@@ -145,17 +157,14 @@ public partial class LevelEditor : LevelViewer {
                 level.currentRoom.parentPos = newRoom.parentPos;
                 Godot.Collections.Dictionary<string, Variant> prevData = prevRoom.GetRoomData();
                 Godot.Collections.Dictionary<string, Variant> newData = newRoom.GetRoomData();
-                GD.Print("OLD:",newData);
-                GD.Print("ADD:",prevData);
+
                 if (prev) {
-                        
-                        Vector2I gridPos = prevRoom.parentPos;
+                         Vector2I gridPos = prevRoom.parentPos;
                         string index = "[" + gridPos.X + "," + gridPos.Y + "]";
                         Godot.Collections.Dictionary<string, Variant> cells = (Godot.Collections.Dictionary<string, Variant>)newData["Cells"];
-                        cells[index] = Json.Stringify(prevData);
-                        
+                        cells[index] = Json.Stringify(prevData); 
                 }
-                GD.Print("NEW:",newData);
+
                 level.currentRoom.SetRoomData(newData);
                 level.currentRoom.Load(level.currentRoom.GetRoomData());
                 hasSpawn = false;
