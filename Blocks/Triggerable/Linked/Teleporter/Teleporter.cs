@@ -27,7 +27,7 @@ public partial class Teleporter : AbstractLinked {
         public override void Edit() {
                 base.Edit();
                 locator.Visible = true;
-                locator.Position = location;
+                locator.GlobalPosition = location;
                 Button button = ((LevelEditor)root).CreateButton("Reset Location");
                 button.Pressed += ResetLocation;
                 HSlider sliderX = ((LevelEditor)root).CreateSlider(location.X, "X Location", 32, 1504, 64);
