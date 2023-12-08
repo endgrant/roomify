@@ -8,11 +8,8 @@ public partial class LevelEditor : LevelViewer {
         [Signal]
         public delegate void NewEditEventHandler(AbstractBlock block);
         private PackedScene levelSelectMenu = GD.Load<PackedScene>("res://Menus/LevelSelect/level_select.tscn");
-        private PackedScene defaultLevelScene = GD.Load<PackedScene>("res://Level/level.tscn");
-        private PackedScene defaultRoomScene = GD.Load<PackedScene>("res://Blocks/Triggerable/Room/room.tscn");
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
-        private Vector2 parentRoomPos;
         private bool hasGoal = false;
         private bool hasSpawn = false;
         private bool changingRooms = false;
@@ -22,10 +19,7 @@ public partial class LevelEditor : LevelViewer {
         private Label editBlockLabel;
         private Button deleteBlockButton;
         private Control spacer;
-        private SubViewport viewport;
-        private Level level;
         private TileMap ghostmap;
-        private Node2D tiles;
         private TextureRect currentBlockTextureRect;
         private CanvasLayer prompt;
 
@@ -41,7 +35,6 @@ public partial class LevelEditor : LevelViewer {
         public override void _Ready() {
                 base._Ready();
 
-                parentRoomPos = new Vector2(-96, -96);
                 topbar = GetNode<Control>("VBoxContainer/Topbar");
                 editbar = GetNode<HBoxContainer>("VBoxContainer/Editbar");
                 editBlockLabel = editbar.GetNode<Label>("CurrentBlock");
@@ -51,13 +44,6 @@ public partial class LevelEditor : LevelViewer {
                 ghostmap = viewport.GetNode<TileMap>("GhostMap");
                 currentBlockTextureRect = GetNode<TextureRect>("VBoxContainer/Topbar/CurrentBlock/TextureRect");
                 prompt = GetNode<CanvasLayer>("Prompt");
-
-                Room startingRoom = defaultRoomScene.Instantiate<Room>();
-                level = defaultLevelScene.Instantiate<Level>();
-                level.currentRoom = startingRoom;
-                tiles = level.GetNode<Node2D>("Tiles");
-                level.currentRoom.SetTiles(tiles);
-                level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));
 
                 if (!Constants.currentLevelName.Equals("")) {
                         // Load existing level
@@ -69,8 +55,7 @@ public partial class LevelEditor : LevelViewer {
                 viewport.AddChild(level);
 
                 SetCurrentBlock(0, GD.Load<PackedScene>("res://Blocks/Basic/BasicBlock/basic_block.tscn"), 1, 
-                        topbar.GetNode<OptionButton>("BlockSelector/Block/Option").GetItemIcon(0));
-                AbstractBlock.SetRoot(this);
+                        topbar.GetNode<OptionButton>("BlockSelector/Block/Option").GetItemIcon(0));   
         }
 
 
@@ -141,6 +126,8 @@ public partial class LevelEditor : LevelViewer {
 
         // Changes the current room
         public void ChangeCurrentRoom(Room newRoom, bool prev) {
+                changingRooms = true;
+
                 Room prevRoom = level.currentRoom;
                 if (prevRoom.GetRoomData() == null) {
                         prevRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(prevRoom.Save()));
@@ -167,20 +154,23 @@ public partial class LevelEditor : LevelViewer {
                         cells[index] = Json.Stringify(prevData); 
                 }
 
+                parentRoomPos = level.currentRoom.parentPos;
                 level.currentRoom.SetRoomData(newData);
                 level.currentRoom.Load(level.currentRoom.GetRoomData());
                 hasSpawn = false;
 
                 foreach (AbstractBlock block in tiles.GetChildren()) {
                         if (IsInstanceValid(block) && block is Spawn) {
-                              hasSpawn = true;  
+                                hasSpawn = true;  
                         }
                 }
+
+                changingRooms = false;
         }
 
 
         // Navigates up one room in the room tree
-        public void NavPreviousRoom() {
+        public override void NavPreviousRoom() {
                 Room parentRoom = level.currentRoom.GetParentRoom();
 
                 if (IsInstanceValid(parentRoom)) {
@@ -317,22 +307,21 @@ public partial class LevelEditor : LevelViewer {
                 GetTree().ChangeSceneToPacked(levelSelectMenu);
         }
 
-        public Vector2 GetParentRoomPos() {
-                return parentRoomPos;
-        }
 
         public bool IsChangingRooms() {
                 return changingRooms;
         }
 
-    public void OpenPrompt(string message) {
-        prompt.GetNode<Button>("CenterContainer/Button").Text = message;
-        prompt.Visible = true;
-        ghostmap.Visible = false;
-    }
 
-    public void ExitPrompt() {
-        prompt.Visible = false;
-        ghostmap.Visible = true;
-    }
+        public void OpenPrompt(string message) {
+                prompt.GetNode<Button>("CenterContainer/Button").Text = message;
+                prompt.Visible = true;
+                ghostmap.Visible = false;
+        }
+
+
+        public void ExitPrompt() {
+                prompt.Visible = false;
+                ghostmap.Visible = true;
+        }
 }

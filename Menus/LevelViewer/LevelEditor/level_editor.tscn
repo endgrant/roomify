@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://by67ptjtbqlp2"]
+[gd_scene load_steps=22 format=3 uid="uid://by67ptjtbqlp2"]
 
 [ext_resource type="Script" path="res://Menus/LevelViewer/LevelEditor/LevelEditor.cs" id="1_jm58u"]
 [ext_resource type="Texture2D" uid="uid://bdtivc5yb61lu" path="res://Menus/LevelViewer/LevelEditor/BasicBlock.png" id="1_s54ka"]
@@ -14,10 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://basnnphglf5hg" path="res://Blocks/Triggerable/Spawn/Spawn.png" id="10_bwwnq"]
 [ext_resource type="Texture2D" uid="uid://cuc3kq1auwos8" path="res://Blocks/Triggerable/Goal/Goal.png" id="11_3k8bc"]
 [ext_resource type="Texture2D" uid="uid://b1vcenm48xc1t" path="res://Blocks/Triggerable/Room/Room.png" id="12_ojo2e"]
-[ext_resource type="Texture2D" uid="uid://bl11w8mnh26ik" path="res://Menus/LevelViewer/LevelEditor/atlas0.png" id="15_yjcdr"]
-[ext_resource type="Texture2D" uid="uid://cejjn8iah4g2v" path="res://Menus/LevelViewer/LevelEditor/atlas1.png" id="16_725wi"]
-[ext_resource type="Texture2D" uid="uid://bcb4l2marmwda" path="res://Menus/LevelViewer/LevelEditor/atlas2.png" id="17_cthcf"]
-[ext_resource type="Texture2D" uid="uid://btewks8ge1ys1" path="res://Menus/LevelViewer/LevelEditor/atlas3.png" id="18_epu5q"]
 [ext_resource type="FontFile" uid="uid://b3ey0yo4o63i8" path="res://Menus/TT Octosquares Trial Black Italic.ttf" id="19_wiei7"]
 
 [sub_resource type="Resource" id="Resource_fi6hf"]
@@ -40,43 +36,8 @@ script = ExtResource("3_cbhye")
 atlasId = 3
 blocks = Array[String](["Triggerable/Spawn/spawn.tscn", "Triggerable/Goal/goal.tscn"])
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gckxg"]
-resource_name = "Blocks"
-texture = ExtResource("15_yjcdr")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ykj8"]
-resource_name = "Hazard"
-texture = ExtResource("16_725wi")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xbss1"]
-resource_name = "Interactable"
-texture = ExtResource("17_cthcf")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_al6bc"]
-resource_name = "Objective"
-texture = ExtResource("18_epu5q")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_vgvju"]
 tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_gckxg")
-sources/1 = SubResource("TileSetAtlasSource_1ykj8")
-sources/2 = SubResource("TileSetAtlasSource_xbss1")
-sources/3 = SubResource("TileSetAtlasSource_al6bc")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oqmpr"]
 content_margin_left = 16.0
