@@ -51,6 +51,7 @@ public partial class LevelEditor : LevelViewer {
                         level.Load();
                 } else {
                         level.levelName = "Unnamed_Level";
+                        level.currentRoom.SetRoomData(null);
                 }
                 viewport.AddChild(level);
 
@@ -135,11 +136,10 @@ public partial class LevelEditor : LevelViewer {
                                         break;
                                 }
                         }
-                } else {
-                        level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));
-                        
+                } else if (level.currentRoom.GetRoomData() == null) {
+                        level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));    
                 }
-                
+
                 level.Save(level.currentRoom.GetRoomData());
         }
 

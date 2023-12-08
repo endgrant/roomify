@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Level : Node2D {
         public string levelName;
@@ -25,10 +26,10 @@ public partial class Level : Node2D {
                         GD.Print("Parse Error");
                 }
 
+                
                 Godot.Collections.Dictionary<string, Variant> dict = (Godot.Collections.Dictionary<string, Variant>)data;
                 currentRoom.SetRoomData(dict);
                 currentRoom.Load(dict);
-
                 file.Close();
         }
 }
