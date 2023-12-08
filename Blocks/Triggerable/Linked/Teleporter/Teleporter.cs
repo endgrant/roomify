@@ -21,17 +21,18 @@ public partial class Teleporter : AbstractLinked {
 
 
         private void Warp(Player player) {
-                player.Position = locator.GlobalPosition;
+                player.Position = location;
         }
 
         public override void Edit() {
                 base.Edit();
                 locator.Visible = true;
+                locator.GlobalPosition = location;
                 Button button = ((LevelEditor)root).CreateButton("Reset Location");
                 button.Pressed += ResetLocation;
-                HSlider sliderX = ((LevelEditor)root).CreateSlider(GlobalPosition.X, "X Location", 32, 1504, 64);
+                HSlider sliderX = ((LevelEditor)root).CreateSlider(location.X, "X Location", 32, 1504, 64);
                 sliderX.ValueChanged += SetXLocation;
-                HSlider sliderY = ((LevelEditor)root).CreateSlider(GlobalPosition.Y, "Y Location", 32, 864, 64);
+                HSlider sliderY = ((LevelEditor)root).CreateSlider(location.Y, "Y Location", 32, 864, 64);
                 sliderY.ValueChanged += SetYLocation;
         }
 
@@ -58,6 +59,7 @@ public partial class Teleporter : AbstractLinked {
 
 
         public override string Save() {
+                GD.Print(locator.GlobalPosition);
                 return Json.Stringify(new Godot.Collections.Dictionary{
                         ["Path"] = "res://Blocks/Triggerable/Linked/Teleporter/teleporter.tscn",                     
                         ["TargetX"] = locator.GlobalPosition.X,

@@ -143,8 +143,8 @@ public partial class LevelEditor : LevelViewer {
                                         break;
                                 }
                         }
-                } else if (level.currentRoom.GetRoomData() == null) {
-                        level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));    
+                } else {
+                        level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));
                 }
 
                 level.Save(level.currentRoom.GetRoomData());
