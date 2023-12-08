@@ -39,6 +39,7 @@ initial_velocity_max = 100.0
 scale_amount_max = 2.0
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="LevelViewport" type="SubViewportContainer" parent="."]
 layout_mode = 1
