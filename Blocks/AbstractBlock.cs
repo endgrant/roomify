@@ -3,7 +3,7 @@ using System;
 using System.Reflection.Metadata;
 
 public abstract partial class AbstractBlock : Node2D {
-        protected string displayName;
+        protected string displayName = "blah";
         protected static LevelViewer root;
         protected int id;
 

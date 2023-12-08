@@ -267,6 +267,10 @@ public partial class Room : AbstractTriggerable
                         PackedScene blockScene = GD.Load<PackedScene>((string)internalDict["Path"]);
                         AbstractBlock block = blockScene.Instantiate<AbstractBlock>();
 
+                        string[] stringVector = keyValuePair.Key.TrimPrefix("[").TrimSuffix("]").Split(",");
+                        Vector2I gridPos = new Vector2I(Int32.Parse(stringVector[0]), Int32.Parse(stringVector[1]));
+                        PlaceBlock(gridPos, block);
+
                         // Load block internal data if its not a sub-Room
                         if (!(block is Room)) {
                                 block.Load(internalDict);
@@ -275,10 +279,6 @@ public partial class Room : AbstractTriggerable
                                 Room subRoom = (Room)block;
                                 subRoom.SetRoomData(internalDict);
                         }
-                        
-                        string[] stringVector = keyValuePair.Key.TrimPrefix("[").TrimSuffix("]").Split(",");
-                        Vector2I gridPos = new Vector2I(Int32.Parse(stringVector[0]), Int32.Parse(stringVector[1]));
-                        PlaceBlock(gridPos, block);
                 }
         }
 }

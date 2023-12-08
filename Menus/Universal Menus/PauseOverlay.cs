@@ -9,6 +9,7 @@ public partial class PauseOverlay : CanvasLayer {
 	private AudioStreamPlayer audio;
         private static Button editButton;
         private static Button selectButton;
+        public static PauseOverlay instance;
 
 	public override void _Ready() {
 		base._Ready();
@@ -16,6 +17,7 @@ public partial class PauseOverlay : CanvasLayer {
 		audio = GetNode<AudioStreamPlayer>("AudioStreamPlayer");
                 editButton = GetNode<Button>("Edit");
                 selectButton = GetNode<Button>("Select");
+                instance = this;
                 Visible = false;
 	}
 
@@ -49,7 +51,7 @@ public partial class PauseOverlay : CanvasLayer {
                 GetNode<Player>("Player").QueueFree();
         }
 
-        public static void ChangedMenu(int menuType) {
+        public void ChangedMenu(int menuType) {
                 switch(menuType) {
                         case 0:
                                 editButton.Visible = false;

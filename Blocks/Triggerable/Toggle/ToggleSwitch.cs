@@ -4,9 +4,7 @@ using System;
 public partial class ToggleSwitch : AbstractTriggerable {
 	[Signal]
 	public delegate void ToggleEventHandler(bool isRed);
-	protected static Sprite2D sprite = new Sprite2D {
-					Texture = (Texture2D)GD.Load("res://Blocks/Triggerable/Toggle/RedToggle.png")
-			};
+	private Sprite2D sprite;
 			
 	public ToggleSwitch() {
 			
@@ -15,34 +13,33 @@ public partial class ToggleSwitch : AbstractTriggerable {
 
 	public override void _Ready() {
         displayName = "Switch";
-		
-		Toggle += ToggleHandler.instance.RequestToggle;
-		ToggleHandler.instance.Toggle += ChangeState;
+		sprite = GetNode<Sprite2D>("Sprite2D");
+
+		ToggleHandler.instance.Connect(SignalName.Toggle, new Callable(this, "ChangeState"));
 		bool isRed = ToggleHandler.instance.GetIsRed();
 		if(!isRed)
 			ChangeState(isRed);
+		sprite.Frame = 0;
 	}
 
 
 	// changes the state of the toggle from red or blue
         public override void Entered(Node2D activator) {
-		if(!ToggleHandler.instance.IsTimerStopped())
-			return;
-		if(!(activator is Player))
-			return;
-
-		ToggleHandler.instance.SetIsRed(!ToggleHandler.instance.GetIsRed());
+			if(!ToggleHandler.instance.IsTimerStopped())
+				return;
+			if(!(activator is Player))
+				return;
+			ToggleHandler.instance.SetIsRed(!ToggleHandler.instance.GetIsRed());
         }
 
 
 	protected void ChangeState(bool isRed) {
 		if(isRed) {
-			sprite.Texture = (Texture2D)GD.Load("res://Blocks/Triggerable/Toggle/RedToggle.png");
+			sprite.Frame = 0;
 		}
 		else {
-			sprite.Texture = (Texture2D)GD.Load("res://Blocks/Triggerable/Toggle/BlueToggle.png");
+			sprite.Frame = 1;
 		}
-		GetNode<Sprite2D>("Sprite2D").Texture = sprite.Texture;
 		ToggleHandler.instance.StartTimer();
 	}
 
@@ -55,8 +52,6 @@ public partial class ToggleSwitch : AbstractTriggerable {
 
 
         public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
-                base.Load(data);             
+            base.Load(data);
         }
-
-
 }

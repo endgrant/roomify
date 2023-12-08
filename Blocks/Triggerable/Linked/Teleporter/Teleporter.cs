@@ -10,7 +10,9 @@ public partial class Teleporter : AbstractLinked {
                 base._Ready();
                 displayName = "Teleporter";
                 locator = GetNode<Sprite2D>("Location");
-                ((LevelEditor)root).NewEdit += HideLocator;
+                if(root is LevelEditor)
+                        ((LevelEditor)root).Connect(LevelEditor.SignalName.NewEdit, new Callable(this, "HideLocator"));
+                locator.GlobalPosition = location;
         }
 
 
@@ -21,7 +23,7 @@ public partial class Teleporter : AbstractLinked {
 
 
         private void Warp(Player player) {
-                player.Position = location;
+                player.GlobalPosition = location;
         }
 
         public override void Edit() {
@@ -29,11 +31,11 @@ public partial class Teleporter : AbstractLinked {
                 locator.Visible = true;
                 locator.GlobalPosition = location;
                 Button button = ((LevelEditor)root).CreateButton("Reset Location");
-                button.Pressed += ResetLocation;
+                button.Connect(Button.SignalName.Pressed, new Callable(this, "ResetLocation"));
                 HSlider sliderX = ((LevelEditor)root).CreateSlider(location.X, "X Location", 32, 1504, 64);
-                sliderX.ValueChanged += SetXLocation;
+                button.Connect(Button.SignalName.Pressed, new Callable(this, "SetXLocation"));
                 HSlider sliderY = ((LevelEditor)root).CreateSlider(location.Y, "Y Location", 32, 864, 64);
-                sliderY.ValueChanged += SetYLocation;
+                button.Connect(Button.SignalName.Pressed, new Callable(this, "SetYLocation"));
         }
 
 
@@ -71,6 +73,6 @@ public partial class Teleporter : AbstractLinked {
         public override void Load(Godot.Collections.Dictionary<string, Variant> data) {  
                 base.Load(data);
                 Vector2 target = new Vector2((float)data["TargetX"], (float)data["TargetY"]);
-                location = target;          
+                location = target;
         }
 }

@@ -10,6 +10,6 @@ public abstract partial class AbstractMenu : Control {
 
     public override void _Ready() {
         base._Ready();
-        MenuChanged += PauseOverlay.ChangedMenu;
+        Connect(SignalName.MenuChanged, new Callable(PauseOverlay.instance, "ChangedMenu"));
     }
 }

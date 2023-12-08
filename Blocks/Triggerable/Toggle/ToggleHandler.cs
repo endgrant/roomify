@@ -6,11 +6,10 @@ using System;
 // is always public, singletons can't be created in the normal sense, but are
 // instead implied through the game engine itself.
 // This object is connected to an autoloaded script
-public partial class ToggleHandler : Node2D {
-    [Signal]
-	public delegate void ToggleEventHandler(bool isRed);
+public partial class ToggleHandler : ToggleSwitch {
     [ExportCategory("Attributes")]
 	[Export] protected static bool isRed = true;
+    	protected static Texture2D toggleSprite = (Texture2D)GD.Load("res://Blocks/Triggerable/Toggle/RedToggle.png");
     public static ToggleHandler instance;
     protected static Timer timer;
 

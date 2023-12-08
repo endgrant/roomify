@@ -66,9 +66,9 @@ public partial class Player : CharacterBody2D {
 			}
 			//triggers animation
 			if(yVel < 0) {
-				if(xVel >= 0)
+				if(xVel > 0)
 					animator.Play("Jump Right");
-				else
+				else if(xVel < 0)
 					animator.Play("Jump Left");
 			}
 		}

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpj3gmmawld8r" path="res://Blocks/Triggerable/triggerable_block.tscn" id="1_yafhs"]
 [ext_resource type="Script" path="res://Blocks/Triggerable/Toggle/ToggleSwitch.cs" id="2_gamvf"]
-[ext_resource type="Texture2D" uid="uid://bslrb0jc8oik2" path="res://Blocks/Triggerable/Toggle/RedToggle.png" id="3_gmhao"]
+[ext_resource type="Texture2D" uid="uid://cujrqieim6xnj" path="res://Blocks/Triggerable/Toggle/Toggle.png" id="3_7gxij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bdr6r"]
 size = Vector2(56, 56)
@@ -11,7 +11,8 @@ size = Vector2(56, 56)
 script = ExtResource("2_gamvf")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("3_gmhao")
+texture = ExtResource("3_7gxij")
+hframes = 2
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("RectangleShape2D_bdr6r")
