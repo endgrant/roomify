@@ -12,7 +12,7 @@ public partial class Teleporter : AbstractLinked {
                 locator = GetNode<Sprite2D>("Location");
                 if(root is LevelEditor)
                         ((LevelEditor)root).Connect(LevelEditor.SignalName.NewEdit, new Callable(this, "HideLocator"));
-                locator.GlobalPosition = location;
+                locator.Position = Vector2.Zero;
         }
 
 
@@ -27,7 +27,7 @@ public partial class Teleporter : AbstractLinked {
         }
 
         public void SensorEntered(Node2D activator) {
-                if(locator.GlobalPosition.X < 32)
+                if(locator.Position == Vector2.Zero)
                         locator.GlobalPosition = location;
                 if(activator is Player)
                         locator.Visible = true;
@@ -41,12 +41,13 @@ public partial class Teleporter : AbstractLinked {
         public override void Edit() {
                 base.Edit();
                 locator.Visible = true;
-                locator.GlobalPosition = location;
+                if(location != Vector2.Zero)
+                        locator.GlobalPosition = location;
                 Button button = ((LevelEditor)root).CreateButton("Reset Location");
                 button.Connect(Button.SignalName.Pressed, new Callable(this, "ResetLocation"));
-                HSlider sliderX = ((LevelEditor)root).CreateSlider(location.X, "X Location", 32, 1504, 64);
+                HSlider sliderX = ((LevelEditor)root).CreateSlider(locator.GlobalPosition.X, "X Location", 32, 1504, 64);
                 sliderX.Connect(HSlider.SignalName.ValueChanged, new Callable(this, "SetXLocation"));
-                HSlider sliderY = ((LevelEditor)root).CreateSlider(location.Y, "Y Location", 32, 864, 64);
+                HSlider sliderY = ((LevelEditor)root).CreateSlider(locator.GlobalPosition.Y, "Y Location", 32, 864, 64);
                 sliderY.Connect(HSlider.SignalName.ValueChanged, new Callable(this, "SetYLocation"));
         }
 
