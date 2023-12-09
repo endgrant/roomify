@@ -173,6 +173,7 @@ public partial class LevelEditor : LevelViewer {
 
                 hasSpawn = false;
                 CheckForSpawn();
+                changingRooms = false;
         }
 
 
