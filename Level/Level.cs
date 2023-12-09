@@ -25,7 +25,6 @@ public partial class Level : Node2D {
                 levelName = levelName.TrimSuffix(".lvl");
                 FileAccess file = FileAccess.Open(Constants.SAVE_DIR + "/" + levelName + ".lvl", FileAccess.ModeFlags.Write);
                 file.StoreLine(jsonString);
-                
                 file.Close();
         }
 

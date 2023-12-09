@@ -151,6 +151,8 @@ public partial class LevelEditor : LevelViewer {
                 }
                 level.Save(level.currentRoom.GetRoomData());
                 Visible = true;
+                if(level.levelName.Equals("Unnamed_Level"))
+                        Quit();
                 return true;
         }
 

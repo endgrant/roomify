@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 public partial class Teleporter : AbstractLinked {
-        private Vector2 location = new Vector2(-1, -1);
+        private Vector2 location;
         private Sprite2D locator;
         
 	// Entered scene tree
@@ -27,6 +27,8 @@ public partial class Teleporter : AbstractLinked {
         }
 
         public void SensorEntered(Node2D activator) {
+                if(locator.GlobalPosition.X < 32)
+                        locator.GlobalPosition = location;
                 if(activator is Player)
                         locator.Visible = true;
         }
@@ -76,8 +78,8 @@ public partial class Teleporter : AbstractLinked {
         public override string Save() {
                 return Json.Stringify(new Godot.Collections.Dictionary{
                         ["Path"] = "res://Blocks/Triggerable/Linked/Teleporter/teleporter.tscn",                     
-                        ["TargetX"] = locator.GlobalPosition.X,
-                        ["TargetY"] = locator.GlobalPosition.Y
+                        ["TargetX"] = location.X,
+                        ["TargetY"] = location.Y
                 });
         }
 

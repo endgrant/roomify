@@ -38,6 +38,7 @@ public partial class LevelSelect : AbstractMenu {
                         button.Connect("pressed", callable);
                         grid.AddChild(button);
                 }
+                Constants.currentLevelName = "";
                 EmitSignal(SignalName.MenuChanged, 0);
         }
 
@@ -112,7 +113,7 @@ public partial class LevelSelect : AbstractMenu {
         public void ChangeLevelName() { 
                 if (Constants.currentLevelName.Equals("")) {
                         return;
-                }               
+                }
                 string[] fileNames = DirAccess.GetFilesAt(Constants.SAVE_DIR);
                 foreach (string fileName in fileNames) {
                         if (fileName.Equals(Constants.currentLevelName)) {
@@ -137,6 +138,9 @@ public partial class LevelSelect : AbstractMenu {
 
         // Begin level name change
         public void BeginNameChange() {
+                if (Constants.currentLevelName.Equals("")) {
+                        return;
+                }
                 lineEdit.Text = "";
                 overlay.Visible = true;
         }
