@@ -42,7 +42,11 @@ public abstract partial class LevelViewer : AbstractMenu
 
         // Changes the current room
         public virtual void ChangeCurrentRoom(Room newRoom, bool prev) {
-                level.CallDeferred("ChangeRoom", newRoom, prev);
+                if (this is LevelPlayer) {
+                        level.CallDeferred("ChangeRoom", newRoom, prev);
+                } else {
+                        level.ChangeRoom(newRoom, prev);
+                }
         }
 
 
