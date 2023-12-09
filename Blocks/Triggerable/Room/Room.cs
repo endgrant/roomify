@@ -50,8 +50,9 @@ public partial class Room : AbstractTriggerable
                                 ((LevelEditor)root).OpenPrompt("Place a spawn before changing rooms!");
                                 return;
                         }
-                }
 
+                       
+                }
                 root.ChangeCurrentRoom(this, false);
         }
 
