@@ -19,7 +19,6 @@ public partial class ToggleSwitch : AbstractTriggerable {
 		bool isRed = ToggleHandler.instance.GetIsRed();
 		if(!isRed)
 			ChangeState(isRed);
-		sprite.Frame = 0;
 	}
 
 

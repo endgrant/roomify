@@ -11,5 +11,6 @@ public abstract partial class AbstractMenu : Control {
     public override void _Ready() {
         base._Ready();
         Connect(SignalName.MenuChanged, new Callable(PauseOverlay.instance, "ChangedMenu"));
+        ToggleHandler.instance.SetIsRed(true);
     }
 }
