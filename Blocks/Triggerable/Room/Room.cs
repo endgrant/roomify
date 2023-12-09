@@ -13,12 +13,15 @@ public partial class Room : AbstractTriggerable
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
 
+        private Timer cooldown;
+
 
         public Room() {}
 
 
         // Entered scene tree
 	public override void _Ready() {
+                cooldown = GetNode<Timer>("Timer");
                 base._Ready();
                 displayName = "Room";
         }
@@ -26,6 +29,9 @@ public partial class Room : AbstractTriggerable
 
         // Entered
         public override void Entered(Node2D activator) {
+                if (cooldown.TimeLeft > 0) {
+                        return;
+                }
                 if (!(activator is Player)) {
                         return;
                 }
