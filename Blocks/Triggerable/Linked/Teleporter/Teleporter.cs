@@ -26,6 +26,16 @@ public partial class Teleporter : AbstractLinked {
                 player.GlobalPosition = location;
         }
 
+        public void SensorEntered(Node2D activator) {
+                if(activator is Player)
+                        locator.Visible = true;
+        }
+
+        public void SensorExited(Node2D activator) {
+                if(activator is Player)
+                        locator.Visible = false;
+        }
+
         public override void Edit() {
                 base.Edit();
                 locator.Visible = true;
@@ -33,25 +43,28 @@ public partial class Teleporter : AbstractLinked {
                 Button button = ((LevelEditor)root).CreateButton("Reset Location");
                 button.Connect(Button.SignalName.Pressed, new Callable(this, "ResetLocation"));
                 HSlider sliderX = ((LevelEditor)root).CreateSlider(location.X, "X Location", 32, 1504, 64);
-                button.Connect(Button.SignalName.Pressed, new Callable(this, "SetXLocation"));
+                sliderX.Connect(HSlider.SignalName.ValueChanged, new Callable(this, "SetXLocation"));
                 HSlider sliderY = ((LevelEditor)root).CreateSlider(location.Y, "Y Location", 32, 864, 64);
-                button.Connect(Button.SignalName.Pressed, new Callable(this, "SetYLocation"));
+                sliderY.Connect(HSlider.SignalName.ValueChanged, new Callable(this, "SetYLocation"));
         }
 
 
         public void SetXLocation(double value) {
-                locator.GlobalPosition = new Vector2((float)value, locator.GlobalPosition.Y);
+                location = new Vector2((float)value, locator.GlobalPosition.Y);
+                locator.GlobalPosition = location;
         }
 
 
         public void SetYLocation(double value) {
-                locator.GlobalPosition = new Vector2(locator.GlobalPosition.X, (float)value);
+                location = new Vector2(locator.GlobalPosition.X, (float)value);
+                locator.GlobalPosition = location;
         }
 
 
         public void ResetLocation() {
                 HideLocator(null);
                 locator.Position = new Vector2(0, 0);
+                location = locator.GlobalPosition;
         }
 
 

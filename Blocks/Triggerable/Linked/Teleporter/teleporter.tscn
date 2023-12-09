@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://d014qi0geihd2"]
+[gd_scene load_steps=6 format=3 uid="uid://d014qi0geihd2"]
 
 [ext_resource type="PackedScene" uid="uid://dpj3gmmawld8r" path="res://Blocks/Triggerable/triggerable_block.tscn" id="1_rlyvd"]
 [ext_resource type="Script" path="res://Blocks/Triggerable/Linked/Teleporter/Teleporter.cs" id="2_h2xwb"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m5o35"]
 radius = 31.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_12ldo"]
+radius = 64.0
 
 [node name="Teleporter" instance=ExtResource("1_rlyvd")]
 script = ExtResource("2_h2xwb")
@@ -21,4 +24,11 @@ visible = false
 modulate = Color(1, 1, 1, 0.490196)
 texture = ExtResource("3_3idh0")
 
+[node name="Sensor" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensor" index="0"]
+shape = SubResource("CircleShape2D_12ldo")
+
 [connection signal="body_entered" from="." to="." method="Entered"]
+[connection signal="body_entered" from="Sensor" to="." method="SensorEntered"]
+[connection signal="body_exited" from="Sensor" to="." method="SensorExited"]
