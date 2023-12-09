@@ -10,16 +10,15 @@ public partial class Spawn : AbstractTriggerable {
                 base._Ready();
                 displayName = "Spawn";
                 parentPos = root.GetParentRoomPos();
-                Vector2I spawnLocation = GetGridPosition();
-                if (!parentPos.Equals(new Vector2I(-96, -96))) {
-                        spawnLocation = parentPos;
+
+                if (root is LevelPlayer) {
+                        LevelPlayer levelPlayer = (LevelPlayer)root;
+                        player = levelPlayer.GetPlayer();
                 }
-                /*
-                Player.respawnPoint = spawnLocation * Constants.CELL_SIZE + new Vector2I(Constants.CELL_SIZE / 2, Constants.CELL_SIZE / 2);
+
                 if (IsInstanceValid(player)) {
-                        player.Position = Player.respawnPoint;
+                        player.EnteredRoom(Position);
                 }
-                */
         }
 
 

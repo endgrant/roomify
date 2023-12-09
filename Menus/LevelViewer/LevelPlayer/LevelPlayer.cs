@@ -46,7 +46,7 @@ public partial class LevelPlayer : LevelViewer {
                 if(!(GetTimeLeft() == 0))
                         return;
                 base.ChangeCurrentRoom(newRoom, prev);
-                player.EnteredRoom(GetSpawnLocation(newRoom.GetTiles()));
+                //player.EnteredRoom(GetSpawnLocation(newRoom.GetTiles()));
         }
 
 
@@ -72,5 +72,10 @@ public partial class LevelPlayer : LevelViewer {
 
         public void StartTimer() {
                 timer.Start();
+        }
+
+
+        public Player GetPlayer() {
+                return player;
         }
 }
