@@ -35,16 +35,7 @@ public partial class Room : AbstractTriggerable
                 }
                 activator.Position = new Vector2I(-96, -96);
 
-                LevelPlayer levelPlayer = (LevelPlayer)root;
-                levelPlayer.SetViewportVisibility(false);
-                flush.Start();
-        }
-
-
-        public void Flushed() {
-                LevelPlayer levelPlayer = (LevelPlayer)root;
                 ChangeRoom();
-                levelPlayer.SetViewportVisibility(true);
         }
 
 
@@ -64,6 +55,7 @@ public partial class Room : AbstractTriggerable
                                 return;
                         }
                 }
+                
                 root.ChangeCurrentRoom(this, false);
         }
 

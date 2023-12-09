@@ -26,7 +26,13 @@ public abstract partial class LevelViewer : AbstractMenu
         }
 
 
-        public abstract void NavPreviousRoom();
+        public virtual void NavPreviousRoom() {
+                Room parentRoom = level.currentRoom.GetParentRoom();
+
+                if (IsInstanceValid(parentRoom)) {
+                        ChangeCurrentRoom(parentRoom, true);
+                }
+        }
 
 
         public Vector2I GetParentRoomPos() {
@@ -36,7 +42,7 @@ public abstract partial class LevelViewer : AbstractMenu
 
         // Changes the current room
         public virtual void ChangeCurrentRoom(Room newRoom, bool prev) {
-                level.ChangeRoom(newRoom, prev);
+                level.CallDeferred("ChangeRoom", newRoom, prev);
         }
 
 
