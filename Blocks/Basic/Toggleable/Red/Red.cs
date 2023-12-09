@@ -11,11 +11,11 @@ public partial class Red : ToggleBlock {
 
         protected override void ChangeState(bool isRed) {
                 if(isRed) {
-                        sprite.FrameCoords = new Vector2I(0, 1);
+                        sprite.Frame = 0;
                         GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", false);
                 }
                 else {
-                        sprite.FrameCoords = new Vector2I(0, 3);
+                        sprite.Frame = 1;
                         GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
                 }
         }
