@@ -13,16 +13,12 @@ public partial class Room : AbstractTriggerable
 
         private Vector2I tileSize = new Vector2I(Constants.CELL_SIZE, Constants.CELL_SIZE);
 
-        private Timer flush;
-
 
         public Room() {}
 
 
         // Entered scene tree
 	public override void _Ready() {
-                flush = GetNode<Timer>("Timer");
-
                 base._Ready();
                 displayName = "Room";
         }
@@ -55,7 +51,7 @@ public partial class Room : AbstractTriggerable
                                 return;
                         }
                 }
-                
+
                 root.ChangeCurrentRoom(this, false);
         }
 
