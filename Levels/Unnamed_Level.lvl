@@ -1,0 +1,1 @@
+{"Cells":{"[2,8]":"{\"EntranceX\":-96,\"EntranceY\":-96,\"Path\":\"res://Blocks/Triggerable/Spawn/spawn.tscn\"}","[3,12]":"{\"Path\":\"res://Blocks/Basic/BasicBlock/basic_block.tscn\"}","[8,7]":"{\"Path\":\"res://Blocks/Triggerable/Goal/goal.tscn\"}"},"Path":"res://Blocks/Triggerable/Room/room.tscn"}

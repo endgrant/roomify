@@ -99,6 +99,7 @@ public partial class Player : CharacterBody2D {
 
 
 	public void Die() {
+		extraJumps = 0;
 		EnteredRoom(respawnPoint);
 	}
 
