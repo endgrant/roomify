@@ -2,7 +2,6 @@ using Godot;
 using System;
 
 public partial class Spawn : AbstractTriggerable {
-        private Room linkedRoom = null;
         private Vector2I parentPos;
         public static Player player;
 
@@ -29,9 +28,9 @@ public partial class Spawn : AbstractTriggerable {
                         return;
                 if(parentPos.X == -96 && parentPos.Y == -96)
                         return;
-                GD.Print("go back");
+
                 if(activator is Player) {
-                        root.ChangeCurrentRoom(linkedRoom, true);
+                        root.NavPreviousRoom();
                 }
         }
 

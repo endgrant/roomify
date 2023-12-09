@@ -172,16 +172,6 @@ public partial class LevelEditor : LevelViewer {
         }
 
 
-        // Navigates up one room in the room tree
-        public override void NavPreviousRoom() {
-                Room parentRoom = level.currentRoom.GetParentRoom();
-
-                if (IsInstanceValid(parentRoom)) {
-                        ChangeCurrentRoom(parentRoom, true);
-                }
-        }
-
-
         // Delete block button in edit bar clicked
         public void ManualDelete() {
                 level.currentRoom.DeleteBlock(currentEdit);

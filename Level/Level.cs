@@ -14,7 +14,6 @@ public partial class Level : Node2D {
 
 
         public void ChangeRoom(Room newRoom, bool prev) {
-                GD.Print(newRoom, prev);
                 RoomLoader loader = RoomRequester.GetLoader();
                 Room room = loader.GetRoom(newRoom, prev); 
                 currentRoom = room;

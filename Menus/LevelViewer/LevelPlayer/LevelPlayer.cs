@@ -37,7 +37,7 @@ public partial class LevelPlayer : LevelViewer {
         public override void NavPreviousRoom() {
                 if(!(GetTimeLeft() == 0))
                         return;
-                //navigate to previous room
+                base.NavPreviousRoom();
         }
 
 
