@@ -82,7 +82,6 @@ public partial class LevelEditor : LevelViewer {
         // Runs every frame
         public override void _Process(double delta) {
                 base._Process(delta);
-
                 // Snap block preview to placement grid
                 Vector2 viewportSize = viewport.Size;
                 Vector2 windowSize = 
@@ -125,12 +124,15 @@ public partial class LevelEditor : LevelViewer {
 
         // Saves the level to file
         public bool SaveLevel() {
+                Visible = false;
                 if(!hasGoal) {
                         OpenPrompt("Cannot save a level without a goal!");
+                        Visible = true;
                         return false;
                 }
                 if(!hasSpawn) {
                         OpenPrompt("Cannot save a level without a spawn!");
+                        Visible = true;
                         return false;
                 }
 
@@ -147,14 +149,14 @@ public partial class LevelEditor : LevelViewer {
                 } else {
                         level.currentRoom.SetRoomData((Godot.Collections.Dictionary<string, Variant>)Json.ParseString(level.currentRoom.Save()));
                 }
-
                 level.Save(level.currentRoom.GetRoomData());
+                Visible = true;
                 return true;
         }
 
 
-        // Plays the level currently being edited
-        public void PlayLevel() {
+    // Plays the level currently being edited
+    public void PlayLevel() {
                 if(!SaveLevel())
                         return;
                 GetTree().ChangeSceneToPacked(levelPlayer);
