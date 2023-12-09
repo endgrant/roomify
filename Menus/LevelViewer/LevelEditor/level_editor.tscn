@@ -114,11 +114,12 @@ blockList = SubResource("Resource_fi6hf")
 
 [node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Block" index="1"]
 item_count = 3
+popup/item_0/text = " Basic"
 popup/item_0/icon = ExtResource("1_s54ka")
-popup/item_1/text = ""
+popup/item_1/text = " Red"
 popup/item_1/icon = ExtResource("2_euxns")
 popup/item_1/id = 1
-popup/item_2/text = ""
+popup/item_2/text = " Blue"
 popup/item_2/icon = ExtResource("3_8bov1")
 popup/item_2/id = 2
 
@@ -131,8 +132,9 @@ text = "Hazard"
 
 [node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Hazard" index="1"]
 item_count = 2
+popup/item_0/text = " Spike"
 popup/item_0/icon = ExtResource("4_ilewd")
-popup/item_1/text = ""
+popup/item_1/text = " Periodic"
 popup/item_1/icon = ExtResource("5_fqs06")
 popup/item_1/id = 1
 
@@ -145,14 +147,15 @@ text = "Interactable"
 
 [node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Interactable" index="1"]
 item_count = 4
+popup/item_0/text = " Switch"
 popup/item_0/icon = ExtResource("6_b5x1v")
-popup/item_1/text = ""
+popup/item_1/text = " Boost"
 popup/item_1/icon = ExtResource("7_f4c28")
 popup/item_1/id = 1
-popup/item_2/text = ""
+popup/item_2/text = " Teleporter"
 popup/item_2/icon = ExtResource("8_nesuw")
 popup/item_2/id = 2
-popup/item_3/text = ""
+popup/item_3/text = " Room"
 popup/item_3/icon = ExtResource("12_ojo2e")
 popup/item_3/id = 3
 
@@ -165,17 +168,18 @@ text = "Objective"
 
 [node name="Option" parent="VBoxContainer/Topbar/BlockSelector/Objective" index="1"]
 item_count = 2
+popup/item_0/text = " Spawn"
 popup/item_0/icon = ExtResource("10_bwwnq")
-popup/item_1/text = ""
+popup/item_1/text = " Goal"
 popup/item_1/icon = ExtResource("11_3k8bc")
 popup/item_1/id = 1
 
 [node name="CurrentBlock" type="VBoxContainer" parent="VBoxContainer/Topbar"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 0
-offset_left = 543.0
-offset_right = 585.0
-offset_bottom = 30.0
+offset_left = 748.0
+offset_right = 814.0
+offset_bottom = 94.0
 
 [node name="Label" type="Label" parent="VBoxContainer/Topbar/CurrentBlock"]
 layout_mode = 2
@@ -190,9 +194,9 @@ texture = ExtResource("1_s54ka")
 [node name="Button" type="Button" parent="VBoxContainer/Topbar"]
 custom_minimum_size = Vector2(128, 64)
 layout_mode = 0
-offset_left = 864.0
+offset_left = 900.0
 offset_top = 32.0
-offset_right = 992.0
+offset_right = 1028.0
 offset_bottom = 96.0
 text = "Previous
 Room"
